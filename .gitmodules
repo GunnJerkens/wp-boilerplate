@@ -1,0 +1,16 @@
+[submodule "public/wp"]
+	path = public/wp
+	url = git@github.com:WordPress/WordPress.git
+	ignore = dirty
+[submodule "public/content/plugins/uploads-by-proxy"]
+	path = public/content/plugins/uploads-by-proxy
+	url = git@github.com:brainstormmedia/uploads-by-proxy.git
+	ignore = dirty
+[submodule "public/content/plugins/acf"]
+	path = public/content/plugins/acf
+	url = git@github.com:elliotcondon/acf.git
+	ignore = dirty
+[submodule "public/content/plugins/WPThumb"]
+	path = public/content/plugins/WPThumb
+	url = git@github.com:humanmade/WPThumb.git
+	ignore = dirty

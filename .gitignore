@@ -1,0 +1,38 @@
+#Ignored directories
+/public/shared/content/uploads
+/public/content/upgrade
+/public/content/plugins/wp-super-cache
+/public/content/plugins/better-wp-security
+
+# Ignore system files, misc.
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+env_*
+
+# OS or Editor folders
+.DS_Store
+Thumbs.db
+.cache
+.project
+.settings
+.tmproj
+*.esproj
+nbproject
+_source
+
+# Dreamweaver added files
+_notes
+dwsync.xml
+
+# Folders to ignore
+.hg
+.svn
+.CVS

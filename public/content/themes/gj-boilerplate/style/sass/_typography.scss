@@ -1,0 +1,11 @@
+body {     
+        /* Improves font rendering, fixes "chunky" fonts */
+        -webkit-font-smoothing: antialiased;
+        font-style: normal;
+}
+@mixin serif {
+        font-family: serif;
+}
+@mixin sans {
+        font-family: sans-serif;
+}
