@@ -20,6 +20,10 @@ After initializing a new project, enter your environment variables in wp-config.
 
 To clone and edit the boilerplate repo normally, run `git submodule update --init` to retrieve submodules.
 
+### Grunt
+
+wp-boilerplate uses Grunt to compress Javascript files and run Compass. Run `npm install` from the root directory to install node dependencies, then run `grunt` to watch for changes in `js/src` and `style/sass` in the theme directory.
+
 ## Features
 ### Multi-environment handling in wp-config
 Allows you to define settings for multiple environments. Each environment inherits settings from the `$default` settings array.
@@ -48,6 +52,8 @@ Includes some nice stuff like [Modernizr](http://modernizr.com/), [Respond](http
 Includes default configuration for SASS/Compass, which comes highly recommended.
 
 ## Dependencies
+[node](http://nodejs.org)
+[Grunt](http://gruntjs.com): `npm install -g grunt-cli`
 [SASS](http://sass-lang.com/): `gem install sass`
 [Compass](http://compass-style.org/): `gem install compass`
 [Compass Normalize](https://github.com/ksmandersen/compass-normalize): `gem install compass-normalize`

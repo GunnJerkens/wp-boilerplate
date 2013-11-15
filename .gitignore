@@ -1,4 +1,5 @@
 #Ignored directories
+node_modules
 /public/shared/content/uploads
 /public/content/upgrade
 /public/content/plugins/wp-super-cache
