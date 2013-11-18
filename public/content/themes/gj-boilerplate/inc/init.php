@@ -50,3 +50,9 @@ remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
 
 // Adds post thumbnails to theme
 add_theme_support( 'post-thumbnails' );
+
+// Removes ul class from wp_nav_menu
+function remove_ul ( $menu ){
+    return preg_replace( array( '#^<ul[^>]*>#', '#</ul>$#' ), '', $menu );
+}
+add_filter( 'wp_nav_menu', 'remove_ul' );
