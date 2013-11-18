@@ -47,3 +47,6 @@ add_action('wp_head','google_analytics');
 remove_action('wp_head', 'wlwmanifest_link');
 remove_action('wp_head', 'rsd_link');
 remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
+
+// Adds post thumbnails to theme
+add_theme_support( 'post-thumbnails' );
