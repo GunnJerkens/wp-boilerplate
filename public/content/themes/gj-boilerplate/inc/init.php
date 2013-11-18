@@ -16,7 +16,6 @@ if( WP_PASSWORD_PROTECT == true ){
 // Only needs to be excuted once on project initialization
 update_option('upload_url_path', '/shared/content/uploads');
 
-
 // Loads Google Analytics
 $google_analytics_id = 'UA-XXXXXXXX-X'; // override this value in functions.php
 function google_analytics() {
@@ -43,3 +42,8 @@ function google_analytics() {
 <?php
 } // google_analytics
 add_action('wp_head','google_analytics');
+
+// Removes manifest/rsd/shortlink from wp_head
+remove_action('wp_head', 'wlwmanifest_link');
+remove_action('wp_head', 'rsd_link');
+remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
