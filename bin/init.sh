@@ -113,8 +113,8 @@ EOF
 rm -rf public/sed*
 rm -rf public/*.bak
 
-mkdir -p public/shared/content/uploads
-ln -s ../shared/content/uploads/ public/content/uploads
+mkdir -p public/shared
+ln -s ../shared uploads
 mkdir public/content/upgrade
 
 echo -e "Do you have sudo access and want to reset /public/ permissions to www-data? (y/n) "

@@ -14,7 +14,7 @@ if( WP_PASSWORD_PROTECT == true ){
 
 // Define upload_url_path to embed media with domain-relative URLs
 // Only needs to be excuted once on project initialization
-update_option('upload_url_path', '/shared/content/uploads');
+update_option('upload_url_path', '/shared');
 
 // Loads Google Analytics
 $google_analytics_id = 'UA-XXXXXXXX-X'; // override this value in functions.php
