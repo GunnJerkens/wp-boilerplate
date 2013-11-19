@@ -18,13 +18,15 @@ module.exports = function (grunt) {
     },
  
     compass: {
-      options: {
-        config: 'public/content/themes/gj-boilerplate/style/config.rb',
-        sassDir: 'public/content/themes/gj-boilerplate/style/sass',
-        cssDir: 'public/content/themes/gj-boilerplate/style',
-        environment: 'production',
-        outputStyle: 'compressed',
-        force: true
+      dist: {
+        options: {
+          config: 'public/content/themes/gj-boilerplate/style/config.rb',
+          sassDir: 'public/content/themes/gj-boilerplate/style/sass',
+          cssDir: 'public/content/themes/gj-boilerplate/style',
+          environment: 'production',
+          outputStyle: 'compressed',
+          force: true
+        }
       }
     },
 
@@ -37,7 +39,7 @@ module.exports = function (grunt) {
         tasks: ['uglify']
       },
       styles: {
-        files: ['public/content/themes/gj-boilerplate/style/sass/**/*.{sass,scss}'],
+        files: ['public/content/themes/gj-boilerplate/style/sass/*.scss'],
         tasks: ['compass']
       }
     },
