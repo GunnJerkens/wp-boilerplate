@@ -21,7 +21,7 @@ module.exports = function (grunt) {
       options: {
         config: 'public/content/themes/gj-boilerplate/style/config.rb',
         sassDir: 'public/content/themes/gj-boilerplate/style/sass',
-        cssDir: 'public/content/themes/gj-boilerplate/style/css',
+        cssDir: 'public/content/themes/gj-boilerplate/style',
         environment: 'production',
         outputStyle: 'compressed',
         force: true
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['public/content/themes/gj-boilerplate/style/sass/**/*.{sass,scss}'],
-        tasks: ['compass:dev']
+        tasks: ['compass']
       }
     },
   });
