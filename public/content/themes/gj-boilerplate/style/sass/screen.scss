@@ -6,5 +6,15 @@
 /* SVG Gradients in Opera & IE9 */
 $experimental-support-for-svg: true;
 
+/* Sprites (uncomment if sprites are used)
+@import "ui/*.png";
+@include all-ui-sprites;
+*/
+
+/* RGBAPNG */
+$rgbapng_path: 'generated';
+$rgbapng_px_size: 1;
+@import "rgbapng";
+
 /* SCSS Modules */
 @import "typography";
