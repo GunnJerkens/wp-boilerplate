@@ -20,6 +20,7 @@ module.exports = function (grunt) {
     compass: {
       dist: {
         options: {
+          basePath: 'public/content/themes/gj-boilerplate/style',
           config: 'public/content/themes/gj-boilerplate/style/config.rb',
           sassDir: 'public/content/themes/gj-boilerplate/style/sass',
           cssDir: 'public/content/themes/gj-boilerplate/style',
