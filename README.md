@@ -30,10 +30,10 @@ To clone a production database locally you can use db_sync.
 To clone and edit the boilerplate repo normally, run `git submodule update --init` to retrieve submodules.
 
 ### File Structure
---public
-----content
-----shared
-----wp
+--public  
+----content  
+----shared  
+----wp  
 
 The wp directory is a submodule and should not be modified in any way, the content directory houses themes and plugins. The Shared directory is where all uploaded files (via the WordPress backend) are stored.
 
