@@ -56,14 +56,14 @@ Environments can have `'password_protect' => true`. A function in the theme's fu
 A call is made for `update_option('upload_url_path', '/wp-content/uploads');` which forces media to be embedded with a src like `/wp-content/uploads/media.jpg` instead of `http://domain.com/wp-content/uploads/media.jpg`. Coupled with defining the environment hostnames in wp-config.php, this enables us to not have to worry about doing a search & replace in the database when changing hostnames.
 
 ### Included Plugins
-**[WPThumb](http://hmn.md/blog/2011/10/19/introducing-wp-thumb/):** Seamlessly integrates with native WordPress image functions to crop, resize, and cache uploaded media on-demand.
-**[Uploads by Proxy](http://wordpress.org/extend/plugins/uploads-by-proxy/):** Automatically retrieves uploaded media from a remote server (production or staging) if it doesn't exist locally
-**[Advanced Custom Fields](http://www.advancedcustomfields.com/):** Great plugin that enables advanced CMS functionality in WordPress
+**[WPThumb](http://hmn.md/blog/2011/10/19/introducing-wp-thumb/):** Seamlessly integrates with native WordPress image functions to crop, resize, and cache uploaded media on-demand.  
+**[Uploads by Proxy](http://wordpress.org/extend/plugins/uploads-by-proxy/):** Automatically retrieves uploaded media from a remote server (production or staging) if it doesn't exist locally.  
+**[Advanced Custom Fields](http://www.advancedcustomfields.com/):** Great plugin that enables advanced CMS functionality in WordPress.  
 
 ### Included Javascript
 Includes some nice stuff like [Modernizr](http://modernizr.com/), [Respond](https://github.com/scottjehl/Respond), [Bootstrap](http://getbootstrap.com), [jQuery Placeholder](https://github.com/mathiasbynens/jquery-placeholder), [jQuery imagesLoaded](https://github.com/desandro/imagesloaded), and [jQuery Validation](http://bassistance.de/jquery-plugins/jquery-plugin-validation/).
 
-All Javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compiled by Grunt into a main.js file included in the footer.
+All Javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compiled by Grunt into a 'main.js' file included in the footer.
 
 ### Included CSS
 [Bootstrap](http://getbootstrap.com) is included as a scss file, to use uncomment it in the screen.scss file.
@@ -84,8 +84,8 @@ All Javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compil
 Includes default configuration for SASS/Compass, which comes highly recommended.
 
 ## Dependencies
-[node](http://nodejs.org)
-[Grunt](http://gruntjs.com): `npm install -g grunt-cli`
-[SASS](http://sass-lang.com/): `gem install sass`
-[Compass](http://compass-style.org/): `gem install compass`
-[Compass Normalize](https://github.com/ksmandersen/compass-normalize): `gem install compass-normalize`
+[node](http://nodejs.org)  
+[Grunt](http://gruntjs.com): `npm install -g grunt-cli`  
+[SASS](http://sass-lang.com/): `gem install sass`  
+[Compass](http://compass-style.org/): `gem install compass`  
+[Compass Normalize](https://github.com/ksmandersen/compass-normalize): `gem install compass-normalize`  
