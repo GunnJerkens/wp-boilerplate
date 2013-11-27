@@ -15,6 +15,7 @@ To change WordPress versions use:
 ```
 cd public/wp
 git checkout [version]
+```
 
 After initializing a new project, you can manually adjust any of the wp-config variables and also enter in your staging and production credentials if available.
 
@@ -30,11 +31,11 @@ To clone and edit the boilerplate repo normally, run `git submodule update --ini
 
 ### File Structure
 --public
-	--content
-	--shared
-	--wp
+----content
+----shared
+----wp
 
-The /wp/ is a submodule and should not be modified in any way, the content directory houses themes and plugins. The Shared directory is where all uploaded files (via the WordPress backend) are stored.
+The wp directory is a submodule and should not be modified in any way, the content directory houses themes and plugins. The Shared directory is where all uploaded files (via the WordPress backend) are stored.
 
 ### Grunt
 
