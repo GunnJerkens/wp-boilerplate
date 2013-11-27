@@ -2,23 +2,39 @@
 
 GunnJerkens Wordpress boilerplate theme + plugins
 
-To initialize a new project, clone and then execute the init.sh script:
+To initialize a new project, clone and then execute the interactive init.sh script.
 
 ```
 ./init.sh
 ```
 
-This will remove the .git folder, initialize it as a new repo, loop through .gitmodules to initialize the submodules, and install the WordPress core.
+This will remove the .git folder, initialize it as a new repo, loop through .gitmodules to initialize the submodules, and install the WordPress core as a submodule. Based on user responses it can also enter your environment variables into wp-config and will place an env_* file in the root. Prior to completion it will insert a fresh set of salts from the WordPress API and checkout WordPress to the latest stable version.
 
-*Gotcha: the submodules will be checked out at the tip of their master branch instead of the same commit as the boilerplate repo*
+To change WordPress versions use:
 
-After initializing a new project, enter your environment variables in wp-config.php and db_sync.sh.  You can then run db_sync.sh to sync down from the production database:
+```
+cd public/wp
+git checkout [version]
+
+After initializing a new project, you can manually adjust any of the wp-config variables and also enter in your staging and production credentials if available.
+
+The wp-config defaults for a local environment having a MySQL username of 'root' with a blank password.
+
+To clone a production database locally you can use db_sync.
 
 ```
 ./db_sync.sh
 ```
 
 To clone and edit the boilerplate repo normally, run `git submodule update --init` to retrieve submodules.
+
+### File Structure
+--public
+	--content
+	--shared
+	--wp
+
+The /wp/ is a submodule and should not be modified in any way, the content directory houses themes and plugins. The Shared directory is where all uploaded files (via the WordPress backend) are stored.
 
 ### Grunt
 
@@ -42,11 +58,26 @@ A call is made for `update_option('upload_url_path', '/wp-content/uploads');` wh
 **[WPThumb](http://hmn.md/blog/2011/10/19/introducing-wp-thumb/):** Seamlessly integrates with native WordPress image functions to crop, resize, and cache uploaded media on-demand.
 **[Uploads by Proxy](http://wordpress.org/extend/plugins/uploads-by-proxy/):** Automatically retrieves uploaded media from a remote server (production or staging) if it doesn't exist locally
 **[Advanced Custom Fields](http://www.advancedcustomfields.com/):** Great plugin that enables advanced CMS functionality in WordPress
-**[Enable Media Replace](http://wordpress.org/extend/plugins/enable-media-replace/):** Enables replacement of uploaded media for updates
-**GJ Maps:** Plugin for storing Point of Interest data to be used with the Google Maps API. Not recommended for production use.
 
 ### Included Javascript
-Includes some nice stuff like [Modernizr](http://modernizr.com/), [Respond](https://github.com/scottjehl/Respond), [jQuery Placeholder](https://github.com/mathiasbynens/jquery-placeholder), [jQuery imagesLoaded](https://github.com/desandro/imagesloaded), and [jQuery Validation](http://bassistance.de/jquery-plugins/jquery-plugin-validation/).
+Includes some nice stuff like [Modernizr](http://modernizr.com/), [Respond](https://github.com/scottjehl/Respond), [Bootstrap](http://getbootstrap.com), [jQuery Placeholder](https://github.com/mathiasbynens/jquery-placeholder), [jQuery imagesLoaded](https://github.com/desandro/imagesloaded), and [jQuery Validation](http://bassistance.de/jquery-plugins/jquery-plugin-validation/).
+
+All Javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compiled by Grunt into a main.js file included in the footer.
+
+### Included CSS
+[Bootstrap](http://getbootstrap.com) is included as a scss file, to use uncomment it in the screen.scss file.
+
+```
+/* Bootstrap v3 */
+//@import "bootstrap";
+```
+
+### Included Fonts
+[Font Awesome](http://fontawesome.io/) is also included from the Bootstrap CDN, to use uncomment it in the header.php file.
+
+```
+<!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"> -->
+```
 
 ### Default Compass Configuration
 Includes default configuration for SASS/Compass, which comes highly recommended.
