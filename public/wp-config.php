@@ -35,7 +35,7 @@ $env_local = array_merge($env_default, array(
 	'name'     => 'local',
 	'hostname' => 'http://{hostname}.dev',
 	'debug'    => true,
-	'db_name'  => '{database}',
+	'db_name'  => '{db_dev}',
 	'db_user'  => 'root',
 	'db_pass'  => ''
 ));
@@ -44,13 +44,13 @@ $env_staging = array_merge($env_default, array(
 	'name'     => 'staging',
 	'hostname' => 'http://dev.{hostname}.com',
 	'debug'    => true,
-	'db_name'  => '{database}',
+	'db_name'  => '{db_staging}',
 	'password_protect' => true
 ));
 
 $production = array_merge($env_default, array(
 	'name'     => 'production',
-	'hostname' => 'http://example.com'
+	'hostname' => 'http://{hostname}.com'
 ));
 
 

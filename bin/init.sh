@@ -39,22 +39,26 @@ then
   read -p "What is the local hostname? (e.g., example not example.dev) " hostname
   sed -i.bak s/{hostname}/$hostname/g public/wp-config.php || true
 
-  read -p "What is the local database name? (e.g., database_dev) " database
-  sed -i.bak s/{database}/$database/g public/wp-config.php || true
+  read -p "What is the local database name? (e.g., database_dev) " db_dev
+  sed -i.bak s/{db_dev}/$db_dev/g public/wp-config.php || true
+
+  read -p "What is the staging database name? (e.g., database_dev) " db_staging
+  sed -i.bak s/{db_staging}/$db_staging/g public/wp-config.php || true
 
   touch public/env_local
-  echo -e "\nWould you like me to create a database? (y/n) "
+    
+  echo -e "\nWould you like me to create a local database? (y/n) "
   read -n 1
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
     
-    mysql -uroot -e "create database $database" || true
+    mysql -uroot -e "create database $db_dev" || true
     echo -e "\nWould you like to import a sql file? (y/n) "
     read -n 1
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
       read -p "Where is the file located? (e.g., /home/user/sql/example.sql) " sql
-      mysql -uroot $database < $sql || true
+      mysql -uroot $db_dev < $sql || true
       read -p "What is the table prefix?" table
       sed -i.bak s/gj_/$table/g public/wp-config.php || true
     else
@@ -73,8 +77,11 @@ echo -e "\nIs this a staging environment? (y/n) "
     read -p "What is the staging hostname? (e.g., use example not dev.example.com) " hostname
     sed -i.bak s/{hostname}/$hostname/g public/wp-config.php || true
 
-    read -p "What is the staging database name? (e.g., database_dev) " database
-    sed -i.bak s/{database}/$database/g public/wp-config.php || true
+    read -p "What is the staging database name? (e.g., database_dev) " db_staging
+    sed -i.bak s/{db_staging}/$db_staging/g public/wp-config.php || true
+
+    read -p "What is the local database name? (e.g., database_dev) " db_dev
+    sed -i.bak s/{db_dev}/$db_dev/g public/wp-config.php || true
 
     touch public/env_stage
 
