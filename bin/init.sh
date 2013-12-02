@@ -36,7 +36,7 @@ read -n 1
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 
-  read -p "What is the local hostname? (e.g., example.dev) " hostname
+  read -p "What is the local hostname? (e.g., example not example.dev) " hostname
   sed -i.bak s/{hostname}/$hostname/g public/wp-config.php || true
 
   read -p "What is the local database name? (e.g., database_dev) " database
@@ -70,10 +70,10 @@ echo -e "\nIs this a staging environment? (y/n) "
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
 
-    read -p "What is the local hostname? (e.g., example.dev) " hostname
+    read -p "What is the staging hostname? (e.g., use example not dev.example.com) " hostname
     sed -i.bak s/{hostname}/$hostname/g public/wp-config.php || true
 
-    read -p "What is the local database name? (e.g., database_dev) " database
+    read -p "What is the staging database name? (e.g., database_dev) " database
     sed -i.bak s/{database}/$database/g public/wp-config.php || true
 
     touch public/env_stage

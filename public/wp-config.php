@@ -22,10 +22,10 @@
 
 $env_default = array(
 	'name'     => 'default',
-	'hostname' => 'http://site.com',
+	'hostname' => 'http://{hostname}.com',
 	'debug'    => false,
-	'db_name'  => 'site_production',
-	'db_user'  => 'site_db',
+	'db_name'  => '{hostname}_prod',
+	'db_user'  => '{hostname}_db',
 	'db_pass'  => 'pass',
 	'db_host'  => 'localhost',
 	'password_protect' => false
@@ -33,23 +33,24 @@ $env_default = array(
 
 $env_local = array_merge($env_default, array(
 	'name'     => 'local',
-	'hostname' => 'http://{hostname}',
+	'hostname' => 'http://{hostname}.dev',
 	'debug'    => true,
-	'db_name'  => '{database}', 
+	'db_name'  => '{database}',
 	'db_user'  => 'root',
 	'db_pass'  => ''
 ));
 
 $env_staging = array_merge($env_default, array(
 	'name'     => 'staging',
-	'hostname' => 'http://site.epxhost.com',
+	'hostname' => 'http://dev.{hostname}.com',
 	'debug'    => true,
-	'db_name'  => 'site_staging'
+	'db_name'  => '{database}',
+	'password_protect' => true
 ));
 
 $production = array_merge($env_default, array(
 	'name'     => 'production',
-	'hostname' => 'http://site.com'
+	'hostname' => 'http://example.com'
 ));
 
 
