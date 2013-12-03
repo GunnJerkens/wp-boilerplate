@@ -31,23 +31,28 @@ rm tempfile
 
 echo -e "\nWe have come so far! Onto the environments..."
 
+
+# Development
 echo -e "Is this a local environment? (y/n) "
 read -n 1
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 
-  read -p "What is the local hostname? (e.g., example not example.dev) " hostname
-  sed -i.bak s/{hostname}/$hostname/g public/wp-config.php || true
+  read -p "What is the local hostname? (e.g., example.dev) " hostname_dev
+  sed -i.bak s/{hostname_dev}/$hostname_dev/g public/wp-config.php || true
+
+  read -p "What is the staging hostname? (e.g., dev.example.com) " hostname_staging
+  sed -i.bak s/{hostname_staging}/$hostname_staging/g public/wp-config.php || true
 
   read -p "What is the local database name? (e.g., database_dev) " db_dev
   sed -i.bak s/{db_dev}/$db_dev/g public/wp-config.php || true
 
-  read -p "What is the staging database name? (e.g., database_dev) " db_staging
+  read -p "What is the staging database name? (e.g., database_staging) " db_staging
   sed -i.bak s/{db_staging}/$db_staging/g public/wp-config.php || true
 
   touch public/env_local
     
-  echo -e "\nWould you like me to create a local database? (y/n) "
+  echo -e "\nWould you like me to create the local database? (y/n) "
   read -n 1
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
@@ -68,16 +73,21 @@ then
     echo -e "\nNo database for you!"
   fi
 
+
+# Staging
 else
 echo -e "\nIs this a staging environment? (y/n) "
   read -n 1
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
 
-    read -p "What is the staging hostname? (e.g., use example not dev.example.com) " hostname
-    sed -i.bak s/{hostname}/$hostname/g public/wp-config.php || true
+    read -p "What is the staging hostname? (e.g., dev.example.com) " hostname_staging
+    sed -i.bak s/{hostname_staging}/$hostname_staging/g public/wp-config.php || true
 
-    read -p "What is the staging database name? (e.g., database_dev) " db_staging
+    read -p "What is the local hostname? (e.g., example.dev) " hostname_dev
+    sed -i.bak s/{hostname_dev}/$hostname_dev/g public/wp-config.php || true
+
+    read -p "What is the staging database name? (e.g., database_staging) " db_staging
     sed -i.bak s/{db_staging}/$db_staging/g public/wp-config.php || true
 
     read -p "What is the local database name? (e.g., database_dev) " db_dev
@@ -90,6 +100,14 @@ echo -e "\nIs this a staging environment? (y/n) "
   fi
 fi
 
+# Production
+read -p "What is the production hostname? (e.g., example.com) " hostname_prod
+sed -i.bak s/{hostname_prod}/$hostname_prod/g public/wp-config.php || true
+
+read -p "What is the production database name? (e.g., database_prod) " db_prod
+sed -i.bak s/{db_prod}/$db_prod/g public/wp-config.php || true
+
+# --
 echo -e "\nGrabbing secret keys for your config.."
 
 salts=$(curl https://api.wordpress.org/secret-key/1.1/salt/| perl -pe 's/\n/\\n/g' | perl -pe 's/[\/&]/\\&/g')
@@ -124,12 +142,13 @@ mkdir -p public/shared
 ln -s ../shared uploads
 mkdir public/content/upgrade
 
-echo -e "Do you have sudo access and want to reset /public/ permissions to www-data? (y/n) "
+echo -e "Do you have sudo access and want to reset /public/ permissions? (y/n) "
 read -n 1
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  sudo chown -R www-data public/content/ || true
-  sudo chown -R www-data public/shared/ || true
+  read -p "What group should own the files? (e.g., www-data or _www) " $owner
+  sudo chown -R $owner public/content/ || true
+  sudo chown -R $owner public/shared/ || true
   sudo chmod -R 775 public/content/ || true
   sudo chmod -R 775 public/shared/ || true
   echo -e "\n Ownership & permissions change completed."
