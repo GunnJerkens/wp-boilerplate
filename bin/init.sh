@@ -148,7 +148,7 @@ rm -rf public/sed*
 rm -rf public/*.bak
 
 mkdir -p public/shared
-ln -s ../shared uploads
+ln -s ../shared public/content/uploads
 mkdir public/content/upgrade
 
 echo -e "Do you have sudo access and want to reset /public/ permissions? (y/n) "
