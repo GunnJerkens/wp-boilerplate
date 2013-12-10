@@ -12,7 +12,22 @@ fi
 
 git submodule update --init
 
-mkdir public/shared/ || true
-ln -s ../shared public/content/uploads
+SHARED=public/shared/
+if [ ! -d "$SHARED" ];
+then
+  mkdir public/shared/ || true
+  echo -e "\nCreated shared directory!"
+else
+  echo -e "\nShared directory exists!"
+fi
 
-echo "Complete!"
+UPSYM=public/content/uploads
+if [ ! -L $UPSYM ]
+then
+  ln -s ../shared public/content/uploads
+  echo "\nCreated symlink!"
+else
+  echo -e "\nSymlink exists!"
+fi
+
+echo -e "\nComplete! HaHa, Business!"
