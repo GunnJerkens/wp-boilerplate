@@ -33,20 +33,6 @@ curl -LOk http://downloads.wordpress.org/plugin/advanced-custom-fields.zip
 tar -zxvf advanced-custom-fields.zip
 mv advanced-custom-fields.zip public/content/plugins/
 
-#Uploads by Proxy
-curl -LOk http://downloads.wordpress.org/plugin/uploads-by-proxy.1.1.2.zip
-tar -zxvf uploads-by-proxy.zip
-mv uploads-by-proxy public/content/plugins
-
-#WPThumb
-curl -LOk http://downloads.wordpress.org/plugin/wp-thumb.0.9.zip
-tar -zxvf wp-thumb*.zip
-mv  wp-thumb.zip public/content/plugins
-
-rm -rf advanced-custom-fields.zip
-rm -rf uploads-by-proxy.zip
-rm -rf wp-thumb.zip
-
 echo -e "\nWe have come so far! Onto the environments..."
 
 read -p "What is the local hostname? (e.g., example.dev) " hostname_dev
