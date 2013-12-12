@@ -120,12 +120,13 @@ sed -i.bak s/{hostname_prod}/$hostname_prod/g public/wp-config.php || true
 
 read -p "What is the production database name? (e.g., database_prod) " db_prod
 sed -i.bak s/{db_prod}/$db_prod/g public/wp-config.php || true
-
+ 
 # Global
 echo -e "\nGrabbing secret keys for your config.."
 
-salts=$(curl https://api.wordpress.org/secret-key/1.1/salt/| perl -pe 's/\n/\\n/g' | perl -pe 's/[\/&]/\\&/g')
+salts=$(curl https://api.wordpress.org/secret-key/1.1/salt/| perl -pe 's/\n/newline/s' | perl -pe 's/[\/&]/\\&/g')
 sed -i.bak "s/{salts}/$salts/g" public/wp-config.php || true
+sed -i.bak -e 's/newline/\'$'\n/g' public/wp-config.php || true
 
 mv public/_.htaccess public/.htaccess
 
