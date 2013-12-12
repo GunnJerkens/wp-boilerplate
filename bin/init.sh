@@ -32,6 +32,7 @@ rm tempfile
 curl -LOk http://downloads.wordpress.org/plugin/advanced-custom-fields.zip
 tar -zxvf advanced-custom-fields.zip
 mv advanced-custom-fields.zip public/content/plugins/
+rm -rf advanced-custom-fields.zip
 
 echo -e "\nWe have come so far! Onto the environments..."
 
