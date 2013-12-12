@@ -5,7 +5,7 @@ GunnJerkens Wordpress boilerplate theme + plugins
 To initialize a new project, clone and then execute the interactive init.sh script.
 
 ```
-./init.sh
+bin/init.sh
 ```
 
 This will remove the .git folder, initialize it as a new repo, loop through .gitmodules to initialize the submodules, and install the WordPress core as a submodule. Based on user responses it can also enter your environment variables into wp-config and will place an env_* file in the root. Prior to completion it will insert a fresh set of salts from the WordPress API and checkout WordPress to the latest stable version.
@@ -24,7 +24,7 @@ The wp-config defaults for a local environment having a MySQL username of 'root'
 To clone a production database locally you can use db_sync.
 
 ```
-./db_sync.sh
+bin/db_sync.sh
 ```
 
 To clone and edit the boilerplate repo normally, run `git submodule update --init` to retrieve submodules.
@@ -45,7 +45,7 @@ wp-boilerplate uses Grunt to compress Javascript files and run Compass. Run `npm
 ### Multi-environment handling in wp-config
 Allows you to define settings for multiple environments. Each environment inherits settings from the `$default` settings array.
 
-Create an empty file named `env_local` or `env_stage` in the WordPress root folder for it to pick up settings specific to those environments.
+Create an empty file named `env_local` or `env_stage` in the web root folder (/public/) for it to pick up settings specific to those environments.
 
 Environment hostnames are specified so that you don't have to do a search and replace in the database everytime you sync a database dump to a different environment.
 
@@ -66,7 +66,7 @@ Includes some nice stuff like [Modernizr](http://modernizr.com/), [Respond](http
 All Javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compiled by Grunt into a 'main.js' file included in the footer.
 
 ### Included CSS
-[Bootstrap](http://getbootstrap.com) is included as a scss file, to use uncomment it in the screen.scss file.
+[Bootstrap](http://getbootstrap.com) is included as an scss file, to use uncomment it in the screen.scss file.
 
 ```
 /* Bootstrap v3 */
@@ -74,10 +74,11 @@ All Javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compil
 ```
 
 ### Included Fonts
-[Font Awesome](http://fontawesome.io/) is also included from the Bootstrap CDN, to use uncomment it in the header.php file.
+[Font Awesome](http://fontawesome.io/) is also included from the Bootstrap CDN, to use uncomment it in the assets.php file.
 
 ```
-<!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"> -->
+// Font Awesome stylesheet
+// wp_enqueue_style('font-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', false, null, false);
 ```
 
 ### Default Compass Configuration

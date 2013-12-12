@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width" initial-scale="1.0" />
 
-	<title><?php wp_title(); ?></title>
+	<title><?php wp_title('|'); ?></title>
 
 	<?php
 	// Cache buster for stylesheet
@@ -15,7 +15,7 @@
 	?>
 
 	<link rel="stylesheet" href="<?php echo $style_uri; ?>" />
-	<!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"> -->
+
 	<?php wp_head(); ?>
 </head>
 <body>
