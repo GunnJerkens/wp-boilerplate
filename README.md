@@ -14,7 +14,18 @@ To change WordPress versions use:
 
 ```
 cd public/wp
-git checkout [version]
+git checkout [version #]
+```
+
+To update WordPress versions:
+
+```
+cd public/wp
+git fetch --all
+git fetch --tags
+git checkout master
+git pull
+git checkout [version #]
 ```
 
 After initializing a new project, you can manually adjust any of the wp-config variables and also enter in your staging and production credentials if available.
