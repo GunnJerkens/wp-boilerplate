@@ -31,6 +31,27 @@ module.exports = function (grunt) {
       }
     },
 
+    imagemin: {
+      dynamic: {
+        files: [{
+          expand: true,
+          cwd: 'public/content/themes/gj-boilerplate/img/src',
+          src: ['*.{png,jpg,gif}'],
+          dest: 'public/content/themes/gj-boilerplate/img/'
+        }]
+      }
+    },
+
+    browser_sync: {
+      files: {
+        src: 'public/content/themes/gj-boilerplate/style/screen.css'
+      },
+      options: {
+          host: "localhost",
+          watchTask: true
+      }
+    },
+
     watch: {
       options: {
         livereload: true
@@ -42,11 +63,15 @@ module.exports = function (grunt) {
       styles: {
         files: ['public/content/themes/gj-boilerplate/style/**/*.{sass,scss}','public/content/themes/gj-boilerplate/img/ui/*.png'],
         tasks: ['compass']
+      },
+      images: {
+        files: ['public/content/themes/gj-boilerplate/img/src/*.{png,jpg,gif}'],
+        tasks: ['imagemin']
       }
     },
   });
  
   // Development task checks and concatenates JS, compiles SASS preserving comments and nesting, runs dev server, and starts watch
-  grunt.registerTask('default', ['compass', 'uglify', 'watch']);
+  grunt.registerTask('default', ['compass', 'uglify', 'imagemin', 'browser_sync', 'watch']);
  
  }

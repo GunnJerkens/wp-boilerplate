@@ -157,21 +157,17 @@ mkdir -p public/shared
 ln -s ../shared public/content/uploads
 mkdir public/content/upgrade
 
-echo -e "Do you have sudo access and want to reset /public/ permissions? (y/n) "
-read -n 1
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  read -p "What owner:group should own the files? (e.g., www-data:www-data) " owner
-  sudo chown -R $owner public/content/ || true
-  sudo chown -R $owner public/shared/ || true
-  sudo chmod -R 775 public/content/ || true
-  sudo chmod -R 775 public/shared/ || true
-  echo -e "\n Ownership & permissions change completed."
-else
-  echo -e "\n You may need to manually set your permissions"
-fi
-
 cd public/wp && git checkout 3.7.1
 echo -e "\nNow on latest branch -- WordPress 3.7.1"
 
-echo -e "\nInitialization complete -- happy coding! Use db_sync.sh to sync databases."
+echo -e "Do you want to install node modules? "
+read -n 1
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  npm install
+  echo -e "\n Node modules isntalled."
+else
+  echo -e "\n You'll need to run `npm install` from the project root to use Grunt."
+fi
+
+echo -e "\nInitialization complete -- happy coding! Use db_sync.sh to sync databases. You may need to manually set your permissions."
