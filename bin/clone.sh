@@ -13,7 +13,7 @@ else
   read -p "Staging environment? (y/n) " -n 1
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-    touch public/env_local
+    touch public/env_staging
     echo -e "\nCreated environment file successfully"
   else
     echo -e "\nNo environment file was created."

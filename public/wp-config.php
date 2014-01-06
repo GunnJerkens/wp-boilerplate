@@ -77,6 +77,9 @@ if ( file_exists( dirname( __FILE__ ) . '/env_local' ) ) {
 	// Production Environment
 	$environment = $production;
 
+	// Enables caching
+	define('WP_CACHE', true);
+
 }
 
 define('WP_ENV',   $environment['name']);
