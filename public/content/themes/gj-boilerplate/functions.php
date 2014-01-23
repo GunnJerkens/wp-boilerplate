@@ -12,3 +12,8 @@ function add_browser_sync() {
 if ($environment['name'] == 'local') {
   add_action('wp_footer','add_browser_sync');
 }
+
+// Navigation Menu Array
+register_nav_menus( array(
+  'main' => 'Main Navigation'
+) );
