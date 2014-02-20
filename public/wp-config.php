@@ -54,20 +54,19 @@ $production = array_merge($env_default, array(
 ));
 
 
-if ( file_exists( dirname( __FILE__ ) . '/env_local' ) ) {
+if ( file_exists( dirname( __FILE__ ) . '../env_local' ) ) {
 
 	// Local Environment
 	$environment = $env_local;
 
 	// Enable Auto Updater for OS X dev environment
-	// See http://dancingengineer.com/computing/2009/07/how-to-install-wordpress-on-mac-os-x-leopard and comments
 	define('FS_METHOD', 'direct');
 
 	// Enable Uploads by Proxy
 	define('UBP_LIVE_DOMAIN', $env_staging['hostname']);
 
 
-} elseif ( file_exists( dirname( __FILE__ ) . '/env_staging' ) ) {
+} elseif ( file_exists( dirname( __FILE__ ) . '../env_staging' ) ) {
 
 	// Staging Environment
 	$environment = $env_staging;
