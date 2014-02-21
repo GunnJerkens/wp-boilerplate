@@ -79,7 +79,7 @@ All Javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compil
 [Bootstrap](http://getbootstrap.com) is included as an scss file, to use uncomment it in the screen.scss file.
 
 ```
-/* Bootstrap v3.1 */
+/* Bootstrap v3.1.1 */
 //@import "bootstrap";
 ```
 
