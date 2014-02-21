@@ -4,7 +4,7 @@ cd `dirname $0`/..
 
 set -e
 
-read -p "Do you want to remove your .git and reinitialize all submodules? (y/n) " -n 1
+read -p "Do you want to remove your .git and reinitialize all submodules? (y/n) "
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
     exit 1
