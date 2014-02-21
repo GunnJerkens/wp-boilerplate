@@ -31,8 +31,14 @@ rm tempfile
 #Advanced Custom Fields
 curl -LOk http://downloads.wordpress.org/plugin/advanced-custom-fields.zip
 tar -zxvf advanced-custom-fields.zip
-mv advanced-custom-fields.zip public/content/plugins/
+mv advanced-custom-fields public/content/plugins/
 rm -rf advanced-custom-fields.zip
+
+#WordPress SEO
+curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.1.4.24.zip
+tar -zxvf wordpress-seo.1.4.24.zip wordpress-seo
+mv wordpress-seo public/content/plugins
+rm -rf wordpress-seo.1.4.24.zip
 
 echo -e "\nWe have come so far! Onto the environments..."
 
@@ -50,21 +56,18 @@ sed -i.bak s/{db_staging}/$db_staging/g public/wp-config.php || true
 
 
 # Development
-echo -e "Is this a local environment? (y/n) "
-read -n 1
+read -p "Is this a local environment? (y/n) "
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 
-  touch public/env_local
+  touch env_local
     
-  echo -e "\nWould you like me to create the local database? (y/n) "
-  read -n 1
+  read -p "Would you like me to create the local database? (y/n) "
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
     
     mysql -uroot -e "create database $db_dev" || true
-    echo -e "\nWould you like to import a sql file? (y/n) "
-    read -n 1
+    read -p "Would you like to import a sql file? (y/n) "
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
       read -p "Where is the file located? (e.g., /home/user/sql/example.sql) " sql
@@ -81,21 +84,18 @@ then
 
 # Staging
 else
-echo -e "\nIs this a staging environment? (y/n) "
-  read -n 1
+read -p "Is this a staging environment? (y/n) "
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
 
-    touch public/env_stage
+    touch env_stage
 
-    echo -e "\nWould you like me to create the staging database? (y/n) "
-    read -n 1
+    read -p "Would you like me to create the staging database? (y/n) "
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
     
       mysql -uroot -e "create database $db_staging" || true
-      echo -e "\nWould you like to import a sql file? (y/n) "
-      read -n 1
+      read -p "Would you like to import a sql file? (y/n) "
       if [[ $REPLY =~ ^[Yy]$ ]]
       then
         read -p "Where is the file located? (e.g., /home/user/sql/example.sql) " sql
@@ -160,14 +160,13 @@ mkdir public/content/upgrade
 cd public/wp && git checkout 3.8.1
 echo -e "\nNow on latest branch -- WordPress 3.8.1"
 
-echo -e "Do you want to install node modules? "
-read -n 1
+read -p "Do you want to install node modules? (y/n) "
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   npm install
-  echo -e "\n Node modules isntalled."
+  echo -e "\nNode modules installed."
 else
-  echo -e "\n You'll need to run `npm install` from the project root to use Grunt."
+  echo -e "\nYou'll need to run npm install from the project root to use Grunt."
 fi
 
 echo -e "\nInitialization complete -- happy coding! Use db_sync.sh to sync databases. You may need to manually set your permissions."
