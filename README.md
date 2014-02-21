@@ -66,9 +66,8 @@ Environments can have `'password_protect' => true`. A function in the theme's fu
 ### Embedded media uses domain-agnostic HTTP paths
 A call is made for `update_option('upload_url_path', '/wp-content/uploads');` which forces media to be embedded with a src like `/wp-content/uploads/media.jpg` instead of `http://domain.com/wp-content/uploads/media.jpg`. Coupled with defining the environment hostnames in wp-config.php, this enables us to not have to worry about doing a search & replace in the database when changing hostnames.
 
-### Included Plugins
-**[WPThumb](http://hmn.md/blog/2011/10/19/introducing-wp-thumb/):** Seamlessly integrates with native WordPress image functions to crop, resize, and cache uploaded media on-demand.  
-**[Uploads by Proxy](http://wordpress.org/extend/plugins/uploads-by-proxy/):** Automatically retrieves uploaded media from a remote server (production or staging) if it doesn't exist locally.  
+### Included Plugins  
+**[WordPress SEO (Yoast)](http://wordpress.org/extend/plugins/wordpress-seo/):** Full featured SEO plugin for expert control over WordPress  
 **[Advanced Custom Fields](http://www.advancedcustomfields.com/):** Great plugin that enables advanced CMS functionality in WordPress.  
 
 ### Included Javascript
@@ -80,7 +79,7 @@ All Javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compil
 [Bootstrap](http://getbootstrap.com) is included as an scss file, to use uncomment it in the screen.scss file.
 
 ```
-/* Bootstrap v3 */
+/* Bootstrap v3.1 */
 //@import "bootstrap";
 ```
 
@@ -101,4 +100,4 @@ Includes default configuration for SASS/Compass, which comes highly recommended.
 [SASS](http://sass-lang.com/): `gem install sass`  
 [Compass](http://compass-style.org/): `gem install compass`  
 [Compass Normalize](https://github.com/ksmandersen/compass-normalize): `gem install compass-normalize`  
-[Compass rgbapng](https://github.com/aaronrussell/compass-rgbapng): `gem install compass-rgbapng`   
+[Compass rgbapng](https://github.com/aaronrussell/compass-rgbapng): `gem install compass-rgbapng`  
