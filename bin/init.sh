@@ -157,8 +157,8 @@ mkdir -p public/shared
 ln -s ../shared public/content/uploads
 mkdir public/content/upgrade
 
-cd public/wp && git checkout 3.7.1
-echo -e "\nNow on latest branch -- WordPress 3.7.1"
+cd public/wp && git checkout 3.8.1
+echo -e "\nNow on latest branch -- WordPress 3.8.1"
 
 echo -e "Do you want to install node modules? "
 read -n 1
