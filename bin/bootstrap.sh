@@ -6,12 +6,12 @@ if [ ! -f `dirname $0`/config.sh ]; then
 fi
 . `dirname $0`/config.sh
 
-if [ -f `dirname $0`/../public/env_staging ]; then
+if [ -f `dirname $0`/../env_staging ]; then
   env="staging"
   if [ -z "$remote_env" ]; then
     remote_env="production"
   fi
-elif [ -f `dirname $0`/../public/env_local ]; then
+elif [ -f `dirname $0`/../env_local ]; then
   env="local"
   if [ -z "$remote_env" ]; then
     remote_env="production"

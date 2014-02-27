@@ -28,6 +28,15 @@ fi
 
 git submodule update --init
 
+read -p "Do you want to install node modules? (y/n) "
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  npm install
+  echo -e "\nNode modules installed."
+else
+  echo -e "\nYou'll need to run npm install from the project root to use Grunt."
+fi
+
 SHARED=public/shared/
 if [ ! -d "$SHARED" ];
 then

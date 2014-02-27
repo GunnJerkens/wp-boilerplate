@@ -7,6 +7,7 @@ production_username=root
 production_password=password
 # ssh user and server, or blank (e.g. remoteuser@remoteserver)
 production_ssh=
+production_ssh_port=22
 production_webroot=
 
 staging_database=db_staging
@@ -14,6 +15,7 @@ staging_username=$production_username
 staging_password=$production_password
 # ssh user and server, or blank (e.g. remoteuser@remoteserver)
 staging_ssh=
+staging_ssh_port=22
 staging_webroot=
 
 local_database=db_dev
