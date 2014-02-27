@@ -19,7 +19,7 @@ fi
 
 webroot=`dirname $0`/../public
 
-rsync -ruvPz $options $remote_ssh:$remote_webroot/shared $webroot/
+rsync -ruvPz -e "ssh -p $remote_ssh_port" $options $remote_ssh:$remote_webroot/shared $webroot/
 
 if [ "$1" = "go" ]; then
   echo -n "(Making uploads writable by the group) "

@@ -32,6 +32,7 @@ if [ -n "$remote_env" ]; then
   remote_username=`eval "echo \\$${remote_env}_username"`
   remote_password=`eval "echo \\$${remote_env}_password"`
   remote_ssh=`eval "echo \\$${remote_env}_ssh"`
+  remote_ssh_port=`eval "echo \\$${remote_env}_ssh_port"`
   remote_webroot=`eval "echo \\$${remote_env}_webroot"`
 else
   echo "no remote env"
