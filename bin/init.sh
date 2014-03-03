@@ -36,9 +36,9 @@ rm -rf advanced-custom-fields.zip
 
 #WordPress SEO
 curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.1.4.25.zip
-tar -zxvf wordpress-seo.1.4.24.zip wordpress-seo
+tar -zxvf wordpress-seo.1.4.25.zip wordpress-seo
 mv wordpress-seo public/content/plugins
-rm -rf wordpress-seo.1.4.24.zip
+rm -rf wordpress-seo.1.4.25.zip
 
 echo -e "\nWe have come so far! Onto the environments..."
 
