@@ -8,7 +8,7 @@
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 body {
   margin: 0;
@@ -329,7 +329,7 @@ img {
   border: 1px solid #ddd;
   border-radius: 4px;
   -webkit-transition: all .2s ease-in-out;
-          transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 .img-circle {
   border-radius: 50%;

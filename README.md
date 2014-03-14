@@ -66,9 +66,12 @@ Environments can have `'password_protect' => true`. A function in the theme's fu
 ### Embedded media uses domain-agnostic HTTP paths
 A call is made for `update_option('upload_url_path', '/wp-content/uploads');` which forces media to be embedded with a src like `/wp-content/uploads/media.jpg` instead of `http://domain.com/wp-content/uploads/media.jpg`. Coupled with defining the environment hostnames in wp-config.php, this enables us to not have to worry about doing a search & replace in the database when changing hostnames.
 
+### bin scripts
+In the root there are /bin/ scripts that allow easy syncing of databases and images from an upstream environment.
+
 ### Included Plugins
-**[WordPress SEO (Yoast)](http://wordpress.org/extend/plugins/wordpress-seo/):** Full featured SEO plugin for expert control over WordPress
-**[Advanced Custom Fields](http://www.advancedcustomfields.com/):** Great plugin that enables advanced CMS functionality in WordPress.
+**[WordPress SEO (Yoast)](http://wordpress.org/extend/plugins/wordpress-seo/):** Full featured SEO plugin for expert control over WordPress  
+**[Advanced Custom Fields](http://www.advancedcustomfields.com/):** Great plugin that enables advanced CMS functionality in WordPress  
 
 ### Included Javascript
 Includes some nice stuff like [Modernizr](http://modernizr.com/), [Respond](https://github.com/scottjehl/Respond), [Bootstrap](http://getbootstrap.com), [jQuery Placeholder](https://github.com/mathiasbynens/jquery-placeholder), [jQuery imagesLoaded](https://github.com/desandro/imagesloaded), and [jQuery Validation](http://bassistance.de/jquery-plugins/jquery-plugin-validation/).
@@ -95,9 +98,9 @@ All Javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compil
 Includes default configuration for SASS/Compass, which comes highly recommended.
 
 ## Dependencies
-[node](http://nodejs.org)
-[Grunt](http://gruntjs.com): `npm install -g grunt-cli`
-[SASS](http://sass-lang.com/): `gem install sass`
-[Compass](http://compass-style.org/): `gem install compass`
-[Compass Normalize](https://github.com/ksmandersen/compass-normalize): `gem install compass-normalize`
-[Compass rgbapng](https://github.com/aaronrussell/compass-rgbapng): `gem install compass-rgbapng`
+[node](http://nodejs.org)  
+[Grunt](http://gruntjs.com): `npm install -g grunt-cli`  
+[SASS](http://sass-lang.com/): `gem install sass`  
+[Compass](http://compass-style.org/): `gem install compass`  
+[Compass Normalize](https://github.com/ksmandersen/compass-normalize): `gem install compass-normalize`  
+[Compass rgbapng](https://github.com/aaronrussell/compass-rgbapng): `gem install compass-rgbapng`  

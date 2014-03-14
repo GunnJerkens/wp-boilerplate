@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
 
-	$('input, textarea').placeholder();
+  $('input, textarea').placeholder();
 
 });
