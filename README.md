@@ -32,19 +32,26 @@ After initializing a new project, you can manually adjust any of the wp-config v
 
 The wp-config defaults for a local environment having a MySQL username of 'root' with a blank password.
 
-To clone a production database locally you can use db_sync.
+After configuring the /bin/config.sh (sample included) with require credentials you can clone assets.
+To clone a production (or any upstream) database locally you can use db_sync:
 
 ```
 bin/db_sync.sh
+```
+To clone a production (or any upstream) uploads folder you can use uploads_sync:
+
+```
+bin/uploads_sync go
 ```
 
 To clone and edit the boilerplate repo normally, run `git submodule update --init` to retrieve submodules.
 
 ### File Structure
---public
-----content
-----shared
-----wp
+--bin  
+--public  
+----content  
+----shared  
+----wp  
 
 The wp directory is a submodule and should not be modified in any way, the content directory houses themes and plugins. The Shared directory is where all uploaded files (via the WordPress backend) are stored.
 
@@ -64,9 +71,9 @@ Environment hostnames are specified so that you don't have to do a search and re
 Environments can have `'password_protect' => true`. A function in the theme's functions.php will pick up on that and require a WP login to view the site if set to true.
 
 ### Embedded media uses domain-agnostic HTTP paths
-A call is made for `update_option('upload_url_path', '/wp-content/uploads');` which forces media to be embedded with a src like `/wp-content/uploads/media.jpg` instead of `http://domain.com/wp-content/uploads/media.jpg`. Coupled with defining the environment hostnames in wp-config.php, this enables us to not have to worry about doing a search & replace in the database when changing hostnames.
+A call is made for `update_option('upload_url_path', '/content/uploads');` which forces media to be embedded with a src like `/content/uploads/media.jpg` instead of `http://domain.com/wp-content/uploads/media.jpg`. Coupled with defining the environment hostnames in wp-config.php, this enables us to not have to worry about doing a search & replace in the database when changing hostnames.
 
-### bin scripts
+### Bin scripts
 In the root there are /bin/ scripts that allow easy syncing of databases and images from an upstream environment.
 
 ### Included Plugins
