@@ -78,9 +78,6 @@ if ( file_exists( dirname( __FILE__ ) . '../env_local' ) ) {
 
 	// Better WP Security
 	define('DISALLOW_FILE_EDIT', true );
-	// WP Supercache
-	define('WP_CACHE', true);
-	define('WPCACHEHOME', '/home/woodridg/production/public/content/plugins/wp-super-cache/' );
 
 }
 
