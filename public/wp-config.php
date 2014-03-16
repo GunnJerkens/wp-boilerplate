@@ -21,63 +21,60 @@
  */
 
 $env_default = array(
-	'name'     => 'default',
-	'hostname' => 'http://{hostname_prod}',
-	'debug'    => false,
-	'db_name'  => '{db_prod}',
-	'db_user'  => 'prod_db',
-	'db_pass'  => 'password',
-	'db_host'  => 'localhost',
-	'password_protect' => false
+  'name'     => 'default',
+  'hostname' => 'http://{hostname_prod}',
+  'debug'    => false,
+  'db_name'  => '{db_prod}',
+  'db_user'  => 'prod_db',
+  'db_pass'  => 'password',
+  'db_host'  => 'localhost',
+  'password_protect' => false
 );
 
 $env_local = array_merge($env_default, array(
-	'name'     => 'local',
-	'hostname' => 'http://{hostname_dev}',
-	'debug'    => true,
-	'db_name'  => '{db_dev}',
-	'db_user'  => 'root',
-	'db_pass'  => ''
+  'name'     => 'local',
+  'hostname' => 'http://{hostname_dev}',
+  'debug'    => true,
+  'db_name'  => '{db_dev}',
+  'db_user'  => 'root',
+  'db_pass'  => ''
 ));
 
 $env_staging = array_merge($env_default, array(
-	'name'     => 'staging',
-	'hostname' => 'http://{hostname_staging}',
-	'debug'    => true,
-	'db_name'  => '{db_staging}',
-	'password_protect' => true
+  'name'     => 'staging',
+  'hostname' => 'http://{hostname_staging}',
+  'debug'    => true,
+  'db_name'  => '{db_staging}',
+  'password_protect' => true
 ));
 
 $production = array_merge($env_default, array(
-	'name'     => 'production',
-	'hostname' => 'http://{hostname_prod}'
+  'name'     => 'production',
+  'hostname' => 'http://{hostname_prod}'
 ));
 
 
 if ( file_exists( dirname( __FILE__ ) . '../env_local' ) ) {
 
-	// Local Environment
-	$environment = $env_local;
+  // Local Environment
+  $environment = $env_local;
 
-	// Enable Auto Updater for OS X dev environment
-	define('FS_METHOD', 'direct');
+  // Enable Auto Updater for OS X dev environment
+  define('FS_METHOD', 'direct');
 
-	// Enable Uploads by Proxy
-	define('UBP_LIVE_DOMAIN', $env_staging['hostname']);
+  // Enable Uploads by Proxy
+  define('UBP_LIVE_DOMAIN', $env_staging['hostname']);
 
 
 } elseif ( file_exists( dirname( __FILE__ ) . '../env_staging' ) ) {
 
-	// Staging Environment
-	$environment = $env_staging;
+  // Staging Environment
+  $environment = $env_staging;
 
 } else {
 
-	// Production Environment
-	$environment = $production;
-
-	// Better WP Security
-	define('DISALLOW_FILE_EDIT', true );
+  // Production Environment
+  $environment = $production;
 
 }
 
@@ -150,5 +147,5 @@ define( 'WP_POST_REVISIONS', 10 );
 
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
-	define('ABSPATH', dirname(__FILE__) . '/wp/');
+  define('ABSPATH', dirname(__FILE__) . '/wp/');
 require_once(ABSPATH . 'wp-settings.php');
