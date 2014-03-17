@@ -19,24 +19,24 @@ update_option('upload_url_path', '/shared');
 // Loads Google Analytics
 $google_analytics_id = 'UA-XXXXXXXX-X'; // override this value in functions.php
 function google_analytics() {
-    global $env_default, $google_analytics_id;
-    $default_hostname = preg_replace('/^https?:\/\//', '', $env_default['hostname']);
-    ?>
-    <!-- Google Analytics -->
-    <script>
-    if(['<?php echo $default_hostname ?>','www.<?php echo $default_hostname ?>']
-      .indexOf(window.location.hostname) > -1
-      && window.location.search.search('&preview=true') == -1
-    ){
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  global $env_default, $google_analytics_id;
+  $default_hostname = preg_replace('/^https?:\/\//', '', $env_default['hostname']);
+  ?>
+  <!-- Google Analytics -->
+  <script>
+  if(['<?php echo $default_hostname ?>','www.<?php echo $default_hostname ?>']
+    .indexOf(window.location.hostname) > -1
+    && window.location.search.search('&preview=true') == -1
+  ){
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', '<?php echo $google_analytics_id ?>', '<?php echo $default_hostname ?>');
-      ga('send', 'pageview');
-    }
-    </script>
+    ga('create', '<?php echo $google_analytics_id ?>', '<?php echo $default_hostname ?>');
+    ga('send', 'pageview');
+  }
+  </script>
 <?php
 } // google_analytics
 add_action('wp_head','google_analytics');
@@ -56,6 +56,6 @@ add_theme_support( 'post-thumbnails' );
 
 // Removes ul class from wp_nav_menu
 function remove_ul ( $menu ){
-    return preg_replace( array( '#^<ul[^>]*>#', '#</ul>$#' ), '', $menu );
+  return preg_replace( array( '#^<ul[^>]*>#', '#</ul>$#' ), '', $menu );
 }
 add_filter( 'wp_nav_menu', 'remove_ul' );
