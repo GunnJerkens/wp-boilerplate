@@ -2,9 +2,14 @@
 node_modules
 public/shared
 public/shared/content/uploads
+public/content/cache
 public/content/upgrade
 public/content/plugins/wp-super-cache
 public/content/plugins/better-wp-security
+
+# WP Supercache Files
+public/content/advanced-cache.php
+public/content/wp-cache-config.php
 
 # Ignore system files, misc.
 *.diff
