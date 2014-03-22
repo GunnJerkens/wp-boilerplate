@@ -54,7 +54,7 @@ $production = array_merge($env_default, array(
 ));
 
 
-if ( file_exists( dirname( __FILE__ ) . '../env_local' ) ) {
+if ( file_exists( dirname( __FILE__ ) . '/../env_local' ) ) {
 
   // Local Environment
   $environment = $env_local;
@@ -66,7 +66,7 @@ if ( file_exists( dirname( __FILE__ ) . '../env_local' ) ) {
   define('UBP_LIVE_DOMAIN', $env_staging['hostname']);
 
 
-} elseif ( file_exists( dirname( __FILE__ ) . '../env_staging' ) ) {
+} elseif ( file_exists( dirname( __FILE__ ) . '/../env_staging' ) ) {
 
   // Staging Environment
   $environment = $env_staging;
