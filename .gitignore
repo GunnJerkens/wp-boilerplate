@@ -23,6 +23,7 @@ public/content/wp-cache-config.php
 *~
 *.sass-cache
 env_*
+error_log
 
 # OS or Editor folders
 .DS_Store
