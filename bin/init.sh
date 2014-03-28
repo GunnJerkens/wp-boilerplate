@@ -11,63 +11,124 @@ then
 fi
 
 
+#####################
+#   GIT/WP/PLUGINS  #
+#####################
+
 rm -rf .git
 git init
 
+if [ "$1" != "test" ]; then
+  #Initialize Submodules
+  git config -f .gitmodules --get-regexp '^submodule\..*\.path$' > tempfile
 
-#Initialize Submodules
-git config -f .gitmodules --get-regexp '^submodule\..*\.path$' > tempfile
+  while read -u 3 path_key path
+      do
+          url_key=$(echo $path_key | sed 's/\.path/.url/')
+          url=$(git config -f .gitmodules --get "$url_key")
+          rm -rf $path; git submodule add $url $path;
+          echo "$path has been initialized";
+      done 3<tempfile
 
-while read -u 3 path_key path
-    do
-        url_key=$(echo $path_key | sed 's/\.path/.url/')
-        url=$(git config -f .gitmodules --get "$url_key")
-        rm -rf $path; git submodule add $url $path;
-        echo "$path has been initialized";
-    done 3<tempfile
+  rm tempfile
 
-rm tempfile
+  #Advanced Custom Fields
+  curl -LOk http://downloads.wordpress.org/plugin/advanced-custom-fields.zip
+  tar -zxvf advanced-custom-fields.zip
+  mv advanced-custom-fields public/content/plugins/
+  rm -rf advanced-custom-fields.zip
 
-#Advanced Custom Fields
-curl -LOk http://downloads.wordpress.org/plugin/advanced-custom-fields.zip
-tar -zxvf advanced-custom-fields.zip
-mv advanced-custom-fields public/content/plugins/
-rm -rf advanced-custom-fields.zip
+  #WordPress SEO
+  curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.1.5.2.5.zip
+  tar -zxvf wordpress-seo.1.5.2.5.zip wordpress-seo
+  mv wordpress-seo public/content/plugins
+  rm -rf wordpress-seo.1.5.2.5.zip
 
-#WordPress SEO
-curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.1.5.2.5.zip
-tar -zxvf wordpress-seo.1.5.2.5.zip wordpress-seo
-mv wordpress-seo public/content/plugins
-rm -rf wordpress-seo.1.5.2.5.zip
+else
+  echo -e "\nSkipped WP & plugin downloads."
+fi
 
-echo -e "\nWe have come so far! Onto the environments..."
+#####################
+#      CONFIGS      #
+#####################
 
+echo -e "\nWe have come so far! Onto the configs..."
+
+cp bin/config.sample.sh bin/config.sh
+
+wpconfig="public/wp-config.php"
+binconfig="bin/config.sh"
+
+# Development Configs
 read -p "What is the local hostname? (e.g., example.dev) " hostname_dev
-sed -i.bak s/{hostname_dev}/$hostname_dev/g public/wp-config.php || true
-
-read -p "What is the staging hostname? (e.g., dev.example.com) " hostname_staging
-sed -i.bak s/{hostname_staging}/$hostname_staging/g public/wp-config.php || true
+  sed -i.bak s/{hostname_dev}/$hostname_dev/g $wpconfig || true
 
 read -p "What is the local database name? (e.g., database_dev) " db_dev
-sed -i.bak s/{db_dev}/$db_dev/g public/wp-config.php || true
+  sed -i.bak s/{db_dev}/$db_dev/g $wpconfig || true
+  sed -i.bak s/{db_dev}/$db_dev/g $binconfig || true
+
+
+# Staging Configs
+read -p "What is the staging hostname? (e.g., dev.example.com) " hostname_staging
+  sed -i.bak s/{hostname_staging}/$hostname_staging/g $wpconfig || true
+  sed -i.bak s/{hostname_staging}/$hostname_staging/g $binconfig || true
 
 read -p "What is the staging database name? (e.g., database_staging) " db_staging
-sed -i.bak s/{db_staging}/$db_staging/g public/wp-config.php || true
+  sed -i.bak s/{db_staging}/$db_staging/g $wpconfig || true
+  sed -i.bak s/{db_staging}/$db_staging/g $binconfig || true
+
+read -p "What is the ssh username? (e.g., root) " ssh_staging
+  sed -i.bak s/{ssh_staging}/$ssh_staging/g $binconfig || true
+
+read -p "What is the staging webroot path? (e.g., /var/www/example.com/public) " wr_staging
+  sed -i.bak s/{wr_staging}/${wr_staging//\//\\\/}/g $binconfig || true
 
 
-# Development
-read -p "Is this a local environment? (y/n) "
+# Production Configs
+read -p "What is the production hostname? (e.g., example.com) " hostname_prod
+  sed -i.bak s/{hostname_prod}/$hostname_prod/g $wpconfig || true
+  sed -i.bak s/{hostname_prod}/$hostname_prod/g $binconfig || true
+
+read -p "What is the production database name? (e.g., database_prod) " db_prod
+  sed -i.bak s/{db_prod}/$db_prod/g $wpconfig || true
+  sed -i.bak s/{db_prod}/$db_prod/g $binconfig || true
+
+read -p "What is the production database username? (e.g., root) " un_prod
+  sed -i.bak s/{un_prod}/$un_prod/g $wpconfig || true
+  sed -i.bak s/{un_prod}/$un_prod/g $binconfig || true
+
+read -p "What is the production database password? (e.g., drowsapp) " pw_prod
+  sed -i.bak s/{pw_prod}/$pw_prod/g $wpconfig || true
+  sed -i.bak s/{pw_prod}/$pw_prod/g $binconfig || true
+
+read -p "What is the ssh username? (e.g., root) " ssh_prod
+  sed -i.bak s/{ssh_prod}/$ssh_prod/g $binconfig || true
+
+read -p "What is the staging webroot path? (e.g., /var/www/example.com/public) " wr_prod
+  sed -i.bak s/{wr_prod}/${wr_prod//\//\\\/}/g $binconfig || true
+
+
+echo -e "\nConfigs complete!"
+
+echo -e "----------"
+
+#####################
+#   ENVIRONMENTS    #
+#####################
+
+# Development Environment
+read -p "Is this a local environment? (y/N) "
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 
   touch env_local
     
-  read -p "Would you like me to create the local database? (y/n) "
+  read -p "Would you like me to create the local database? (y/N) "
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
     
     mysql -uroot -e "create database $db_dev" || true
-    read -p "Would you like to import a sql file? (y/n) "
+    read -p "Would you like to import a sql file? (y/N) "
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
       read -p "Where is the file located? (e.g., /home/user/sql/example.sql) " sql
@@ -114,14 +175,7 @@ read -p "Is this a staging environment? (y/n) "
   fi
 fi
 
-# Production
-read -p "What is the production hostname? (e.g., example.com) " hostname_prod
-sed -i.bak s/{hostname_prod}/$hostname_prod/g public/wp-config.php || true
 
-read -p "What is the production database name? (e.g., database_prod) " db_prod
-sed -i.bak s/{db_prod}/$db_prod/g public/wp-config.php || true
- 
-# Global
 echo -e "\nGrabbing secret keys for your config.."
 
 salts=$(curl https://api.wordpress.org/secret-key/1.1/salt/| perl -pe 's/\n/newline/s' | perl -pe 's/[\/&]/\\&/g')
@@ -152,6 +206,7 @@ EOF
 
 rm -rf public/sed*
 rm -rf public/*.bak
+rm -rf bin/*.bak
 
 mkdir -p public/shared
 ln -s ../shared public/content/uploads

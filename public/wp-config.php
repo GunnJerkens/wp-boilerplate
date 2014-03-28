@@ -25,8 +25,8 @@ $env_default = array(
   'hostname' => 'http://{hostname_prod}',
   'debug'    => false,
   'db_name'  => '{db_prod}',
-  'db_user'  => 'prod_db',
-  'db_pass'  => 'password',
+  'db_user'  => '{un_prod}',
+  'db_pass'  => '{pw_prod}',
   'db_host'  => 'localhost',
   'password_protect' => false
 );
