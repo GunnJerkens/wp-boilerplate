@@ -11,4 +11,4 @@ elif [ -z "$remote_ssh" ]; then
 fi
 
 echo -n "(local mysql) "
-ssh -p $remote_ssh_port $remote_ssh \ "mysqldump -u$remote_username -p$remote_password $remote_database" \ | mysql -u$env_username -p$env_password $env_database
+ssh -p $remote_ssh_port $remote_ssh \ "mysqldump -u$remote_username -p'$remote_password' $remote_database" \ | mysql -u$env_username -p$env_password $env_database

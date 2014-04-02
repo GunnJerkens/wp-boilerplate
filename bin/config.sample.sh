@@ -6,7 +6,7 @@
 
 production_database={db_prod}
 production_username={un_prod}
-production_password={pw_prod}
+production_password='{pw_prod}'
 # ssh user and server, or blank (e.g. remoteuser@remoteserver)
 production_ssh={ssh_prod}@{hostname_prod}
 production_ssh_port=22
