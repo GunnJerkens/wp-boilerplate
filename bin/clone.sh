@@ -7,13 +7,13 @@ set -e
 read -p "Local environment? (y/n) "
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  touch public/env_local
+  touch env_local
   echo -e "\nCreated environment file successfully"
 else
   read -p "Staging environment? (y/n) "
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-    touch public/env_staging
+    touch env_staging
     echo -e "\nCreated environment file successfully"
   else
     echo -e "\nNo environment file was created."
