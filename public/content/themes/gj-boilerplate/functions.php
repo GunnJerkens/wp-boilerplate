@@ -1,7 +1,7 @@
 <?php
 
-include('inc/init.php');
-include('inc/assets.php');
+include_once('inc/init.php');
+include_once('inc/assets.php');
 
 $google_analytics_id = 'UA-XXXXXXXX-X';
 
