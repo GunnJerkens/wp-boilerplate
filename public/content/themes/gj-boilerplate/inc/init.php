@@ -59,3 +59,90 @@ function remove_ul ( $menu ){
   return preg_replace( array( '#^<ul[^>]*>#', '#</ul>$#' ), '', $menu );
 }
 add_filter( 'wp_nav_menu', 'remove_ul' );
+
+// Sets up ACF for titles
+if(function_exists("register_field_group"))
+{
+  register_field_group(array (
+    'id' => 'acf_title',
+    'title' => 'Title',
+    'fields' => array (
+      array (
+        'key' => 'field_533db25105c50',
+        'label' => 'Title Type',
+        'name' => 'title_type',
+        'type' => 'select',
+        'instructions' => 'Use text or an image as a page title, none defaults to the WordPress the_title() function.',
+        'choices' => array (
+          'none' => 'None',
+          'text' => 'Text',
+          'image' => 'Image',
+        ),
+        'default_value' => '',
+        'allow_null' => 0,
+        'multiple' => 0,
+      ),
+      array (
+        'key' => 'field_533db2e305c51',
+        'label' => 'Title Text',
+        'name' => 'title_text',
+        'type' => 'text',
+        'conditional_logic' => array (
+          'status' => 1,
+          'rules' => array (
+            array (
+              'field' => 'field_533db25105c50',
+              'operator' => '==',
+              'value' => 'text',
+            ),
+          ),
+          'allorany' => 'all',
+        ),
+        'default_value' => '',
+        'placeholder' => '',
+        'prepend' => '',
+        'append' => '',
+        'formatting' => 'none',
+        'maxlength' => '',
+      ),
+      array (
+        'key' => 'field_533db32131385',
+        'label' => 'Title Image',
+        'name' => 'title_image',
+        'type' => 'image',
+        'conditional_logic' => array (
+          'status' => 1,
+          'rules' => array (
+            array (
+              'field' => 'field_533db25105c50',
+              'operator' => '==',
+              'value' => 'image',
+            ),
+          ),
+          'allorany' => 'all',
+        ),
+        'save_format' => 'object',
+        'preview_size' => 'thumbnail',
+        'library' => 'uploadedTo',
+      ),
+    ),
+    'location' => array (
+      array (
+        array (
+          'param' => 'post_type',
+          'operator' => '==',
+          'value' => 'page',
+          'order_no' => 0,
+          'group_no' => 0,
+        ),
+      ),
+    ),
+    'options' => array (
+      'position' => 'normal',
+      'layout' => 'no_box',
+      'hide_on_screen' => array (
+      ),
+    ),
+    'menu_order' => 0,
+  ));
+}
