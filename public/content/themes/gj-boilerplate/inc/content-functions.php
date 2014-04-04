@@ -17,7 +17,7 @@ function theTitle() {
     echo $subTitle;
   } elseif (get_field('title_type') === 'image' ) {
     $titleImage = get_field('title_image');
-    echo '<img src="'.$titleImage.'">';
+    echo '<img src="'.$titleImage['url'].'" alt="'.$titleImage['alt'].'">';
   } else {
     $defaultTitle = get_the_title();
     echo $defaultTitle;
