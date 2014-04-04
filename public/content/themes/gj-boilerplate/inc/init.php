@@ -54,6 +54,17 @@ function remove_ul ( $menu ){
 }
 add_filter( 'wp_nav_menu', 'remove_ul' );
 
+// Add socket.io snippet to enable Browser Sync
+if($environment['name'] == 'local') {
+  function add_browser_sync() {
+    echo "
+      <script src='http://localhost:3000/socket.io/socket.io.js'></script>
+      <script src='http://localhost:3001/browser-sync-client.min.js'></script>
+    ";
+  }
+  add_action('wp_footer','add_browser_sync');
+}
+
 // Sets up ACF for titles
 if(function_exists("register_field_group")) {
   register_field_group(array (
