@@ -61,8 +61,7 @@ function remove_ul ( $menu ){
 add_filter( 'wp_nav_menu', 'remove_ul' );
 
 // Sets up ACF for titles
-if(function_exists("register_field_group"))
-{
+if(function_exists("register_field_group")) {
   register_field_group(array (
     'id' => 'acf_title',
     'title' => 'Title',
