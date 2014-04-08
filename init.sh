@@ -53,10 +53,10 @@ if [ "$1" != "test" ]; then
   rm -rf advanced-custom-fields.zip
 
   #WordPress SEO
-  curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.1.5.2.5.zip
-  tar -zxvf wordpress-seo.1.5.2.5.zip wordpress-seo
+  curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.1.5.2.6.zip
+  tar -zxvf wordpress-seo.1.5.2.6.zip wordpress-seo
   mv wordpress-seo public/content/plugins
-  rm -rf wordpress-seo.1.5.2.5.zip
+  rm -rf wordpress-seo.1.5.2.6.zip
   fi
 
 else
