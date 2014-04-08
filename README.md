@@ -5,7 +5,7 @@ GunnJerkens Wordpress boilerplate theme + plugins
 To initialize a new project, clone and then execute the interactive init.sh script.
 
 ```
-bin/init.sh
+./init.sh
 ```
 
 This will remove the .git folder, initialize it as a new repo, loop through .gitmodules to initialize the submodules, and install the WordPress core as a submodule. Based on user responses it can also enter your environment variables into wp-config and will place an env_* file in the root. Prior to completion it will insert a fresh set of salts from the WordPress API and checkout WordPress to the latest stable version.
