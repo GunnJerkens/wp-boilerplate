@@ -4,19 +4,32 @@ cd `dirname $0`/..
 
 set -e
 
-read -p "Do you want to remove your .git and reinitialize all submodules? (y/n) "
-if [[ ! $REPLY =~ ^[Yy]$ ]]
-then
+read -p "Is this a new project? (y/N) "
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  read -p "Is this a clone of an existing project? (y/N) "
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    type=clone
+    echo -e "\nSet project type to clone."
+  else
+    echo -e "\nNo project type set, exiting.."
     exit 1
+  fi
+else
+  type=initial
+  echo -e "\nSet project type to initial."
 fi
-
 
 #####################
 #   GIT/WP/PLUGINS  #
 #####################
 
-rm -rf .git
-git init
+if [[ $type = "initial" ]]; then
+
+  rm -rf .git
+  git init
+
+fi
+
 
 if [ "$1" != "test" ]; then
   #Initialize Submodules
@@ -32,6 +45,7 @@ if [ "$1" != "test" ]; then
 
   rm tempfile
 
+  if [[ $type = "initial" ]]; then
   #Advanced Custom Fields
   curl -LOk http://downloads.wordpress.org/plugin/advanced-custom-fields.zip
   tar -zxvf advanced-custom-fields.zip
@@ -43,69 +57,79 @@ if [ "$1" != "test" ]; then
   tar -zxvf wordpress-seo.1.5.2.5.zip wordpress-seo
   mv wordpress-seo public/content/plugins
   rm -rf wordpress-seo.1.5.2.5.zip
+  fi
 
 else
-  echo -e "\nSkipped WP & plugin downloads."
+  echo -e "\nTest enabled .. skipped WP & plugin downloads."
 fi
 
 #####################
 #      CONFIGS      #
 #####################
 
-echo -e "\nWe have come so far! Onto the configs..."
+if [[ $type = "initial" ]]; then
+  echo -e "\nCreating project wp-config and config.sh"
+else
+  echo -e "\nCreating config.sh only"
+  echo -e "\nWARNING: All setings should match wp-config.php!"
+fi
 
 cp bin/config.sample.sh bin/config.sh
-
 wpconfig="public/wp-config.php"
 binconfig="bin/config.sh"
 
+
+
 # Development Configs
 read -p "What is the local hostname? (e.g., example.dev) " hostname_dev
-  sed -i.bak s/{hostname_dev}/$hostname_dev/g $wpconfig || true
-
 read -p "What is the local database name? (e.g., database_dev) " db_dev
+
+if [[ $type = "initial" ]]; then
+  sed -i.bak s/{hostname_dev}/$hostname_dev/g $wpconfig || true
   sed -i.bak s/{db_dev}/$db_dev/g $wpconfig || true
-  sed -i.bak s/{db_dev}/$db_dev/g $binconfig || true
+fi
+
+sed -i.bak s/{db_dev}/$db_dev/g $binconfig || true
 
 
 # Staging Configs
 read -p "What is the staging hostname? (e.g., dev.example.com) " hostname_staging
-  sed -i.bak s/{hostname_staging}/$hostname_staging/g $wpconfig || true
-  sed -i.bak s/{hostname_staging}/$hostname_staging/g $binconfig || true
-
 read -p "What is the staging database name? (e.g., database_staging) " db_staging
-  sed -i.bak s/{db_staging}/$db_staging/g $wpconfig || true
-  sed -i.bak s/{db_staging}/$db_staging/g $binconfig || true
-
-read -p "What is the ssh username? (e.g., root) " ssh_staging
-  sed -i.bak s/{ssh_staging}/$ssh_staging/g $binconfig || true
-
 read -p "What is the staging webroot path? (e.g., /var/www/example.com/public) " wr_staging
-  sed -i.bak s/{wr_staging}/${wr_staging//\//\\\/}/g $binconfig || true
+read -p "What is the ssh username? (e.g., root) " ssh_staging
+
+if [[ $type = "initial" ]]; then
+  sed -i.bak s/{hostname_staging}/$hostname_staging/g $wpconfig || true
+  sed -i.bak s/{db_staging}/$db_staging/g $wpconfig || true
+fi
+
+sed -i.bak s/{hostname_staging}/$hostname_staging/g $binconfig || true
+sed -i.bak s/{db_staging}/$db_staging/g $binconfig || true
+sed -i.bak s/{ssh_staging}/$ssh_staging/g $binconfig || true
+sed -i.bak s/{wr_staging}/${wr_staging//\//\\\/}/g $binconfig || true
 
 
 # Production Configs
 read -p "What is the production hostname? (e.g., example.com) " hostname_prod
-  sed -i.bak s/{hostname_prod}/$hostname_prod/g $wpconfig || true
-  sed -i.bak s/{hostname_prod}/$hostname_prod/g $binconfig || true
-
 read -p "What is the production database name? (e.g., database_prod) " db_prod
-  sed -i.bak s/{db_prod}/$db_prod/g $wpconfig || true
-  sed -i.bak s/{db_prod}/$db_prod/g $binconfig || true
-
 read -p "What is the production database username? (e.g., root) " un_prod
-  sed -i.bak s/{un_prod}/$un_prod/g $wpconfig || true
-  sed -i.bak s/{un_prod}/$un_prod/g $binconfig || true
-
 read -p "What is the production database password? (e.g., drowsapp) " pw_prod
-  sed -i.bak s/{pw_prod}/$pw_prod/g $wpconfig || true
-  sed -i.bak s/{pw_prod}/$pw_prod/g $binconfig || true
-
 read -p "What is the ssh username? (e.g., root) " ssh_prod
-  sed -i.bak s/{ssh_prod}/$ssh_prod/g $binconfig || true
-
 read -p "What is the staging webroot path? (e.g., /var/www/example.com/public) " wr_prod
-  sed -i.bak s/{wr_prod}/${wr_prod//\//\\\/}/g $binconfig || true
+
+if [[ $type = "initial" ]]; then
+  sed -i.bak s/{hostname_prod}/$hostname_prod/g $wpconfig || true
+  sed -i.bak s/{db_prod}/$db_prod/g $wpconfig || true
+  sed -i.bak s/{un_prod}/$un_prod/g $wpconfig || true
+  sed -i.bak s/{pw_prod}/$pw_prod/g $wpconfig || true
+fi
+
+sed -i.bak s/{hostname_prod}/$hostname_prod/g $binconfig || true
+sed -i.bak s/{db_prod}/$db_prod/g $binconfig || true
+sed -i.bak s/{un_prod}/$un_prod/g $binconfig || true
+sed -i.bak s/{pw_prod}/$pw_prod/g $binconfig || true
+sed -i.bak s/{ssh_prod}/$ssh_prod/g $binconfig || true
+sed -i.bak s/{wr_prod}/${wr_prod//\//\\\/}/g $binconfig || true
 
 
 echo -e "\nConfigs complete!"
@@ -133,13 +157,15 @@ then
     then
       read -p "Where is the file located? (e.g., /home/user/sql/example.sql) " sql
       mysql -uroot $db_dev < $sql || true
-      read -p "What is the table prefix?" table
-      sed -i.bak s/gj_/$table/g public/wp-config.php || true
+      if [[ $type = "initial" ]]; then
+        read -p "What is the table prefix?" table
+        sed -i.bak s/gj_/$table/g $wpconfig || true
+      fi
     else
-      echo -e "\n::tableflip:: === off"
+      echo -e "\n(╯°□°）╯︵ ┻━┻)"
     fi
   else
-    echo -e "\nNo database for you!"
+    echo -e "\nFine, we won't create a database together."
   fi
 
 
@@ -161,13 +187,15 @@ read -p "Is this a staging environment? (y/n) "
       then
         read -p "Where is the file located? (e.g., /home/user/sql/example.sql) " sql
         mysql -uroot $db_staging < $sql || true
-        read -p "What is the table prefix?" table
-        sed -i.bak s/gj_/$table/g public/wp-config.php || true
+        if [[ $type = "initial" ]]; then
+          read -p "What is the table prefix?" table
+          sed -i.bak s/gj_/$table/g $wpconfig || true
+        fi
       else
         echo -e "\nWe shant."
       fi
     else
-    echo -e "\nFine, I didn't want to make one anyway!"
+    echo -e "\nFine, I didn't want to make one anyway."
     fi
     
   else
@@ -175,6 +203,11 @@ read -p "Is this a staging environment? (y/n) "
   fi
 fi
 
+#####################
+#    SALTS/README   #
+#####################
+
+if [[ $type = "initial" ]]; then
 
 echo -e "\nGrabbing secret keys for your config.."
 
@@ -203,6 +236,11 @@ Developers
 ------------
 Project created using [Gunn/Jerkens WordPress Boilerplate](https://github.com/GunnJerkens/wp-boilerplate)
 EOF
+fi
+
+#####################
+#      DIRS/NPM     #
+#####################
 
 rm -rf public/sed*
 rm -rf public/*.bak

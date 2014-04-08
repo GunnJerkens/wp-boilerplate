@@ -1,8 +1,4 @@
-#!/bin/bash
 
-cd `dirname $0`/..
-
-set -e
 
 read -p "Local environment? (y/n) "
 if [[ $REPLY =~ ^[Yy]$ ]]
