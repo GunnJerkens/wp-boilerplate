@@ -2,8 +2,6 @@
   path = public/wp
   url = git@github.com:WordPress/WordPress.git
   ignore = dirty
-
-[submodule "server-scripts"]
-  path = bin
-  url = git@github.com:GunnJerkens/server-scripts.git
-  ignore = dirty
+[submodule "bin"]
+	path = bin
+	url = git@github.com:GunnJerkens/server-scripts.git
