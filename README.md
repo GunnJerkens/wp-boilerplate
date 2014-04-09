@@ -111,3 +111,7 @@ Includes default configuration for SASS/Compass, which comes highly recommended.
 [Compass](http://compass-style.org/): `gem install compass`  
 [Compass Normalize](https://github.com/ksmandersen/compass-normalize): `gem install compass-normalize`  
 [Compass rgbapng](https://github.com/aaronrussell/compass-rgbapng): `gem install compass-rgbapng`  
+
+## License
+
+MIT
