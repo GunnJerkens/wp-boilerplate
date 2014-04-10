@@ -59,6 +59,11 @@ if ( file_exists( dirname( __FILE__ ) . '/../env_local' ) ) {
   // Local Environment
   $environment = $env_local;
 
+  $env_local = file_get_contents(realpath( __DIR__ . '/../env_local'));
+  if ($env_local) {
+    $environment = array_merge($environment, (array) json_decode($env_local));
+  }
+
   // Enable Auto Updater for OS X dev environment
   define('FS_METHOD', 'direct');
 
