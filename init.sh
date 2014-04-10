@@ -250,8 +250,8 @@ mkdir -p public/shared
 ln -s ../shared public/content/uploads
 mkdir public/content/upgrade
 
-cd public/wp && git checkout 3.8.1
-echo -e "\nNow on latest branch -- WordPress 3.8.1"
+cd public/wp && git checkout 3.8.2
+echo -e "\nNow on latest branch -- WordPress 3.8.2"
 
 read -p "Do you want to install node modules? (y/n) "
 if [[ $REPLY =~ ^[Yy]$ ]]
