@@ -69,7 +69,7 @@ if($environment['name'] == 'local') {
 if(function_exists("register_field_group")) {
   register_field_group(array (
     'id' => 'acf_title',
-    'title' => 'Title',
+    'title' => 'theTitle()',
     'fields' => array (
       array (
         'key' => 'field_533db25105c50',
