@@ -248,9 +248,10 @@ fi
 #      DIRS/NPM     #
 #####################
 
+rm -rf *.bak
+rm -rf bin/*.bak
 rm -rf public/sed*
 rm -rf public/*.bak
-rm -rf bin/*.bak
 
 mkdir -p public/shared
 ln -s ../shared public/content/uploads
