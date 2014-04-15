@@ -30,6 +30,11 @@ if [[ $type = "initial" ]]; then
 
 fi
 
+read -p "Use git repo other than GitHub for WP? (y/N) " git_repo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  read -p "What is the ssh url of the repo? " url
+  sed -i.bak s#git@github.com:WordPress/WordPress.git#$url#g .gitmodules || true
+fi
 
 if [ "$1" != "test" ]; then
   #Initialize Submodules
