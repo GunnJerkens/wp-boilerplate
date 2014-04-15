@@ -53,10 +53,11 @@ if [ "$1" != "test" ]; then
   rm -rf advanced-custom-fields.zip
 
   #WordPress SEO
-  curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.1.5.2.6.zip
-  tar -zxvf wordpress-seo.1.5.2.6.zip wordpress-seo
+  yoast=1.5.2.7
+  curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.$yoast.zip
+  tar -zxvf wordpress-seo.$yoast.zip wordpress-seo
   mv wordpress-seo public/content/plugins
-  rm -rf wordpress-seo.1.5.2.6.zip
+  rm -rf wordpress-seo.$yoast.zip
   fi
 
 else
@@ -96,7 +97,7 @@ sed -i.bak s/{db_dev}/$db_dev/g $binconfig || true
 read -p "What is the staging hostname? (e.g., dev.example.com) " hostname_staging
 read -p "What is the staging database name? (e.g., database_staging) " db_staging
 read -p "What is the staging webroot path? (e.g., /var/www/example.com/public) " wr_staging
-read -p "What is the ssh username? (e.g., root) " ssh_staging
+read -p "What is the staging ssh username? (e.g., root) " ssh_staging
 
 if [[ $type = "initial" ]]; then
   sed -i.bak s/{hostname_staging}/$hostname_staging/g $wpconfig || true
@@ -110,12 +111,12 @@ sed -i.bak s/{wr_staging}/${wr_staging//\//\\\/}/g $binconfig || true
 
 
 # Production Configs
-read -p "What is the production hostname? (e.g., example.com) " hostname_prod
-read -p "What is the production database name? (e.g., database_prod) " db_prod
-read -p "What is the production database username? (e.g., root) " un_prod
-read -p "What is the production database password? (e.g., drowsapp) " pw_prod
-read -p "What is the ssh username? (e.g., root) " ssh_prod
-read -p "What is the staging webroot path? (e.g., /var/www/example.com/public) " wr_prod
+read -p "What is the prod hostname? (e.g., example.com) " hostname_prod
+read -p "What is the prod database name? (e.g., database_prod) " db_prod
+read -p "What is the prod database username? (e.g., root) " un_prod
+read -p "What is the prod database password? (e.g., drowsapp) " pw_prod
+read -p "What is the prod ssh username? (e.g., root) " ssh_prod
+read -p "What is the prod webroot path? (e.g., /var/www/example.com/public) " wr_prod
 
 if [[ $type = "initial" ]]; then
   sed -i.bak s/{hostname_prod}/$hostname_prod/g $wpconfig || true
@@ -250,8 +251,9 @@ mkdir -p public/shared
 ln -s ../shared public/content/uploads
 mkdir public/content/upgrade
 
-cd public/wp && git checkout 3.8.2
-echo -e "\nNow on latest branch -- WordPress 3.8.2"
+wordpress=3.8.3
+cd public/wp && git checkout $wordpress
+echo -e "\nNow on latest branch -- WordPress $wordpress"
 
 read -p "Do you want to install node modules? (y/n) "
 if [[ $REPLY =~ ^[Yy]$ ]]
