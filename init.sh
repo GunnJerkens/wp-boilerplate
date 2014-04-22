@@ -5,9 +5,9 @@ cd `dirname $0`
 set -e
 
 read -p "Is this a new project? (y/N) "
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+if [[ ! $REPLY =~ ^[Yy](es)?$ ]]; then
   read -p "Is this a clone of an existing project? (y/N) "
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
+  if [[ $REPLY =~ ^[Yy](es)?$ ]]; then
     type=clone
     echo -e "\nSet project type to clone."
   else
@@ -30,8 +30,8 @@ if [[ $type = "initial" ]]; then
 
 fi
 
-read -p "Use git repo other than GitHub for WP? (y/N) " git_repo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
+read -p "Use git repo other than GitHub for WP? (y/N) "
+if [[ $REPLY =~ ^[Yy](es)?$ ]]; then
   read -p "What is the ssh url of the repo? " url
   sed -i.bak s#git@github.com:WordPress/WordPress.git#$url#g .gitmodules || true
 fi
@@ -148,18 +148,18 @@ echo -e "----------"
 
 # Development Environment
 read -p "Is this a local environment? (y/N) "
-if [[ $REPLY =~ ^[Yy]$ ]]
+if [[ $REPLY =~ ^[Yy](es)?$ ]]
 then
 
   touch env_local
     
   read -p "Would you like me to create the local database? (y/N) "
-  if [[ $REPLY =~ ^[Yy]$ ]]
+  if [[ $REPLY =~ ^[Yy](es)?$ ]]
   then
     
     mysql -uroot -e "create database $db_dev" || true
     read -p "Would you like to import a sql file? (y/N) "
-    if [[ $REPLY =~ ^[Yy]$ ]]
+    if [[ $REPLY =~ ^[Yy](es)?$ ]]
     then
       read -p "Where is the file located? (e.g., /home/user/sql/example.sql) " sql
       mysql -uroot $db_dev < $sql || true
@@ -178,18 +178,18 @@ then
 # Staging
 else
 read -p "Is this a staging environment? (y/n) "
-  if [[ $REPLY =~ ^[Yy]$ ]]
+  if [[ $REPLY =~ ^[Yy](es)?$ ]]
   then
 
     touch env_stage
 
     read -p "Would you like me to create the staging database? (y/n) "
-    if [[ $REPLY =~ ^[Yy]$ ]]
+    if [[ $REPLY =~ ^[Yy](es)?$ ]]
     then
     
       mysql -uroot -e "create database $db_staging" || true
       read -p "Would you like to import a sql file? (y/n) "
-      if [[ $REPLY =~ ^[Yy]$ ]]
+      if [[ $REPLY =~ ^[Yy](es)?$ ]]
       then
         read -p "Where is the file located? (e.g., /home/user/sql/example.sql) " sql
         mysql -uroot $db_staging < $sql || true
@@ -262,7 +262,7 @@ cd public/wp && git checkout $wordpress
 echo -e "\nNow on latest branch -- WordPress $wordpress"
 
 read -p "Do you want to install node modules? (y/n) "
-if [[ $REPLY =~ ^[Yy]$ ]]
+if [[ $REPLY =~ ^[Yy](es)?$ ]]
 then
   npm install
   echo -e "\nNode modules installed."
