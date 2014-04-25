@@ -31,9 +31,14 @@ To update WordPress versions:
 cd public/wp
 git fetch --all
 git fetch --tags
-git checkout master
-git pull
 git checkout [version #]
+```
+
+OR
+
+If you have already updated and are pulling an update from an upstream branch:
+```
+git submodule update
 ```
 
 After initializing a new project, you can manually adjust any of the wp-config
