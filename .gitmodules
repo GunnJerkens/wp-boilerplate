@@ -3,5 +3,5 @@
   url = git@github.com:WordPress/WordPress.git
   ignore = dirty
 [submodule "bin"]
-	path = bin
-	url = git@github.com:GunnJerkens/server-scripts.git
+  path = bin
+  url = git@github.com:GunnJerkens/server-scripts.git

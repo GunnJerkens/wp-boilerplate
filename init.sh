@@ -28,12 +28,12 @@ if [[ $type = "initial" ]]; then
   rm -rf .git
   git init
 
-fi
+  read -p "Use git repo other than GitHub for WP? (y/N) "
+  if [[ $REPLY =~ ^[Yy](es)?$ ]]; then
+    read -p "What is the ssh url of the repo? " url
+    sed -i.bak s#git@github.com:WordPress/WordPress.git#$url#g .gitmodules || true
+  fi
 
-read -p "Use git repo other than GitHub for WP? (y/N) "
-if [[ $REPLY =~ ^[Yy](es)?$ ]]; then
-  read -p "What is the ssh url of the repo? " url
-  sed -i.bak s#git@github.com:WordPress/WordPress.git#$url#g .gitmodules || true
 fi
 
 if [ "$1" != "test" ]; then
