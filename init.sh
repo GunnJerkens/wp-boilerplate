@@ -58,7 +58,7 @@ if [ "$1" != "test" ]; then
   rm -rf advanced-custom-fields.zip
 
   #WordPress SEO
-  yoast=1.5.2.7
+  yoast=1.5.2.8
   curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.$yoast.zip
   tar -zxvf wordpress-seo.$yoast.zip wordpress-seo
   mv wordpress-seo public/content/plugins
@@ -257,7 +257,7 @@ mkdir -p public/shared
 ln -s ../shared public/content/uploads
 mkdir public/content/upgrade
 
-wordpress=3.8.3
+wordpress=3.9
 cd public/wp && git checkout $wordpress
 echo -e "\nNow on latest branch -- WordPress $wordpress"
 
