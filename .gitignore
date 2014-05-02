@@ -12,6 +12,7 @@ public/content/advanced-cache.php
 public/content/wp-cache-config.php
 
 # Ignore system files, misc.
+*.bak
 *.diff
 *.err
 *.orig
@@ -24,6 +25,7 @@ public/content/wp-cache-config.php
 *.sass-cache
 env_*
 error_log
+tempfile
 
 # OS or Editor folders
 .DS_Store
