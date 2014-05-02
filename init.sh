@@ -37,36 +37,45 @@ if [[ $type = "initial" ]]; then
 fi
 
 if [ "$1" != "test" ]; then
-  #Initialize Submodules
-  git config -f .gitmodules --get-regexp '^submodule\..*\.path$' > tempfile
-
-  while read -u 3 path_key path
-      do
-          url_key=$(echo $path_key | sed 's/\.path/.url/')
-          url=$(git config -f .gitmodules --get "$url_key")
-          rm -rf $path; git submodule add $url $path;
-          echo "$path has been initialized";
-      done 3<tempfile
-
-  rm tempfile
 
   if [[ $type = "initial" ]]; then
-  #Advanced Custom Fields
-  curl -LOk http://downloads.wordpress.org/plugin/advanced-custom-fields.zip
-  tar -zxvf advanced-custom-fields.zip
-  mv advanced-custom-fields public/content/plugins/
-  rm -rf advanced-custom-fields.zip
 
-  #WordPress SEO
-  yoast=1.5.2.8
-  curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.$yoast.zip
-  tar -zxvf wordpress-seo.$yoast.zip wordpress-seo
-  mv wordpress-seo public/content/plugins
-  rm -rf wordpress-seo.$yoast.zip
+    #Initialize Submodules
+    git config -f .gitmodules --get-regexp '^submodule\..*\.path$' > tempfile
+
+    while read -u 3 path_key path
+        do
+            url_key=$(echo $path_key | sed 's/\.path/.url/')
+            url=$(git config -f .gitmodules --get "$url_key")
+            rm -rf $path; git submodule add $url $path;
+            echo "$path has been initialized";
+        done 3<tempfile
+
+    rm tempfile
+
+    if [[ $type = "initial" ]]; then
+    #Advanced Custom Fields
+    curl -LOk http://downloads.wordpress.org/plugin/advanced-custom-fields.zip
+    tar -zxvf advanced-custom-fields.zip
+    mv advanced-custom-fields public/content/plugins/
+    rm -rf advanced-custom-fields.zip
+
+    #WordPress SEO
+    yoast=1.5.2.8
+    curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.$yoast.zip
+    tar -zxvf wordpress-seo.$yoast.zip wordpress-seo
+    mv wordpress-seo public/content/plugins
+    rm -rf wordpress-seo.$yoast.zip
+    fi
+
+  else
+
+    git submodule update --init
+
   fi
 
 else
-  echo -e "\nTest enabled .. skipped WP & plugin downloads."
+  echo -e "\nTesting enabled .. skipped WP & plugin downloads."
 fi
 
 #####################
