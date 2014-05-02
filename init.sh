@@ -44,16 +44,15 @@ if [ "$1" != "test" ]; then
     git config -f .gitmodules --get-regexp '^submodule\..*\.path$' > tempfile
 
     while read -u 3 path_key path
-        do
-            url_key=$(echo $path_key | sed 's/\.path/.url/')
-            url=$(git config -f .gitmodules --get "$url_key")
-            rm -rf $path; git submodule add $url $path;
-            echo "$path has been initialized";
-        done 3<tempfile
+      do
+        url_key=$(echo $path_key | sed 's/\.path/.url/')
+        url=$(git config -f .gitmodules --get "$url_key")
+        rm -rf $path; git submodule add $url $path;
+        echo "$path has been initialized";
+      done 3<tempfile
 
     rm tempfile
 
-    if [[ $type = "initial" ]]; then
     #Advanced Custom Fields
     curl -LOk http://downloads.wordpress.org/plugin/advanced-custom-fields.zip
     tar -zxvf advanced-custom-fields.zip
@@ -66,7 +65,6 @@ if [ "$1" != "test" ]; then
     tar -zxvf wordpress-seo.$yoast.zip wordpress-seo
     mv wordpress-seo public/content/plugins
     rm -rf wordpress-seo.$yoast.zip
-    fi
 
   else
 
