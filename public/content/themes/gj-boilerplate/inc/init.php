@@ -41,8 +41,11 @@ if($environment['name'] === 'production') {
   // Loads Google Meta Verification
   function google_meta() {
 
-    $google_meta = get_option('gj_options_meta') ? get_option('gj_options_meta') : '';
-    echo '<meta name="google-site-verification" content="'.$google_meta.'">';
+    $google_meta = get_option('gj_options_meta') ? get_option('gj_options_meta') : false;
+
+    if($google_meta) {
+      echo '<meta name="google-site-verification" content="'.$google_meta.'">';
+    }
 
   }
 
