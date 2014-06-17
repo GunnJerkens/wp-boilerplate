@@ -1,5 +1,9 @@
 <?php
 
+// Define upload_url_path to embed media with domain-relative URLs
+// Only needs to be excuted once on project initialization
+update_option('upload_url_path', '/shared');
+
 // Password protect staging environments
 if( WP_PASSWORD_PROTECT == true ){
 
@@ -12,16 +16,16 @@ if( WP_PASSWORD_PROTECT == true ){
   add_action ('template_redirect', 'password_protect');
 }
 
-// Define upload_url_path to embed media with domain-relative URLs
-// Only needs to be excuted once on project initialization
-update_option('upload_url_path', '/shared');
-
-// Loads Google Analytics
 if($environment['name'] === 'production') {
-  $google_analytics_id = 'UA-XXXXXXXX-X'; // override this value in functions.php
+
+  // Loads Google Analytics
   function google_analytics() {
-    global $env_default, $google_analytics_id;
+
+    global $env_default;
+    $google_analytics_id = get_option('gj_options_ga') ? get_option('gj_options_ga') : 'UA-XXXXXXXX-X';
     $default_hostname = preg_replace('/^https?:\/\//', '', $env_default['hostname']); ?>
+
+    <!-- Google Analytics -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -31,8 +35,20 @@ if($environment['name'] === 'production') {
       ga('create', '<?php echo $google_analytics_id ?>', '<?php echo $default_hostname ?>');
       ga('send', 'pageview');
     </script><?php
+
   }
+
+  // Loads Google Meta Verification
+  function google_meta() {
+
+    $google_meta = get_option('gj_options_meta') ? get_option('gj_options_meta') : '';
+    echo '<meta name="google-site-verification" content="'.$google_meta.'">';
+
+  }
+
   add_action('wp_head','google_analytics');
+  add_action('wp_head','google_meta');
+
 }
 
 // Removes manifest/rsd/shortlink from wp_head
