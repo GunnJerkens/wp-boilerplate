@@ -36,23 +36,30 @@ if($environment['name'] === 'production') {
 }
 
 // Removes manifest/rsd/shortlink from wp_head
-remove_action( 'wp_head', 'wlwmanifest_link');
-remove_action( 'wp_head', 'rsd_link');
-remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
-remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
-remove_action( 'wp_head', 'wp_generator');
-remove_action( 'wp_head', 'feed_links' );
-remove_action( 'wp_head', 'feed_links', 2 );
-remove_action( 'wp_head', 'feed_links_extra', 3 );
+remove_action('wp_head', 'wlwmanifest_link');
+remove_action('wp_head', 'rsd_link');
+remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+remove_action('wp_head', 'wp_generator');
+remove_action('wp_head', 'feed_links');
+remove_action('wp_head', 'feed_links', 2);
+remove_action('wp_head', 'feed_links_extra', 3);
 
 // Adds post thumbnails to theme
 add_theme_support( 'post-thumbnails' );
 
+// Navigation Menu Array
+register_nav_menus(
+  array(
+    'main' => 'Main Navigation'
+  )
+);
+
 // Removes ul class from wp_nav_menu
-function remove_ul ( $menu ){
-  return preg_replace( array( '#^<ul[^>]*>#', '#</ul>$#' ), '', $menu );
+function remove_ul($menu) {
+  return preg_replace(array('#^<ul[^>]*>#', '#</ul>$#' ), '', $menu);
 }
-add_filter( 'wp_nav_menu', 'remove_ul' );
+add_filter('wp_nav_menu', 'remove_ul');
 
 // Add socket.io snippet to enable Browser Sync
 if($environment['name'] == 'local') {
@@ -143,7 +150,7 @@ if(function_exists("register_field_group")) {
     ),
     'options' => array (
       'position' => 'normal',
-      'layout' => 'no_box',
+      'layout' => 'default',
       'hide_on_screen' => array (
       ),
     ),
