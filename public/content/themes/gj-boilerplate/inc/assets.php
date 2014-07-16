@@ -2,10 +2,20 @@
 
 function enqueue_scripts() {
 
+
+  // CSS
+  $screen = '/style/screen.css';
+  $screenFilePath = get_template_directory() . $screen;
+  wp_enqueue_style('screen', get_bloginfo('template_directory') . $screen, false, filemtime($screenFilePath));
+
   // Libraries
   wp_deregister_script('jquery');
-  wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', false, null, true);
-  wp_enqueue_script('main', get_bloginfo('template_directory') . '/js/main.js', array('jquery'), null, true);
+  wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js', false, null, true);
+  // wp_enqueue_script('bootstrap', 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js', array('jquery'), null, true);
+
+  $main = '/js/main.js';
+  $mainFilePath = get_template_directory() . $main;
+  wp_enqueue_script('main', get_bloginfo('template_url') . $main, array('jquery'), filemtime($mainFilePath), true);
 
   // HTML5 & responsive fallbacks
   wp_enqueue_script('modernizr', get_bloginfo('template_directory') . '/js/modernizr.js', false, null, false);
