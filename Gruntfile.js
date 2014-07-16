@@ -12,7 +12,7 @@ module.exports = function (grunt) {
     uglify: {
       min: {
         files: {
-          'public/content/themes/gj-boilerplate/js/main.js': ['public/content/themes/gj-boilerplate/js/src/libs/*.js','public/content/themes/gj-boilerplate/js/src/*.js']
+          'public/content/themes/gj-boilerplate/js/main.js': ['public/content/themes/gj-boilerplate/js/src/libs/*.js','public/content/themes/gj-boilerplate/js/src/bootstrap/*.js','public/content/themes/gj-boilerplate/js/src/*.js']
         }
       }
     },
@@ -57,7 +57,7 @@ module.exports = function (grunt) {
         livereload: true
       },
       scripts: {
-        files: ['public/content/themes/gj-boilerplate/js/src/*.js','public/content/themes/gj-boilerplate/js/src/libs/*.js'],
+        files: ['public/content/themes/gj-boilerplate/js/src/*.js','public/content/themes/gj-boilerplate/js/src/libs/*.js','public/content/themes/gj-boilerplate/js/src/bootstrap/*.js'],
         tasks: ['uglify']
       },
       styles: {
