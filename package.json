@@ -1,6 +1,6 @@
 {
   "name": "wp-boilerplate",
-  "version": "0.2",
+  "version": "2.0",
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-compass": "~0.9.0",

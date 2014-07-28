@@ -16,13 +16,14 @@ $rgbapng_path: 'generated';
 $rgbapng_px_size: 1;
 @import "rgbapng";
 
-/* Bootstrap v3 */
+/* Bootstrap v3.2.0 */
+/* This file imports all the bootstrap modules individually */
 //@import "bootstrap";
 
 /* SCSS Modules */
 @import "mixins";
 @import "typography";
 @import "colors";
-@import "layout";
 
-/* Custom Project Files */
+/* Project Files */
+@import "layout";

@@ -12,7 +12,21 @@ module.exports = function (grunt) {
     uglify: {
       min: {
         files: {
-          'public/content/themes/gj-boilerplate/js/main.js': ['public/content/themes/gj-boilerplate/js/src/libs/*.js','public/content/themes/gj-boilerplate/js/src/bootstrap/*.js','public/content/themes/gj-boilerplate/js/src/*.js']
+          'public/content/themes/gj-boilerplate/js/main.js': [
+            'public/content/themes/gj-boilerplate/js/src/libs/*.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/affix.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/alert.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/button.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/collapse.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/dropdown.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/tab.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/transition.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/scrollspy.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/modal.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/tooltip.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/popover.js',
+            'public/content/themes/gj-boilerplate/js/src/*.js'
+          ]
         }
       }
     },

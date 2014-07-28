@@ -137,15 +137,14 @@ Placeholder](https://github.com/mathiasbynens/jquery-placeholder), [jQuery
 imagesLoaded](https://github.com/desandro/imagesloaded), and [jQuery
 Validation](http://bassistance.de/jquery-plugins/jquery-plugin-validation/).
 
-All Javascript (with exception of Modernizr, Respond, and jQuery (CDN) is
-compiled by Grunt into a 'main.js' file included in the footer.
+All Javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compiled by Grunt into a 'main.js' file included in the footer. Bootstrap is included as a group of js files for easy customization/removal.
 
 ### included CSS
 [Bootstrap](http://getbootstrap.com) is included as an scss file, to use
-uncomment it in the screen.scss file.
+uncomment it in the screen.scss file. It import alls the individual scss files, delete at will for a customized Bootstrap build.
 
 ```
-/* Bootstrap v3.1.1 */
+/* Bootstrap v3.2.0 */
 //@import "bootstrap";
 ```
 
