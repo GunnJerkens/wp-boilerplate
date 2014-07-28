@@ -43,7 +43,7 @@ module.exports = function (grunt) {
     },
 
     browserSync: {
-      files: {
+      bsFiles: {
         src: 'public/content/themes/gj-boilerplate/style/screen.css'
       },
       options: {

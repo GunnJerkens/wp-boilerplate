@@ -83,10 +83,9 @@ add_filter('wp_nav_menu', 'remove_ul');
 // Add socket.io snippet to enable Browser Sync
 if($environment['name'] == 'local') {
   function add_browser_sync() {
-    echo "
-      <script src='http://localhost:3000/socket.io/socket.io.js'></script>
-      <script src='http://localhost:3001/browser-sync-client.min.js'></script>
-    ";
+    echo '
+      <script async="" src="//localhost:3000/browser-sync-client.1.3.0.js"></script>
+    ';
   }
   add_action('wp_footer','add_browser_sync');
 }
