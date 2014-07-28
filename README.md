@@ -65,12 +65,12 @@ you can clone assets.
 To clone a production (or any upstream) database locally you can use db_sync:
 
 ```
-bin/db_sync.sh
+bin/db_fetch.sh
 ```
 To clone a production (or any upstream) uploads folder you can use uploads_sync:
 
 ```
-bin/uploads_sync go
+bin/uploads_sync.sh go
 ```
 *Leave off `go` to do do a dry run, to only list files that will be copied.*
 
