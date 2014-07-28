@@ -42,7 +42,7 @@ module.exports = function (grunt) {
       }
     },
 
-    browser_sync: {
+    browserSync: {
       files: {
         src: 'public/content/themes/gj-boilerplate/style/screen.css'
       },
@@ -72,6 +72,6 @@ module.exports = function (grunt) {
   });
  
   // Development task checks and concatenates JS, compiles SASS preserving comments and nesting, runs dev server, and starts watch
-  grunt.registerTask('default', ['compass', 'uglify', 'imagemin', 'browser_sync', 'watch']);
+  grunt.registerTask('default', ['compass', 'uglify', 'imagemin', 'browserSync', 'watch']);
  
  }
