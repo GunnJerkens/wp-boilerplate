@@ -1,14 +1,19 @@
-#Ignored directories
-node_modules
+#Ignore Images
 public/shared
 public/shared/content/uploads
-public/content/cache
-public/content/upgrade
-public/content/plugins/wp-super-cache
-public/content/plugins/better-wp-security
 
-# WP Supercache Files
+#Ignore Cache Configs
 public/content/advanced-cache.php
+public/content/cache
+public/content/db.php
+public/content/object-cache.php
+public/content/plugins/better-wp-security
+public/content/plugins/cloudflare/
+public/content/plugins/w3-total-cache/
+public/content/plugins/w3tc-wp-loader.php
+public/content/plugins/wp-super-cache
+public/content/upgrade
+public/content/w3tc-config/
 public/content/wp-cache-config.php
 
 # Ignore system files, misc.
@@ -25,6 +30,7 @@ public/content/wp-cache-config.php
 *.sass-cache
 env_*
 error_log
+node_modules
 tempfile
 
 # OS or Editor folders

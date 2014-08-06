@@ -18,6 +18,8 @@ into wp-config and will place an env_* file in the root. Prior to completion it
 will insert a fresh set of salts from the WordPress API and checkout WordPress
 to the latest stable version.
 
+*Once you have completed the init script, make sure to set the gj-boilerplate theme to active, activate included plugins, and set your permalinks.
+
 To change WordPress versions use:
 
 ```
