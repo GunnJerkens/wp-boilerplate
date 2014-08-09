@@ -40,6 +40,9 @@ OR
 
 If you have already updated and are pulling an update from an upstream branch:
 ```
+cd public/wp
+git fetch --tags
+cd ../..
 git submodule update
 ```
 

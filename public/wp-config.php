@@ -64,13 +64,6 @@ if ( file_exists( dirname( __FILE__ ) . '/../env_local' ) ) {
     $environment = array_merge($environment, (array) json_decode($local_config));
   }
 
-  // Enable Auto Updater for OS X dev environment
-  define('FS_METHOD', 'direct');
-
-  // Enable Uploads by Proxy
-  define('UBP_LIVE_DOMAIN', $env_staging['hostname']);
-
-
 } elseif ( file_exists( dirname( __FILE__ ) . '/../env_staging' ) ) {
 
   // Staging Environment
@@ -94,6 +87,12 @@ define('DB_NAME',  $environment['db_name']);
 define('DB_USER',  $environment['db_user']);
 define('DB_HOST',  $environment['db_host']);
 define('DB_PASSWORD', $environment['db_pass']);
+
+/** Disable automatic updates */
+define( 'WP_AUTO_UPDATE_CORE', false );
+
+/** Define file system method */
+define('FS_METHOD', 'direct');
 
 /** Define custom content directory */
 define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/content' );
