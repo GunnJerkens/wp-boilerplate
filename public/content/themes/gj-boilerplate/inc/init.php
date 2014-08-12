@@ -16,7 +16,7 @@ if( WP_PASSWORD_PROTECT == true ){
   add_action ('template_redirect', 'password_protect');
 }
 
-if($environment['name'] === 'production') {
+if(constant('WP_ENV') === 'production') {
 
   // Loads Google Analytics
   function google_analytics() {
@@ -81,7 +81,7 @@ function remove_ul($menu) {
 add_filter('wp_nav_menu', 'remove_ul');
 
 // Add socket.io snippet to enable Browser Sync
-if($environment['name'] == 'local') {
+if(constant('WP_ENV') == 'local') {
   function add_browser_sync() {
     global $environment;
     echo '<script async src="'.$environment['hostname'].':3000/browser-sync-client.1.3.0.js"></script>';
