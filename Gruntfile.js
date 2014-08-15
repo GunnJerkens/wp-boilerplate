@@ -17,6 +17,7 @@ module.exports = function (grunt) {
             'public/content/themes/gj-boilerplate/js/src/bootstrap/affix.js',
             'public/content/themes/gj-boilerplate/js/src/bootstrap/alert.js',
             'public/content/themes/gj-boilerplate/js/src/bootstrap/button.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/carousel.js',
             'public/content/themes/gj-boilerplate/js/src/bootstrap/collapse.js',
             'public/content/themes/gj-boilerplate/js/src/bootstrap/dropdown.js',
             'public/content/themes/gj-boilerplate/js/src/bootstrap/tab.js',
