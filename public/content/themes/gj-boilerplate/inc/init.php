@@ -85,7 +85,7 @@ if(constant('WP_ENV') == 'local') {
   function add_browser_sync() {
     echo '
       <script type=\'text/javascript\'>//<![CDATA[
-      document.write("<script async src=\'//HOST:3000/browser-sync-client.1.3.5.js\'><\/script>".replace(/HOST/g, location.hostname));
+      document.write("<script async src=\'//HOST:3000/browser-sync-client.1.3.6.js\'><\/script>".replace(/HOST/g, location.hostname));
       //]]></script>'
     ;
   }

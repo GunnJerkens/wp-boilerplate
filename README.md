@@ -101,6 +101,14 @@ wp-boilerplate uses Grunt to compress Javascript files and run Compass. Run
 `grunt` to watch for changes in `js/src` and `style/sass` in the theme
 directory.
 
+To compile a dev environment (Live Reload, Concatenated JS, Watch):  
+
+`grunt dev -v`
+
+To compile a production build (Uglify JS):  
+
+`grunt prod -v`
+
 ## features
 ### multi-environment handling in wp-config
 Allows you to define settings for multiple environments. Each environment

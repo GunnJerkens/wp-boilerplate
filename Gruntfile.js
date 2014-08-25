@@ -87,6 +87,7 @@ module.exports = function (grunt) {
   });
  
   // Development task checks and concatenates JS, compiles SASS preserving comments and nesting, runs dev server, and starts watch
-  grunt.registerTask('default', ['compass', 'uglify', 'imagemin', 'browserSync', 'watch']);
+  grunt.registerTask('dev', ['compass', 'concat', 'imagemin', 'browserSync', 'watch']);
+  grunt.registerTask('prod', ['compass', 'uglify,' 'imagemin'])
  
  }
