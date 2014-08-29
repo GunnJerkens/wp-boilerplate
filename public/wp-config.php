@@ -28,6 +28,7 @@ $env_default = array(
   'db_user'  => '{un_prod}',
   'db_pass'  => '{pw_prod}',
   'db_host'  => 'localhost',
+  'cache'    => true,
   'password_protect' => false
 );
 
@@ -37,7 +38,8 @@ $env_local = array_merge($env_default, array(
   'debug'    => true,
   'db_name'  => '{db_dev}',
   'db_user'  => 'root',
-  'db_pass'  => ''
+  'db_pass'  => '',
+  'cache'    => false
 ));
 
 $env_staging = array_merge($env_default, array(
@@ -45,6 +47,7 @@ $env_staging = array_merge($env_default, array(
   'hostname' => 'http://{hostname_staging}',
   'debug'    => true,
   'db_name'  => '{db_staging}',
+  'cache'    => false,
   'password_protect' => true
 ));
 
@@ -56,13 +59,13 @@ $production = array_merge($env_default, array(
 
 if ( file_exists( dirname( __FILE__ ) . '/../env_local' ) ) {
 
-  // Local Environment
-  $environment = $env_local;
-
   $local_config = file_get_contents(realpath( __DIR__ . '/../env_local'));
   if ($local_config) {
     $environment = array_merge($environment, (array) json_decode($local_config));
   }
+
+  // Local Environment
+  $environment = $env_local;
 
 } elseif ( file_exists( dirname( __FILE__ ) . '/../env_staging' ) ) {
 
@@ -81,7 +84,9 @@ define('WP_DEBUG', $environment['debug']);
 define('WP_PASSWORD_PROTECT', $environment['password_protect']);
 
 define('WP_HOME',    $environment['hostname']);
-define( 'WP_SITEURL', $environment['hostname'] . '/wp/');
+define('WP_SITEURL', $environment['hostname'] . '/wp/');
+
+define('WP_CACHE', $environment['cache']);
 
 define('DB_NAME',  $environment['db_name']);
 define('DB_USER',  $environment['db_user']);

@@ -1,8 +1,8 @@
-#Ignore Images
+# Ignore Images
 public/shared
 public/shared/content/uploads
 
-#Ignore Cache Configs
+# Ignore Cache Configs
 public/content/advanced-cache.php
 public/content/cache
 public/content/db.php
@@ -15,6 +15,10 @@ public/content/plugins/wp-super-cache
 public/content/upgrade
 public/content/w3tc-config/
 public/content/wp-cache-config.php
+
+# Ignore Backups and Logs
+backups
+logs
 
 # Ignore system files, misc.
 *.bak
