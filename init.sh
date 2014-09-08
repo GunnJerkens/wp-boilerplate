@@ -60,7 +60,7 @@ if [ "$1" != "test" ]; then
     rm -rf advanced-custom-fields.zip
 
     #WordPress SEO
-    yoast=1.5.6
+    yoast=latest-stable
     curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.$yoast.zip
     tar -zxvf wordpress-seo.$yoast.zip wordpress-seo
     mv wordpress-seo public/content/plugins
