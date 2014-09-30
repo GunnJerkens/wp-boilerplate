@@ -6,10 +6,9 @@ get_header();
 
 echo '<section class="single">';
 
-
   if(have_posts()) : while(have_posts()) : the_post();
 
-    theTitle();
+    the_title();
     the_content();
 
   endwhile; else: 

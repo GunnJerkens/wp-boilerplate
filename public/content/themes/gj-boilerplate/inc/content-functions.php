@@ -1,31 +1,9 @@
 <?php
 /*
 *
-* Content functions that can be used around the site, theTitle();
-* depends on having ACF installed so that helper function in init
-* can run.
+* Content functions that can be used around the site, 
 *
 */
-
-// Page Titles
-function theTitle() {
-
-  echo '<div class="container"><h1 class="page-title">';
-
-  if (get_field('title_type') === 'text') {
-    $subTitle = get_field('title_text');
-    echo $subTitle;
-  } elseif (get_field('title_type') === 'image' ) {
-    $titleImage = get_field('title_image');
-    echo '<img src="'.$titleImage['url'].'" alt="'.$titleImage['alt'].'">';
-  } else {
-    $defaultTitle = get_the_title();
-    echo $defaultTitle;
-  }
-
-  echo '</h1></div>';
-
-}
 
 // Default loop content not found
 function theMissing() {
