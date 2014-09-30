@@ -31,7 +31,30 @@ module.exports = function (grunt) {
         }
       }
     },
- 
+
+    concat: {
+      min: {
+        files: {
+          'public/content/themes/gj-boilerplate/js/main.js': [
+            'public/content/themes/gj-boilerplate/js/src/libs/*.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/affix.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/alert.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/button.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/carousel.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/collapse.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/dropdown.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/tab.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/transition.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/scrollspy.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/modal.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/tooltip.js',
+            'public/content/themes/gj-boilerplate/js/src/bootstrap/popover.js',
+            'public/content/themes/gj-boilerplate/js/src/*.js'
+          ]
+        }
+      }
+    },
+
     compass: {
       dist: {
         options: {
@@ -43,17 +66,6 @@ module.exports = function (grunt) {
           outputStyle: 'compressed',
           force: true
         }
-      }
-    },
-
-    imagemin: {
-      dynamic: {
-        files: [{
-          expand: true,
-          cwd: 'public/content/themes/gj-boilerplate/img/src',
-          src: ['*.{png,jpg,gif}'],
-          dest: 'public/content/themes/gj-boilerplate/img/'
-        }]
       }
     },
 
@@ -73,21 +85,17 @@ module.exports = function (grunt) {
       },
       scripts: {
         files: ['public/content/themes/gj-boilerplate/js/src/*.js','public/content/themes/gj-boilerplate/js/src/libs/*.js','public/content/themes/gj-boilerplate/js/src/bootstrap/*.js'],
-        tasks: ['uglify']
+        tasks: ['concat']
       },
       styles: {
         files: ['public/content/themes/gj-boilerplate/style/**/*.{sass,scss}','public/content/themes/gj-boilerplate/img/ui/*.png'],
         tasks: ['compass']
-      },
-      images: {
-        files: ['public/content/themes/gj-boilerplate/img/src/*.{png,jpg,gif}'],
-        tasks: ['imagemin']
       }
     },
   });
  
   // Development task checks and concatenates JS, compiles SASS preserving comments and nesting, runs dev server, and starts watch
-  grunt.registerTask('dev', ['compass', 'concat', 'imagemin', 'browserSync', 'watch']);
-  grunt.registerTask('prod', ['compass', 'uglify', 'imagemin'])
+  grunt.registerTask('dev', ['compass', 'concat', 'browserSync', 'watch']);
+  grunt.registerTask('default', ['compass', 'uglify'])
  
  }

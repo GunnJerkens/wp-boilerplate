@@ -85,9 +85,9 @@ if(constant('WP_ENV') == 'local') {
   function add_browser_sync() {
     echo '
       <script type=\'text/javascript\'>//<![CDATA[
-      document.write("<script async src=\'//HOST:3000/browser-sync-client.1.3.6.js\'><\/script>".replace(/HOST/g, location.hostname));
-      //]]></script>'
-    ;
+      document.write("<script async src=\'//HOST:3000/browser-sync/browser-sync-client.1.5.1.js\'><\/script>".replace(/HOST/g, location.hostname).replace(/PORT/g, location.port));
+      //]]></script>
+    ';
   }
   add_action('wp_footer','add_browser_sync');
 }
