@@ -264,7 +264,7 @@ mkdir -p public/shared
 ln -s ../shared public/content/uploads
 mkdir public/content/upgrade
 
-wordpress=3.9.2
+wordpress=4.0
 cd public/wp && git checkout $wordpress
 echo -e "\nNow on latest branch -- WordPress $wordpress"
 
