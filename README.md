@@ -95,6 +95,9 @@ The wp directory is a submodule and should not be modified in any way, the
 content directory houses themes and plugins. The Shared directory is where all
 uploaded files (via the WordPress backend) are stored.
 
+***After the init script completes make sure to login into the admin panel and
+activate the GJ-Boilerplate theme and installed plugins.***
+
 ### grunt
 wp-boilerplate uses Grunt to compress Javascript files and run Compass. Run
 `npm install` from the root directory to install node dependencies, then run
@@ -114,7 +117,7 @@ To compile a production build (Uglify JS):
 Allows you to define settings for multiple environments. Each environment
 inherits settings from the `$default` settings array.
 
-Create an empty file named `env_local` or `env_stage` in the web root folder
+Create an empty file named `env_local` or `env_staging` in the web root folder
 (/public/) for it to pick up settings specific to those environments.
 
 Environment hostnames are specified so that you don't have to do a search and
@@ -143,18 +146,15 @@ images from an upstream environment.
 **[Advanced Custom Fields](http://www.advancedcustomfields.com/):** Great plugin that enables advanced CMS functionality in WordPress  
 
 ### included javascript
-Includes some nice stuff like [Modernizr](http://modernizr.com/),
-[Respond](https://github.com/scottjehl/Respond),
-[Bootstrap](http://getbootstrap.com), [jQuery
-Placeholder](https://github.com/mathiasbynens/jquery-placeholder), [jQuery
-imagesLoaded](https://github.com/desandro/imagesloaded), and [jQuery
-Validation](http://bassistance.de/jquery-plugins/jquery-plugin-validation/).
+[Modernizr](http://modernizr.com/)  
+[Bootstrap](http://getbootstrap.com)  
+[jQuery Placeholder](https://github.com/mathiasbynens/jquery-placeholder)  
+[jQuery imagesLoaded](https://github.com/desandro/imagesloaded)  
 
-All Javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compiled by Grunt into a 'main.js' file included in the footer. Bootstrap is included as a group of js files for easy customization/removal.
+All javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compiled by Grunt into a 'main.js' file included in the footer. Bootstrap is included as a group of js files for easy customization/removal. Due to bootstrap files requiring a certain order in their compile they are called verbosely in the Gruntfile.js and need to be removed from that file if you are removing them from the project. Alternatively you can include Bootstrap via CDN if you uncomment it in the assets.php folder && make sure to remove it from your compiled JS.
 
 ### included CSS
-[Bootstrap](http://getbootstrap.com) is included as an scss file, to use
-uncomment it in the screen.scss file. It import alls the individual scss files, delete at will for a customized Bootstrap build.
+[Bootstrap](http://getbootstrap.com) is included as an scss file, to use uncomment it in the screen.scss file. It import alls the individual scss files, delete at will for a customized Bootstrap build.
 
 ```
 /* Bootstrap v3.2.0 */
@@ -162,8 +162,7 @@ uncomment it in the screen.scss file. It import alls the individual scss files, 
 ```
 
 ### included fonts
-[Font Awesome](http://fontawesome.io/) is also included from the Bootstrap CDN,
-to use uncomment it in the assets.php file.
+[Font Awesome](http://fontawesome.io/) is also included from the Bootstrap CDN, to use uncomment it in the assets.php file.
 
 ```
 // Font Awesome stylesheet
@@ -171,8 +170,7 @@ to use uncomment it in the assets.php file.
 ```
 
 ### default compass configuration
-Includes default configuration for SASS/Compass, which comes highly
-recommended.
+Includes default configuration for SASS/Compass, which comes highly recommended.
 
 ## dependencies
 [node](http://nodejs.org)  

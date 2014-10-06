@@ -106,9 +106,9 @@ sed -i.bak s/{db_dev}/$db_dev/g $binconfig || true
 
 
 # Staging Configs
-read -p "What is the staging hostname? (e.g., dev.example.com) " hostname_staging
+read -p "What is the staging hostname? (e.g., staging.example.com) " hostname_staging
 read -p "What is the staging database name? (e.g., database_staging) " db_staging
-read -p "What is the staging webroot path? (e.g., /var/www/example.com/public) " wr_staging
+read -p "What is the staging webroot path? (e.g., /var/www/staging.example.com/public) " wr_staging
 read -p "What is the staging ssh username? (e.g., root) " ssh_staging
 
 if [[ $type = "initial" ]]; then
@@ -159,11 +159,11 @@ if [[ $REPLY =~ ^[Yy](es)?$ ]]
 then
 
   touch env_local
-    
+
   read -p "Would you like me to create the local database? (y/N) "
   if [[ $REPLY =~ ^[Yy](es)?$ ]]
   then
-    
+
     mysql -uroot -e "create database $db_dev" || true
     read -p "Would you like to import a sql file? (y/N) "
     if [[ $REPLY =~ ^[Yy](es)?$ ]]
@@ -193,7 +193,7 @@ read -p "Is this a staging environment? (y/n) "
     read -p "Would you like me to create the staging database? (y/n) "
     if [[ $REPLY =~ ^[Yy](es)?$ ]]
     then
-    
+
       mysql -uroot -e "create database $db_staging" || true
       read -p "Would you like to import a sql file? (y/n) "
       if [[ $REPLY =~ ^[Yy](es)?$ ]]
@@ -277,4 +277,4 @@ else
   echo -e "\nYou'll need to run npm install from the project root to use Grunt."
 fi
 
-echo -e "\nInitialization complete -- happy coding! Use db_sync.sh to sync databases. You may need to manually set your permissions."
+echo -e "\nInitialization complete -- happy coding! Use bin/db_fetch.sh to sync databases and bin/uploads_sync to sync images. You may need to manually set your permissions."
