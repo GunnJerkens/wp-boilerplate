@@ -1,21 +1,20 @@
 <h2>Site Options</h2><?php
 
 if(isset($_POST['gj_hidden']) && $_POST['gj_hidden'] == 'gj_options') {
+  if(1 === check_admin_referer('gj-options')) {
+    $gj_options_ga = $_POST['gj_options_ga'];
+    update_option('gj_options_ga', $gj_options_ga); 
 
-  $gj_options_ga = $_POST['gj_options_ga'];
-  update_option('gj_options_ga', $gj_options_ga); 
+    $gj_options_meta = $_POST['gj_options_meta'];
+    update_option('gj_options_meta', $gj_options_meta); ?>
 
-  $gj_options_meta = $_POST['gj_options_meta'];
-  update_option('gj_options_meta', $gj_options_meta); ?>
-
-  <div class="updated"><p><strong>Options saved.</strong></p></div><?php
-
+    <div class="updated"><p><strong>Options saved.</strong></p></div><?php
+  } else {
+    die('Permission denied.');
+  }
 } else {
-
-  $gj_options_ga = get_option('gj_options_ga');
+  $gj_options_ga   = get_option('gj_options_ga');
   $gj_options_meta = get_option('gj_options_meta');
-
-
 } ?>
 
 <style>
@@ -27,6 +26,7 @@ if(isset($_POST['gj_hidden']) && $_POST['gj_hidden'] == 'gj_options') {
 
 <form name="gj_form_update_options" method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
   <input type="hidden" name="gj_hidden" value="gj_options">
+  <?php wp_nonce_field('gj-options'); ?>
   <table class="form-table">
     <tr>
       <th><label for="gj_options_ga">Google Analytics</label></th>
@@ -37,7 +37,5 @@ if(isset($_POST['gj_hidden']) && $_POST['gj_hidden'] == 'gj_options') {
       <td><input id="gj_options_meta" type="text" name="gj_options_meta" value="<?php echo $gj_options_meta ? $gj_options_meta : ''; ?>"></td>
     </tr>
   </table>
-
   <input class="btn button" type="submit" name="Submit" value="Update Settings" />
-
 </form>
