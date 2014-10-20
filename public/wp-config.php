@@ -59,13 +59,13 @@ $production = array_merge($env_default, array(
 
 if ( file_exists( dirname( __FILE__ ) . '/../env_local' ) ) {
 
+  // Local Environment
+  $environment = $env_local;
+
   $local_config = file_get_contents(realpath( __DIR__ . '/../env_local'));
   if ($local_config) {
     $environment = array_merge($environment, (array) json_decode($local_config));
   }
-
-  // Local Environment
-  $environment = $env_local;
 
 } elseif ( file_exists( dirname( __FILE__ ) . '/../env_staging' ) ) {
 
