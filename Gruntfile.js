@@ -85,7 +85,7 @@ module.exports = function (grunt) {
       },
       scripts: {
         files: ['public/content/themes/gj-boilerplate/js/src/*.js','public/content/themes/gj-boilerplate/js/src/libs/*.js','public/content/themes/gj-boilerplate/js/src/bootstrap/*.js'],
-        tasks: ['concat']
+        tasks: ['uglify']
       },
       styles: {
         files: ['public/content/themes/gj-boilerplate/style/**/*.{sass,scss}','public/content/themes/gj-boilerplate/img/ui/*.png'],
@@ -95,7 +95,7 @@ module.exports = function (grunt) {
   });
  
   // Development task checks and concatenates JS, compiles SASS preserving comments and nesting, runs dev server, and starts watch
-  grunt.registerTask('dev', ['compass', 'concat', 'browserSync', 'watch']);
-  grunt.registerTask('default', ['compass', 'uglify'])
+  grunt.registerTask('dev', ['compass', 'concat']);
+  grunt.registerTask('default', ['compass', 'uglify', 'browserSync', 'watch']);
  
  }
