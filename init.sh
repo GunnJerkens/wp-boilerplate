@@ -134,13 +134,13 @@ if [[ $type = "initial" ]]; then
   sed -i.bak s/{hostname_prod}/$hostname_prod/g $wpconfig || true
   sed -i.bak s/{db_prod}/$db_prod/g $wpconfig || true
   sed -i.bak s/{un_prod}/$un_prod/g $wpconfig || true
-  sed -i.bak s/{pw_prod}/$pw_prod/g $wpconfig || true
+  sed -i.bak s/{pw_prod}/$(echo $pw_prod | sed -e 's/\\/\\\\/g' -e 's/\//\\\//g' -e 's/&/\\\&/g')/g $wpconfig || true
 fi
 
 sed -i.bak s/{hostname_prod}/$hostname_prod/g $binconfig || true
 sed -i.bak s/{db_prod}/$db_prod/g $binconfig || true
 sed -i.bak s/{un_prod}/$un_prod/g $binconfig || true
-sed -i.bak s/{pw_prod}/$pw_prod/g $binconfig || true
+sed -i.bak s/{pw_prod}/$(echo $pw_prod | sed -e 's/\\/\\\\/g' -e 's/\//\\\//g' -e 's/&/\\\&/g')/g $binconfig || true
 sed -i.bak s/{ssh_prod}/$ssh_prod/g $binconfig || true
 sed -i.bak s/{wr_prod}/${wr_prod//\//\\\/}/g $binconfig || true
 
