@@ -20,7 +20,7 @@ function enqueue_scripts() {
   // HTML5 & responsive fallbacks
   wp_enqueue_script('modernizr', get_bloginfo('template_directory') . '/js/modernizr.js', false, null, false);
 
-  // Font Awesome stylesheet 
-  // wp_enqueue_style('font-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', false, null, false);
+  // Font Awesome stylesheet
+  // wp_enqueue_style('font-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css', false, null, false);
 }
 add_action('get_header', 'enqueue_scripts');
