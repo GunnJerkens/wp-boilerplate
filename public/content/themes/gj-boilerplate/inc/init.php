@@ -22,8 +22,7 @@ if(constant('WP_ENV') === 'production') {
   function google_analytics() {
 
     global $env_default;
-    $google_analytics_id = get_option('gj_options_ga') ? get_option('gj_options_ga') : 'UA-XXXXXXXX-X';
-    $default_hostname = preg_replace('/^https?:\/\//', '', $env_default['hostname']); ?>
+    $google_analytics_id = get_option('gj_options_ga') ? get_option('gj_options_ga') : 'UA-XXXXXXXX-X'; ?>
 
     <!-- Google Analytics -->
     <script>
@@ -32,7 +31,7 @@ if(constant('WP_ENV') === 'production') {
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', '<?php echo $google_analytics_id ?>', '<?php echo $default_hostname ?>');
+      ga('create', '<?php echo $google_analytics_id ?>', 'auto');
       ga('require', 'displayfeatures');
       ga('send', 'pageview');
     </script><?php
