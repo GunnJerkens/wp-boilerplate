@@ -35,6 +35,7 @@ logs
 env_*
 error_log
 node_modules
+npm-debug.log
 tempfile
 
 # OS or Editor folders
