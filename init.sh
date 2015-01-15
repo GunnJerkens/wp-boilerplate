@@ -110,6 +110,7 @@ read -p "What is the staging hostname? (e.g., staging.example.com) " hostname_st
 read -p "What is the staging database name? (e.g., database_staging) " db_staging
 read -p "What is the staging webroot path? (e.g., /var/www/staging.example.com/public) " wr_staging
 read -p "What is the staging ssh username? (e.g., root) " ssh_staging
+read -p "What is the staging ssh port? (e.g., 22) " port_staging
 
 if [[ $type = "initial" ]]; then
   sed -i.bak s/{hostname_staging}/$hostname_staging/g $wpconfig || true
@@ -119,6 +120,7 @@ fi
 sed -i.bak s/{hostname_staging}/$hostname_staging/g $binconfig || true
 sed -i.bak s/{db_staging}/$db_staging/g $binconfig || true
 sed -i.bak s/{ssh_staging}/$ssh_staging/g $binconfig || true
+sed -i.bak s/{port_staging}/$port_staging/g $binconfig || true
 sed -i.bak s/{wr_staging}/${wr_staging//\//\\\/}/g $binconfig || true
 
 
@@ -128,6 +130,7 @@ read -p "What is the prod database name? (e.g., database_prod) " db_prod
 read -p "What is the prod database username? (e.g., root) " un_prod
 read -p "What is the prod database password? (e.g., drowsapp) " pw_prod
 read -p "What is the prod ssh username? (e.g., root) " ssh_prod
+read -p "What is the prod ssh port? (e.g., 22) " port_prod
 read -p "What is the prod webroot path? (e.g., /var/www/example.com/public) " wr_prod
 
 if [[ $type = "initial" ]]; then
@@ -142,6 +145,7 @@ sed -i.bak s/{db_prod}/$db_prod/g $binconfig || true
 sed -i.bak s/{un_prod}/$un_prod/g $binconfig || true
 sed -i.bak s/{pw_prod}/$(echo $pw_prod | sed -e 's/\\/\\\\/g' -e 's/\//\\\//g' -e 's/&/\\\&/g')/g $binconfig || true
 sed -i.bak s/{ssh_prod}/$ssh_prod/g $binconfig || true
+sed -i.bak s/{port_prod}/$port_prod/g $binconfig || true
 sed -i.bak s/{wr_prod}/${wr_prod//\//\\\/}/g $binconfig || true
 
 
