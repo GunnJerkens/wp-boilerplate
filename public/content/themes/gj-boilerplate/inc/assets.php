@@ -10,9 +10,9 @@ function enqueue_scripts() {
 
   // Libraries
   wp_deregister_script('jquery');
-  wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js', false, null, true);
+  wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js', false, null, true);
   // If you opt to use bootstrap over the cdn, make sure to delete the ENTIRE bootstrap folder from /gj-boilerplate/js/src/
-  // wp_enqueue_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js', array('jquery'), null, true);
+  // wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js', array('jquery'), null, true);
 
   $main = '/js/main.js';
   $mainFilePath = get_template_directory() . $main;
@@ -22,6 +22,6 @@ function enqueue_scripts() {
   wp_enqueue_script('modernizr', get_bloginfo('template_directory') . '/js/modernizr.js', false, null, false);
 
   // Font Awesome stylesheet
-  // wp_enqueue_style('font-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css', false, null, false);
+  // wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', false, null, false);
 }
 add_action('get_header', 'enqueue_scripts');
