@@ -110,7 +110,7 @@ To compile a dev environment (Live Reload, Concatenated JS, Watch):
 
 To compile a production build (Uglify JS):  
 
-`grunt prod -v`
+`grunt -v`
 
 ## features
 ### multi-environment handling in wp-config

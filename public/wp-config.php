@@ -15,9 +15,7 @@
  */
 
 /**
- * Anything in {} is a variable completed during the init.sh script. Anything
- * that is wrapped in %% is a variable to be completed during the capistrano
- * deployment.
+ * Anything in {} is a variable completed during the init.sh script.
  */
 
 $env_default = array(
