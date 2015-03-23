@@ -18,7 +18,8 @@ into wp-config and will place an env_* file in the root. Prior to completion it
 will insert a fresh set of salts from the WordPress API and checkout WordPress
 to the latest stable version.
 
-*Once you have completed the init script, make sure to set the gj-boilerplate theme to active, activate included plugins, and set your permalinks.
+***After the init script completes make sure to login to the wp-admin panel and
+activate the GJ-Boilerplate theme and installed plugins. Also set your permalinks.***
 
 To change WordPress versions use:
 
@@ -94,9 +95,6 @@ public/
 The wp directory is a submodule and should not be modified in any way, the
 content directory houses themes and plugins. The Shared directory is where all
 uploaded files (via the WordPress backend) are stored.
-
-***After the init script completes make sure to login to the wp-admin panel and
-activate the GJ-Boilerplate theme and installed plugins!***
 
 ### grunt
 wp-boilerplate uses Grunt to compress Javascript files and run Compass. Run
