@@ -192,7 +192,7 @@ read -p "Is this a staging environment? (y/n) "
   if [[ $REPLY =~ ^[Yy](es)?$ ]]
   then
 
-    touch env_stage
+    touch env_staging
 
     read -p "Would you like me to create the staging database? (y/n) "
     if [[ $REPLY =~ ^[Yy](es)?$ ]]
