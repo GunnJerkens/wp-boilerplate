@@ -259,6 +259,7 @@ fi
 #      DIRS/NPM     #
 #####################
 
+rm -rf LICENSE
 rm -rf *.bak
 rm -rf bin/*.bak
 rm -rf public/sed*
