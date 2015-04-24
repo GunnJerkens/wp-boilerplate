@@ -12,7 +12,7 @@ function enqueue_scripts() {
   wp_deregister_script('jquery');
   wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js', false, null, true);
   // If you opt to use bootstrap over the cdn, make sure to delete the ENTIRE bootstrap folder from /gj-boilerplate/js/src/
-  // wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js', array('jquery'), null, true);
+  // wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js', array('jquery'), null, true);
 
   $main = '/js/main.js';
   $mainFilePath = get_template_directory() . $main;
