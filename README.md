@@ -24,26 +24,21 @@ activate the GJ-Boilerplate theme and installed plugins. Also set your permalink
 To change WordPress versions use:
 
 ```
-cd public/wp
-git checkout [version #]
+git -C public/wp checkout [version #]
 ```
 
 To update WordPress versions:
 
 ```
-cd public/wp
-git fetch --all
-git fetch --tags
-git checkout [version #]
+git -C public/wp fetch --all --tags
+git -C public/wp checkout [version #]
 ```
 
 OR
 
 If you have already updated and are pulling an update from an upstream branch:
 ```
-cd public/wp
-git fetch --tags
-cd ../..
+git -C public/wp fetch --tags
 git submodule update
 ```
 
