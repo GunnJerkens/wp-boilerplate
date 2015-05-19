@@ -168,7 +168,7 @@ then
   if [[ $REPLY =~ ^[Yy](es)?$ ]]
   then
 
-    mysql -uroot -e "create database $db_dev" || true
+    mysql -uroot -e "CREATE DATABASE $db_dev COLLATE utf8_general_ci" || true
     read -p "Would you like to import a sql file? (y/N) "
     if [[ $REPLY =~ ^[Yy](es)?$ ]]
     then
