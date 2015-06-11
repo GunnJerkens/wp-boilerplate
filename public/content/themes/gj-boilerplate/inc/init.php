@@ -26,6 +26,11 @@ class gjInit
     $this->load();
   }
 
+  /**
+   * Loads the hooks
+   *
+   * @return void
+   */
   private function load()
   {
     // Define upload_url_path to embed media with domain-relative URLs
@@ -56,9 +61,13 @@ class gjInit
 
     // Remove menu ul
     add_filter('wp_nav_menu', array(&$this, 'removeMenuUl'));
-
   }
 
+  /**
+   * Registers menus
+   *
+   * @return void
+   */
   private function registerMenus()
   {
     register_nav_menus(array(
@@ -66,6 +75,11 @@ class gjInit
     ));
   }
 
+  /**
+   * Loads Google Analytics
+   *
+   * @return void
+   */
   private function loadGoogleAnalytics()
   {
     $analyticsId = get_option('gj_options_ga') ? get_option('gj_options_ga') : false;
@@ -87,6 +101,11 @@ class gjInit
     }
   }
 
+  /**
+   * Loads webmaster tools meta verification tag
+   *
+   * @return void
+   */
   private function loadGoogleMeta()
   {
     $metaTag = get_option('gj_options_meta') ? get_option('gj_options_meta') : false;
@@ -96,6 +115,11 @@ class gjInit
     }
   }
 
+  /**
+   * Password protects environments
+   *
+   * @return void
+   */
   private function passwordProtect()
   {
     if(WP_PASSWORD_PROTECT == true) {
@@ -105,6 +129,11 @@ class gjInit
     }
   }
 
+  /**
+   * Loads browser sync
+   *
+   * @return void
+   */
   private function loadBrowserSync()
   {
     if($this->environment === "local") {
@@ -116,6 +145,11 @@ class gjInit
     }
   }
 
+  /**
+   * Removes <ul> wrapper from wp_nav_menu functions
+   *
+   * @return string
+   */
   private function removeMenuUl($menu)
   {
     return preg_replace(array('#^<ul[^>]*>#', '#</ul>$#' ), '', $menu);
