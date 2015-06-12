@@ -68,7 +68,7 @@ class gjInit
    *
    * @return void
    */
-  private function registerMenus()
+  public function registerMenus()
   {
     register_nav_menus(array(
       'main' => 'Main Navigation'
@@ -80,7 +80,7 @@ class gjInit
    *
    * @return void
    */
-  private function loadGoogleAnalytics()
+  public function loadGoogleAnalytics()
   {
     $analyticsId = get_option('gj_options_ga') ? get_option('gj_options_ga') : false;
 
@@ -106,7 +106,7 @@ class gjInit
    *
    * @return void
    */
-  private function loadGoogleMeta()
+  public function loadGoogleMeta()
   {
     $metaTag = get_option('gj_options_meta') ? get_option('gj_options_meta') : false;
 
@@ -120,7 +120,7 @@ class gjInit
    *
    * @return void
    */
-  private function passwordProtect()
+  public function passwordProtect()
   {
     if(WP_PASSWORD_PROTECT == true) {
       if(!is_user_logged_in()) {
@@ -134,7 +134,7 @@ class gjInit
    *
    * @return void
    */
-  private function loadBrowserSync()
+  public function loadBrowserSync()
   {
     if($this->environment === "local") {
       echo '
@@ -150,7 +150,7 @@ class gjInit
    *
    * @return string
    */
-  private function removeMenuUl($menu)
+  public function removeMenuUl($menu)
   {
     return preg_replace(array('#^<ul[^>]*>#', '#</ul>$#' ), '', $menu);
   }

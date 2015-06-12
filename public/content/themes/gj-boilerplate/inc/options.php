@@ -32,7 +32,7 @@ class gjOptions {
    *
    * @return void
    */
-  private function adminPage() {
+  public function adminPage() {
     add_options_page( 'GJ Options', 'GJ Options', 'administrator', 'gj_options', array(&$this, 'adminTemplates'));
   }
 
@@ -41,7 +41,7 @@ class gjOptions {
    *
    * @return void
    */
-  private function adminTemplates() {
+  public function adminTemplates() {
     include(get_template_directory() . '/options/gj-options.php');
   }
 
