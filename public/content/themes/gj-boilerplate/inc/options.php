@@ -33,7 +33,7 @@ class gjOptions {
    * @return void
    */
   public function adminPage() {
-    add_options_page( 'GJ Options', 'GJ Options', 'administrator', 'gj_options', array(&$this, 'adminTemplates'));
+    add_menu_page('GJ Options', 'GJ Options', 'administrator', 'gj_options', array(&$this,'adminTemplates'), 'dashicons-admin-tools', 99);
   }
 
   /**

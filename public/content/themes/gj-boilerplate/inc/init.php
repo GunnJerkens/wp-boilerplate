@@ -22,7 +22,7 @@ class gjInit
   function __construct()
   {
     $this->environment = constant('WP_ENV');
-  
+
     $this->load();
   }
 
