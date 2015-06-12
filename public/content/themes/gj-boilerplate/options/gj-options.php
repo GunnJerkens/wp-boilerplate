@@ -1,24 +1,27 @@
 <h2>Site Options</h2><?php
 
+$gjOptions = new gjOptions();
+
 if(isset($_POST['gj_hidden']) && $_POST['gj_hidden'] == 'gj_options') {
-  if(1 === check_admin_referer('gj-options')) {
-    $gj_options_ga = $_POST['gj_options_ga'];
-    update_option('gj_options_ga', $gj_options_ga); 
-
-    $gj_options_meta = $_POST['gj_options_meta'];
-    update_option('gj_options_meta', $gj_options_meta); ?>
-
-    <div class="updated"><p><strong>Options saved.</strong></p></div><?php
-  } else {
+  if(1 !== check_admin_referer('gj-options')) {
     die('Permission denied.');
   }
+
+  $options = $gjOptions->updateOptions($_POST);
+
+  echo '<div class="updated"><p><strong>Options saved.</strong></p></div>';
+
 } else {
-  $gj_options_ga   = get_option('gj_options_ga');
-  $gj_options_meta = get_option('gj_options_meta');
+
+  $options = $gjOptions->requestOptions();
+
 } ?>
 
 <style>
-  input.btn {
+  input, textarea {
+    min-width: 250px;
+  }
+  button.btn {
     width: auto;
     margin-top: 15px;
   }
@@ -29,13 +32,25 @@ if(isset($_POST['gj_hidden']) && $_POST['gj_hidden'] == 'gj_options') {
   <?php wp_nonce_field('gj-options'); ?>
   <table class="form-table">
     <tr>
-      <th><label for="gj_options_ga">Google Analytics</label></th>
-      <td><input id="gj_options_ga" type="text" name="gj_options_ga" value="<?php echo $gj_options_ga ? $gj_options_ga : ''; ?>"></td>
+      <th><label for="google_analytics">Google Analytics</label></th>
+      <td><input id="google_analytics" type="text" name="google_analytics" value="<?php echo $options && isset($options->google_analytics) ? $options->google_analytics : ''; ?>"></td>
     </tr>
     <tr>
-      <th><label for="gj_options_meta">Google Meta Verification</label></th>
-      <td><input id="gj_options_meta" type="text" name="gj_options_meta" value="<?php echo $gj_options_meta ? $gj_options_meta : ''; ?>"></td>
+      <th><label for="google_meta">Google Meta</label></th>
+      <td><input id="google_meta" type="text" name="google_meta" value="<?php echo $options && isset($options->google_meta) ? $options->google_meta : ''; ?>"></td>
+    </tr>
+    <tr>
+      <th><label for="facebook">Facebook</label></th>
+      <td><input id="facebook" type="text" name="facebook" value="<?php echo $options && isset($options->facebook) ? $options->facebook : ''; ?>"></td>
+    </tr>
+    <tr>
+      <th><label for="twitter">Twitter</label></th>
+      <td><input id="twitter" type="text" name="twitter" value="<?php echo $options && isset($options->twitter) ? $options->twitter : ''; ?>"></td>
+    </tr>
+    <tr>
+      <th><label for="instagram">Instagram</label></th>
+      <td><input id="instagram" type="text" name="instagram" value="<?php echo $options && isset($options->instagram) ? $options->instagram : ''; ?>"></td>
     </tr>
   </table>
-  <input class="btn button" type="submit" name="Submit" value="Update Settings" />
+  <button class="btn button" type="submit">Update Options</button>
 </form>

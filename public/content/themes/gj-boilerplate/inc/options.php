@@ -14,7 +14,7 @@ class gjOptions {
    */
   function __construct()
   {
-    $this->prefix = "gj_options_";
+    $this->prefix = "gj_options";
   }
 
   /**
@@ -52,9 +52,12 @@ class gjOptions {
    *
    * @return object
    */
-  public function updateOptions()
+  public function updateOptions($data)
   {
+    $data = $this->cleanFields($data);
+    update_option($this->prefix, json_encode($data));
 
+    return (object) $this->unslashFields($data);
   }
 
   /**
@@ -64,7 +67,9 @@ class gjOptions {
    */
   public function requestOptions()
   {
+    $data = (array) json_decode(get_option($this->prefix));
 
+    return (object) $this->unslashFields($data);
   }
 
   /**
@@ -74,10 +79,57 @@ class gjOptions {
    */
   public function deleteOptions()
   {
+    delete_option($this->prefix);
+  }
 
+  /**
+   * Unset unneeded fields, set empty strings to false, strip_tags
+   *
+   * @param array
+   *
+   * @return array
+   */
+  private function cleanFields($data)
+  {
+    // Remove fields that should not be saved
+    $fields = ['gj_hidden', '_wpnonce', '_wp_http_referer'];
+
+    foreach($fields as $field) {
+      if(isset($data[$field])) {
+        unset($data[$field]);
+      }
+    }
+
+    // Set empty strings to false, strip tags on all else
+    foreach($data as $key=>$value) {
+      if($value === "") {
+        $data[$key] = false;
+      } else {
+        $data[$key] = strip_tags($value);
+      }
+    }
+
+    return $data;
+  }
+
+  /**
+   * Unslash
+   *
+   * @param array
+   *
+   * @return array
+   */
+  private function unslashFields($data)
+  {
+    foreach($data as $key=>$value) {
+      $data[$key] = stripslashes_deep($value);
+    }
+    return $data;
   }
 
 }
 
-(new gjOptions())->loadAdmin();
+if(is_admin()) {
+  (new gjOptions())->loadAdmin();
+}
 
