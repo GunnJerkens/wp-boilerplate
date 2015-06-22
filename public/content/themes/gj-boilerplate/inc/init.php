@@ -59,7 +59,8 @@ class gjInit
     // Load browser sync
     add_action('wp_footer', array(&$this, 'loadBrowserSync'));
 
-    // Remove menu ul
+    // Register menus && remove menu ul
+    $this->registerMenus();
     add_filter('wp_nav_menu', array(&$this, 'removeMenuUl'));
   }
 
