@@ -10,4 +10,4 @@ echo '<section class="single error">';
 
 echo '</section>';
 
-get_footer(); ?>
+get_footer();

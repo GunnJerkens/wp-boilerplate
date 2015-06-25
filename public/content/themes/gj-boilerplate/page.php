@@ -1,10 +1,10 @@
 <?php
 /*
-*
+* Default page template
 */
 get_header();
 
-echo '<section class="single">';
+echo '<section class="single page">';
 
   if(have_posts()) : while(have_posts()) : the_post();
 
@@ -19,4 +19,4 @@ echo '<section class="single">';
 
 echo '</section>';
 
-get_footer(); ?>
+get_footer();
