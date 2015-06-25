@@ -18,6 +18,13 @@ function enqueue_scripts() {
   $mainFilePath = get_template_directory() . $main;
   wp_enqueue_script('main', get_bloginfo('template_url') . $main, array('jquery'), filemtime($mainFilePath), true);
 
+  $parameters = array(
+    'ajaxurl'   => admin_url('admin-ajax.php'),
+    'nonce'     => wp_create_nonce('register'),
+    'thanks'    => "Thank you, we'll be in touch soon.",
+  );
+  wp_localize_script('main', 'formOptions', $parameters);
+
   // HTML5 & responsive fallbacks
   wp_enqueue_script('modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', false, null, false);
 

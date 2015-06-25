@@ -19,7 +19,7 @@ if(isset($_POST['gj_hidden']) && $_POST['gj_hidden'] == 'gj_options') {
 
 <style>
   input, textarea {
-    min-width: 250px;
+    min-width: 350px;
   }
   button.btn {
     width: auto;
