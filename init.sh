@@ -269,7 +269,7 @@ mkdir -p public/shared
 ln -s ../shared public/content/uploads
 mkdir public/content/upgrade
 
-wordpress=4.2.2
+wordpress=4.2.3
 cd public/wp && git checkout $wordpress
 echo -e "\nNow on latest branch -- WordPress $wordpress"
 
