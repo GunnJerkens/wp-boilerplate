@@ -1,8 +1,7 @@
 <?php
 
-function enqueue_scripts() {
-
-
+function enqueue_scripts()
+{
   // CSS
   $screen = '/style/screen.css';
   $screenFilePath = get_template_directory() . $screen;
@@ -31,4 +30,5 @@ function enqueue_scripts() {
   // Font Awesome stylesheet
   // wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', false, null, false);
 }
+
 add_action('get_header', 'enqueue_scripts');

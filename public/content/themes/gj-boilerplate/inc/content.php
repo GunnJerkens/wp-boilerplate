@@ -6,7 +6,8 @@
 */
 
 // Default loop content not found
-function theMissing() {
+function theMissing()
+{
   $missing = '
     <article class="the-missing">
       <h2><span>Not Found</span></h2>
