@@ -22,6 +22,7 @@ class gjInit
   function __construct()
   {
     $this->environment = constant('WP_ENV');
+    $this->gjOptions = get_option('gj_options') ? json_decode(get_option('gj_options')) : false;
 
     $this->load();
   }
@@ -83,7 +84,7 @@ class gjInit
    */
   public function loadGoogleAnalytics()
   {
-    $analyticsId = get_option('gj_options_ga') ? get_option('gj_options_ga') : false;
+    $analyticsId = $this->gjOptions ? $this->gjOptions->google_analytics : false;
 
     if($this->environment === "production" && $analyticsId) {
       echo "
@@ -109,7 +110,7 @@ class gjInit
    */
   public function loadGoogleMeta()
   {
-    $metaTag = get_option('gj_options_meta') ? get_option('gj_options_meta') : false;
+    $metaTag = $this->gjOptions ? $this->gjOptions->google_meta : false;
 
     if($this->environment === "production" && $metaTag) {
       echo '<meta name="google-site-verification" content="'.$metaTag.'">';
