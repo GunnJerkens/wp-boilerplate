@@ -14,7 +14,7 @@ class gjInit
    *
    * @var $environment
    */
-  private $environment;
+  private $environment, $gjOptions;
 
   /**
    * Class constructor
@@ -22,7 +22,7 @@ class gjInit
   function __construct()
   {
     $this->environment = constant('WP_ENV');
-    $this->gjOptions = get_option('gj_options') ? json_decode(get_option('gj_options')) : false;
+    $this->gjOptions   = get_option('gj_options') ? json_decode(get_option('gj_options')) : false;
 
     $this->load();
   }
