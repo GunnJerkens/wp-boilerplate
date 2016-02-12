@@ -19,39 +19,38 @@
  */
 
 $env_default = array(
-  'name'     => 'default',
-  'hostname' => 'http://{hostname_prod}',
-  'debug'    => false,
-  'db_name'  => '{db_prod}',
-  'db_user'  => '{un_prod}',
-  'db_pass'  => '{pw_prod}',
-  'db_host'  => 'localhost',
-  'cache'    => true,
+  'name'             => 'default',
+  'hostname'         => 'http://{hostname_prod}',
+  'debug'            => false,
+  'db_name'          => '{db_prod}',
+  'db_user'          => '{un_prod}',
+  'db_pass'          => '{pw_prod}',
+  'db_host'          => 'localhost',
+  'cache'            => true,
   'password_protect' => false
 );
 
 $env_local = array_merge($env_default, array(
-  'name'     => 'local',
-  'hostname' => 'http://{hostname_dev}',
-  'debug'    => true,
-  'db_name'  => '{db_dev}',
-  'db_user'  => 'root',
-  'db_pass'  => '',
-  'cache'    => false
+  'name'             => 'local',
+  'hostname'         => 'http://{hostname_dev}',
+  'debug'            => true,
+  'db_name'          => '{db_dev}',
+  'db_user'          => 'root',
+  'db_pass'          => '',
+  'cache'            => false
 ));
 
 $env_staging = array_merge($env_default, array(
-  'name'     => 'staging',
-  'hostname' => 'http://{hostname_staging}',
-  'debug'    => true,
-  'db_name'  => '{db_staging}',
-  'cache'    => false,
+  'name'             => 'staging',
+  'hostname'         => 'http://{hostname_staging}',
+  'debug'            => true,
+  'db_name'          => '{db_staging}',
+  'cache'            => false,
   'password_protect' => true
 ));
 
 $production = array_merge($env_default, array(
-  'name'     => 'production',
-  'hostname' => 'http://{hostname_prod}'
+  'name'             => 'production',
 ));
 
 
