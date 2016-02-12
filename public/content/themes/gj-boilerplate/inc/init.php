@@ -86,7 +86,7 @@ class gjInit
   {
     $analyticsId = $this->gjOptions ? $this->gjOptions->google_analytics : false;
 
-    if($this->environment === "production" && $analyticsId) {
+    if($this->environment === "production" && isset($this->gjOptions->google_analytics)) {
       echo "
         <!-- Google Analytics -->
         <script>
@@ -95,7 +95,7 @@ class gjInit
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-          ga('create', '".$analyticsId."', 'auto');
+          ga('create', '" .$this->gjOptions->google_analytics. "', 'auto');
           ga('require', 'displayfeatures');
           ga('send', 'pageview');
         </script>
@@ -110,10 +110,8 @@ class gjInit
    */
   public function loadGoogleMeta()
   {
-    $metaTag = $this->gjOptions ? $this->gjOptions->google_meta : false;
-
-    if($this->environment === "production" && $metaTag) {
-      echo '<meta name="google-site-verification" content="'.$metaTag.'">';
+    if($this->environment === "production" && isset($this->gjOptions->google_meta)) {
+      esc_html('<meta name="google-site-verification" content="' .$this->gjOptions->google_meta. '">');
     }
   }
 
@@ -141,7 +139,7 @@ class gjInit
     if($this->environment === "local") {
       echo '
         <script type=\'text/javascript\' id="__bs_script__">//<![CDATA[
-          document.write("<script async src=\'http://HOST:3000/browser-sync/browser-sync-client.2.9.3.js\'><\/script>".replace("HOST", location.hostname));
+          document.write("<script async src=\'http://HOST:3000/browser-sync/browser-sync-client.2.11.1.js\'><\/script>".replace("HOST", location.hostname));
         //]]></script>
       ';
     }
