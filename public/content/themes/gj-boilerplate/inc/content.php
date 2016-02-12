@@ -8,10 +8,10 @@
 // Default loop content not found
 function theMissing()
 {
-  $missing = '
+  echo '
     <article class="the-missing">
       <h2><span>Not Found</span></h2>
       <p>Sorry, but the content you\'re looking for is not here.</p>
-    </article>';
-  echo $missing;
+    </article>
+  ';
 }

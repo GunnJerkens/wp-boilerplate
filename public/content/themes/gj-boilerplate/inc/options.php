@@ -1,6 +1,7 @@
 <?php
 
-class gjOptions {
+class gjOptions
+{
 
   /**
    * Private class vars
@@ -128,8 +129,3 @@ class gjOptions {
   }
 
 }
-
-if(is_admin()) {
-  (new gjOptions())->loadAdmin();
-}
-
