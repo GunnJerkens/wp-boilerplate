@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#####################
+#   VARS && INIT    #
+#####################
+
+wordpress=4.4.2
+
 cd `dirname $0`
 
 set -e
@@ -11,11 +17,11 @@ if [[ ! $REPLY =~ ^[Yy](es)?$ ]]; then
     type=clone
     echo -e "\nSet project type to clone."
   else
+  type=initial
     echo -e "\nNo project type set, exiting.."
     exit 1
   fi
 else
-  type=initial
   echo -e "\nSet project type to initial."
 fi
 
@@ -60,11 +66,10 @@ if [ "$1" != "test" ]; then
     rm -rf advanced-custom-fields.zip
 
     #WordPress SEO
-    yoast=latest-stable
-    curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.$yoast.zip
-    tar -zxvf wordpress-seo.$yoast.zip wordpress-seo
+    curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.latest-stable.zip
+    tar -zxvf wordpress-seo.latest-stable.zip wordpress-seo
     mv wordpress-seo public/content/plugins
-    rm -rf wordpress-seo.$yoast.zip
+    rm -rf wordpress-seo.latest-stable.zip
 
   else
 
@@ -269,7 +274,6 @@ mkdir -p public/shared
 ln -s ../shared public/content/uploads
 mkdir public/content/upgrade
 
-wordpress=4.4
 cd public/wp && git checkout $wordpress
 echo -e "\nNow on latest branch -- WordPress $wordpress"
 
