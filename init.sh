@@ -17,11 +17,11 @@ if [[ ! $REPLY =~ ^[Yy](es)?$ ]]; then
     type=clone
     echo -e "\nSet project type to clone."
   else
-  type=initial
     echo -e "\nNo project type set, exiting.."
     exit 1
   fi
 else
+  type=initial
   echo -e "\nSet project type to initial."
 fi
 
