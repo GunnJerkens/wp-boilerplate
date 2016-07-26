@@ -150,7 +150,7 @@ All javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compil
 [Bootstrap](http://getbootstrap.com) is included as an scss file, to use uncomment it in the screen.scss file. It import alls the individual scss files, delete at will for a customized Bootstrap build.
 
 ```
-/* Bootstrap v3.2.0 */
+/* Bootstrap v3.3.4 */
 //@import "bootstrap";
 ```
 
@@ -159,7 +159,7 @@ All javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compil
 
 ```
 // Font Awesome stylesheet
-// wp_enqueue_style('font-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', false, null, false);
+// wp_enqueue_style('font-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.css', false, null, false);
 ```
 
 ### default compass configuration
