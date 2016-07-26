@@ -28,7 +28,24 @@ function enqueue_scripts()
   wp_enqueue_script('modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', false, null, false);
 
   // Font Awesome stylesheet
-  // wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', false, null, false);
+  // wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css', false, null, false);
 }
 
 add_action('get_header', 'enqueue_scripts');
+
+function add_async_defer($tag, $handle) {
+  $deferHandles = array('jquery', 'bootstrap', 'main');
+  $asyncHandles = array();
+  // Add script handles to array to add defer or async attributes
+  // Remove bootstrap if you are NOT using bootstrap over the cdn
+
+  if (in_array($handle, $deferHandles)) {
+    return str_replace(' src', ' defer src', $tag);
+  }
+  if (in_array($handle, $asyncHandles)) {
+    return str_replace(' src', ' async src', $tag);
+  }
+  return $tag;
+}
+
+add_filter('script_loader_tag', 'add_async_defer', 10, 2);
