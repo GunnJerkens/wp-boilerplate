@@ -32,8 +32,8 @@ if(isset($_POST['gj_hidden']) && $_POST['gj_hidden'] == 'gj_options') {
   <?php wp_nonce_field('gj-options'); ?>
   <table class="form-table">
     <tr>
-      <th><label for="google_analytics">Google Analytics</label></th>
-      <td><input id="google_analytics" type="text" name="google_analytics" value="<?php echo $options && isset($options->google_analytics) ? $options->google_analytics : ''; ?>"></td>
+      <th><label for="google_analytics">Google Tag Manager Container ID</label></th>
+      <td><input id="google_tag_manager" type="text" name="google_tag_manager" value="<?php echo $options && isset($options->google_tag_manager) ? $options->google_tag_manager : ''; ?>"></td>
     </tr>
     <tr>
       <th><label for="google_meta">Google Meta</label></th>
