@@ -85,7 +85,7 @@ class gjInit
    */
   public function loadGoogleTagManagerHead()
   {
-    if(isset($this->gjOptions->google_tag_manager) && $this->gjOptions->google_tag_manager) {
+    if($this->environment === "production" && isset($this->gjOptions->google_tag_manager) && $this->gjOptions->google_tag_manager) {
       echo "
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -105,7 +105,7 @@ class gjInit
    */
   public function loadGoogleTagManagerBody()
   {
-    if(isset($this->gjOptions->google_tag_manager) && $this->gjOptions->google_tag_manager) {
+    if($this->environment === "production" && isset($this->gjOptions->google_tag_manager) && $this->gjOptions->google_tag_manager) {
       echo '
       <!-- Google Tag Manager (noscript) -->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id='.$this->gjOptions->google_tag_manager.'"
