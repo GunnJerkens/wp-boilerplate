@@ -28,10 +28,9 @@ jQuery(document).ready(function($) {
         },
         function(response) {
           self.successMessage(response);
-          // self.loadConversionTracking();
-          if(typeof ga !== 'undefined') {
-            ga('send', 'event', 'Form', 'Submit', 'Success');
-          }
+          // google tag manager custom event
+          if(typeof dataLayer !== 'undefined')
+            dataLayer.push({'event': 'formSubmitted'});
         });
       } else {
         self.errorOutput();
@@ -112,18 +111,6 @@ jQuery(document).ready(function($) {
       this.error.empty();
       this.error.append('<i class="fa fa-close"></i>  ' + response.message);
       $('input[type="submit"]').toggle();
-    }
-  };
-
-  Ajax.prototype.loadConversionTracking = function() {
-    var tracking = {
-      // Add tracking information here
-    };
-
-    for(var key in tracking) {
-      var img = document.createElement("img");
-      img.onload = function() { return; }
-      img.src = "//www.googleadservices.com/pagead/conversion/" + key + "/?value=1.000000&label=" + tracking[key] + "&guid=ON&script=0" + "&random=" + new Date().getTime();
     }
   };
 

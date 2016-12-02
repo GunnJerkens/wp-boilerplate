@@ -146,6 +146,9 @@ images from an upstream environment.
 
 All javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compiled by Grunt into a 'main.js' file included in the footer. Bootstrap is included as a group of js files for easy customization && removal. Due to bootstrap files requiring a certain order in their compile they are called verbosely in the `Gruntfile.js` and need to be removed from that file if you are removing them from the project. Alternatively you can include Bootstrap via CDN if you uncomment it in the assets.php folder && make sure to remove it from your compiled JS.
 
+### included Google Tag Manager integration
+Option to add your `GTM ID` in GJ Options. A GTM custom event named `formSubmitted` also fires when the form is submitted successfully so you can track conversions on the ajax form submit.
+
 ### included CSS
 [Bootstrap](http://getbootstrap.com) is included as an scss file, to use uncomment it in the screen.scss file. It import alls the individual scss files, delete at will for a customized Bootstrap build.
 
