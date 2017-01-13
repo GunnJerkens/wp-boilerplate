@@ -32,20 +32,3 @@ function enqueue_scripts()
 }
 
 add_action('get_header', 'enqueue_scripts');
-
-function add_async_defer($tag, $handle) {
-  $deferHandles = array('jquery', 'bootstrap', 'main');
-  $asyncHandles = array();
-  // Add script handles to array to add defer or async attributes
-  // Remove bootstrap if you are NOT using bootstrap over the cdn
-
-  if (in_array($handle, $deferHandles)) {
-    return str_replace(' src', ' defer src', $tag);
-  }
-  if (in_array($handle, $asyncHandles)) {
-    return str_replace(' src', ' async src', $tag);
-  }
-  return $tag;
-}
-
-add_filter('script_loader_tag', 'add_async_defer', 10, 2);
