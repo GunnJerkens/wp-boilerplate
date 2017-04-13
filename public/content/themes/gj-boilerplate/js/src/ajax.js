@@ -29,8 +29,9 @@ jQuery(document).ready(function($) {
         function(response) {
           self.successMessage(response);
           // google tag manager custom event
-          if(typeof dataLayer !== 'undefined')
+          if(typeof dataLayer !== 'undefined') {
             dataLayer.push({'event': 'formSubmitted'});
+          }
         });
       } else {
         self.errorOutput();
@@ -43,11 +44,12 @@ jQuery(document).ready(function($) {
     this.clearErrors();
 
     this.el.find(':input').each(function() {
-      var el, attr, type, value, field_name;
+      var el, attr, type, value, input_name, field_name, group_checked;
       el    = $(this);
       attr  = el.attr('required');
       type  = el.attr('type');
       value = el.val();
+      input_name = el.attr('name');
 
       if(typeof attr !== typeof undefined && attr !== false) {
         field_name = el.prev('label').text();
@@ -58,13 +60,27 @@ jQuery(document).ready(function($) {
           return false;
         }
 
-        if(('radio' === type) && !el.is(':checked') && !el.siblings().is(':checked')) {
-          self.setOutput('error', '<i class="fa fa-close"></i> "' + field_name + '" is required.', el);
-          return false;
+        if(('radio' === type || 'checkbox' === type) && !el.is(':checked')) {
+          group_checked = false;
+          $('[name="'+input_name+'"]').each(function(){
+            if ($(this).is(':checked')) {
+              group_checked = true;
+              return false;
+            }
+          });
+          if (!group_checked) {
+            self.setOutput('error', '<i class="fa fa-close"></i> "' + field_name + '" is required.', el);
+            return false;
+          }
         }
 
         if('email' === type && false === self.looseEmailValidate(value)) {
           self.setOutput('error', '<i class="fa fa-close"></i> Your email is not valid.', el);
+          return false;
+        }
+
+        if(input_name === "zip" && value.length < 5 || input_name === "zip" && isNaN(value)) {
+          self.setOutput('error', '<i class="fa fa-close"></i> Please enter a valid zip code.', el);
           return false;
         }
 
