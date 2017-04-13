@@ -50,8 +50,7 @@ class gjInit
     // Adds post thumbnails to theme
     add_theme_support( 'post-thumbnails' );
 
-    // Loads google tag manager & webmaster verification
-    add_action('wp_head', array(&$this, 'loadGoogleMeta'));
+    // Loads google tag manager
     add_action('gtm_head', array(&$this, 'loadGoogleTagManagerHead'));
     add_action('gtm_body', array(&$this, 'loadGoogleTagManagerBody'));
 
@@ -112,18 +111,6 @@ class gjInit
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- End Google Tag Manager (noscript) -->
       ';
-    }
-  }
-
-  /**
-   * Loads webmaster tools meta verification tag
-   *
-   * @return void
-   */
-  public function loadGoogleMeta()
-  {
-    if($this->environment === "production" && isset($this->gjOptions->google_meta)) {
-      esc_html('<meta name="google-site-verification" content="' .$this->gjOptions->google_meta. '">');
     }
   }
 
