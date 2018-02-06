@@ -170,11 +170,9 @@ Includes default configuration for SASS/Compass, which comes highly recommended.
 
 ## dependencies
 [node](http://nodejs.org)  
-[Grunt](http://gruntjs.com): `npm install -g grunt-cli`  
-[SASS](http://sass-lang.com/): `gem install sass`  
-[Compass](http://compass-style.org/): `gem install compass`  
-[Compass Normalize](https://github.com/ksmandersen/compass-normalize): `gem install compass-normalize`  
-[Compass rgbapng](https://github.com/aaronrussell/compass-rgbapng): `gem install compass-rgbapng`  
+```
+npm install
+```
 
 ## license
 

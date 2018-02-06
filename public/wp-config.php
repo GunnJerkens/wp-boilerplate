@@ -32,9 +32,9 @@ $env_default = array(
 
 $env_local = array_merge($env_default, array(
   'name'             => 'local',
-  'hostname'         => 'http://{hostname_dev}',
+  'hostname'         => 'http://{hostname_test}',
   'debug'            => true,
-  'db_name'          => '{db_dev}',
+  'db_name'          => '{db_test}',
   'db_user'          => 'root',
   'db_pass'          => '',
   'cache'            => false

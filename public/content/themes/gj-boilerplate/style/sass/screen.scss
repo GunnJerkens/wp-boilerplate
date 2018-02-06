@@ -1,22 +1,6 @@
 @import "normalize";
-@import "compass/css3";
-@import "compass/utilities/sprites";
-@import "compass/utilities/general/clearfix";
 
-/* SVG Gradients in Opera & IE9 */
-$experimental-support-for-svg: true;
-
-/* Sprites (uncomment if sprites are used)
-@import "ui/*.png";
-@include all-ui-sprites;
-*/
-
-/* RGBAPNG */
-$rgbapng_path: 'generated';
-$rgbapng_px_size: 1;
-@import "rgbapng";
-
-/* Bootstrap v3.3.4 */
+/* Bootstrap v4.0 */
 /* This file imports all the bootstrap modules individually */
 // @import "bootstrap";
 

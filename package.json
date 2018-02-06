@@ -1,13 +1,25 @@
 {
   "name": "wp-boilerplate",
-  "version": "2.3.1",
+  "version": "2.4.0",
+  "scripts": {
+    "start": "webpack --env.NODE_ENV=local",
+    "watch": "webpack --env.NODE_ENV=local --watch",
+    "build": "webpack --env.NODE_ENV=prod"
+  },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-browser-sync": "^2.2.0",
-    "grunt-contrib-compass": "^1.0.4",
-    "grunt-contrib-concat": "^0.5.1",
-    "grunt-contrib-uglify": "^0.11.1",
-    "grunt-contrib-watch": "^0.6.1",
-    "matchdep": "^1.0.1"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.9",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "node-sass": "^4.7.2",
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.1.0",
+    "sass-loader": "^6.0.6",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "popper.js": "^1.12.9"
   }
 }
