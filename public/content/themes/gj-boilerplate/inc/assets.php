@@ -9,7 +9,7 @@ function enqueue_scripts()
 
   // Libraries
   wp_deregister_script('jquery');
-  wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.2.1.slim.min.js', false, null, true);
+  wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', false, null, true);
 
   $main = '/js/main.js';
   $mainFilePath = get_template_directory() . $main;

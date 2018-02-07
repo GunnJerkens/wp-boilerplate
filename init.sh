@@ -99,15 +99,15 @@ binconfig="bin/config.sh"
 
 
 # Development Configs
-read -p "What is the local hostname? (e.g., example.test) " hostname_test
-read -p "What is the local database name? (e.g., database_test) " db_test
+read -p "What is the local hostname? (e.g., example.test) " hostname_dev
+read -p "What is the local database name? (e.g., database_dev) " db_dev
 
 if [[ $type = "initial" ]]; then
-  sed -i.bak s/{hostname_test}/$hostname_test/g $wpconfig || true
-  sed -i.bak s/{db_test}/$db_test/g $wpconfig || true
+  sed -i.bak s/{hostname_dev}/$hostname_dev/g $wpconfig || true
+  sed -i.bak s/{db_dev}/$db_dev/g $wpconfig || true
 fi
 
-sed -i.bak s/{db_test}/$db_test/g $binconfig || true
+sed -i.bak s/{db_dev}/$db_dev/g $binconfig || true
 
 
 # Staging Configs
@@ -173,12 +173,12 @@ then
   if [[ $REPLY =~ ^[Yy](es)?$ ]]
   then
 
-    mysql -uroot -e "CREATE DATABASE $db_test COLLATE utf8_general_ci" || true
+    mysql -uroot -e "CREATE DATABASE $db_dev COLLATE utf8_general_ci" || true
     read -p "Would you like to import a sql file? (y/N) "
     if [[ $REPLY =~ ^[Yy](es)?$ ]]
     then
       read -p "Where is the file located? (e.g., /home/user/sql/example.sql) " sql
-      mysql -uroot $db_test < $sql || true
+      mysql -uroot $db_dev < $sql || true
       if [[ $type = "initial" ]]; then
         read -p "What is the table prefix?" table
         sed -i.bak s/gj_/$table/g $wpconfig || true
