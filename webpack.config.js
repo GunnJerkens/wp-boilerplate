@@ -3,7 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
   filename: '../style/screen.css'
@@ -15,7 +15,7 @@ module.exports = (env) => {
 
   if (env.NODE_ENV === 'prod') {
     plugins.push(
-      new UglifyJsPlugin()
+      new MinifyPlugin()
     );
   }
 
@@ -36,7 +36,10 @@ module.exports = (env) => {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ['env']
+          }
         },
         {
           test: /\.scss$/,
