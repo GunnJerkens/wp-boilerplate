@@ -57,9 +57,6 @@ class gjInit
     // Password protect
     add_action ('template_redirect', array(&$this, 'passwordProtect'));
 
-    // Load browser sync
-    add_action('wp_footer', array(&$this, 'loadBrowserSync'));
-
     // Register menus && remove menu ul
     $this->registerMenus();
     add_filter('wp_nav_menu', array(&$this, 'removeMenuUl'));
@@ -125,22 +122,6 @@ class gjInit
       if(!is_user_logged_in()) {
         auth_redirect();
       }
-    }
-  }
-
-  /**
-   * Loads browser sync
-   *
-   * @return void
-   */
-  public function loadBrowserSync()
-  {
-    if($this->environment === "local") {
-      echo '
-        <script type=\'text/javascript\' id="__bs_script__">//<![CDATA[
-          document.write("<script async src=\'http://HOST:3000/browser-sync/browser-sync-client.2.13.0.js\'><\/script>".replace("HOST", location.hostname));
-        //]]></script>
-      ';
     }
   }
 

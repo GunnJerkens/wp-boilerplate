@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
+// const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 require('babel-polyfill');
 require('whatwg-fetch');
 
@@ -12,8 +13,16 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = (env) => {
-  // set plugins
-  const plugins = [extractSass];
+  // set plugins - uncomment BrowserSyncPlugin and update host/ proxy values to enable browser-sync
+  const plugins = [
+    extractSass,
+    // new BrowserSyncPlugin({
+    //   open: 'external',
+    //   host: 'example.test',
+    //   port: 9000,
+    //   proxy: 'http://example.test:8080/'
+    // })
+  ];
 
   if (env.NODE_ENV === 'prod') {
     plugins.push(
