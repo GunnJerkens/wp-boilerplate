@@ -91,19 +91,18 @@ The wp directory is a submodule and should not be modified in any way, the
 content directory houses themes and plugins. The Shared directory is where all
 uploaded files (via the WordPress backend) are stored.
 
-### grunt
-wp-boilerplate uses Grunt to compress Javascript files and run Compass. Run
+### webpack
+wp-boilerplate uses Webpack to compress Javascript files and compile Sass to CSS. Run
 `npm install` from the root directory to install node dependencies, then run
-`grunt` to watch for changes in `js/src` and `style/sass` in the theme
-directory.
+`npm run watch` to watch for changes in `js` files and `scss` files.
 
-To compile a dev environment (Live Reload, Concatenated JS, Watch):  
+To compile a dev environment (concatenated js, watch):
 
-`grunt dev -v`
+`npm run start`
 
 To compile a production build (Uglify JS):  
 
-`grunt -v`
+`npm run build`
 
 ## features
 ### multi-environment handling in wp-config
@@ -141,10 +140,8 @@ images from an upstream environment.
 ### included javascript
 [Modernizr](http://modernizr.com/)  
 [Bootstrap](http://getbootstrap.com)  
-[jQuery Placeholder](https://github.com/mathiasbynens/jquery-placeholder)  
-[jQuery imagesLoaded](https://github.com/desandro/imagesloaded)  
 
-All javascript (with exception of Modernizr, Respond, and jQuery (CDN) is compiled by Grunt into a 'main.js' file included in the footer. Bootstrap is included as a group of js files for easy customization && removal. Due to bootstrap files requiring a certain order in their compile they are called verbosely in the `Gruntfile.js` and need to be removed from that file if you are removing them from the project. Alternatively you can include Bootstrap via CDN if you uncomment it in the assets.php folder && make sure to remove it from your compiled JS.
+The entry javascript file can be found in 'public/content/themes/gj-boilerplate/js/src/scripts.js'.  Webpack will only compile files that are imports (or dependencies) in this file.  To include Bootstrap javascript files, uncomment it in 'scripts.js' to include in this project.
 
 ### included Google Tag Manager integration
 Option to add your `GTM ID` in GJ Options. A GTM custom event named `formSubmitted` also fires when the form is submitted successfully so you can track conversions on the ajax form submit.
@@ -153,7 +150,7 @@ Option to add your `GTM ID` in GJ Options. A GTM custom event named `formSubmitt
 [Bootstrap](http://getbootstrap.com) is included as an scss file, to use uncomment it in the screen.scss file. It import alls the individual scss files, delete at will for a customized Bootstrap build.
 
 ```
-/* Bootstrap v3.3.4 */
+/* Bootstrap v4.0.0 */
 //@import "bootstrap";
 ```
 
@@ -162,19 +159,14 @@ Option to add your `GTM ID` in GJ Options. A GTM custom event named `formSubmitt
 
 ```
 // Font Awesome stylesheet
-// wp_enqueue_style('font-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.css', false, null, false);
+// wp_enqueue_style('font-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/5.0.6/css/font-awesome.css', false, null, false);
 ```
-
-### default compass configuration
-Includes default configuration for SASS/Compass, which comes highly recommended.
 
 ## dependencies
 [node](http://nodejs.org)  
-[Grunt](http://gruntjs.com): `npm install -g grunt-cli`  
-[SASS](http://sass-lang.com/): `gem install sass`  
-[Compass](http://compass-style.org/): `gem install compass`  
-[Compass Normalize](https://github.com/ksmandersen/compass-normalize): `gem install compass-normalize`  
-[Compass rgbapng](https://github.com/aaronrussell/compass-rgbapng): `gem install compass-rgbapng`  
+```
+npm install
+```
 
 ## license
 

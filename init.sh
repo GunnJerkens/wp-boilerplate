@@ -4,7 +4,7 @@
 #   VARS && INIT    #
 #####################
 
-wordpress=4.7.1
+wordpress=4.9.4
 
 cd `dirname $0`
 
@@ -99,7 +99,7 @@ binconfig="bin/config.sh"
 
 
 # Development Configs
-read -p "What is the local hostname? (e.g., example.dev) " hostname_dev
+read -p "What is the local hostname? (e.g., example.test) " hostname_dev
 read -p "What is the local database name? (e.g., database_dev) " db_dev
 
 if [[ $type = "initial" ]]; then
@@ -283,7 +283,7 @@ then
   npm install
   echo -e "\nNode modules installed."
 else
-  echo -e "\nYou'll need to run npm install from the project root to use Grunt."
+  echo -e "\nYou'll need to run npm install from the project root to use Webpack."
 fi
 
 echo -e "\nInitialization complete -- happy coding! Use bin/db_fetch.sh to sync databases and bin/uploads_sync to sync images. You may need to manually set your permissions."
