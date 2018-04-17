@@ -18,9 +18,15 @@
  * Anything in {} is a variable completed during the init.sh script.
  */
 
+$protocol = 'http';
+
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+  $protocol = 'https';
+}
+
 $env_default = array(
   'name'             => 'default',
-  'hostname'         => 'http://{hostname_prod}',
+  'hostname'         => $protocol.'://{hostname_prod}',
   'debug'            => false,
   'db_name'          => '{db_prod}',
   'db_user'          => '{un_prod}',
@@ -32,7 +38,7 @@ $env_default = array(
 
 $env_local = array_merge($env_default, array(
   'name'             => 'local',
-  'hostname'         => 'http://{hostname_test}',
+  'hostname'         => $protocol.'://{hostname_test}',
   'debug'            => true,
   'db_name'          => '{db_test}',
   'db_user'          => 'root',
@@ -42,7 +48,7 @@ $env_local = array_merge($env_default, array(
 
 $env_staging = array_merge($env_default, array(
   'name'             => 'staging',
-  'hostname'         => 'http://{hostname_staging}',
+  'hostname'         => $protocol.'://{hostname_staging}',
   'debug'            => true,
   'db_name'          => '{db_staging}',
   'cache'            => false,
