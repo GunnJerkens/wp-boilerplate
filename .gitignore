@@ -37,6 +37,7 @@ error_log
 node_modules
 npm-debug.log
 tempfile
+package-lock.json
 
 # OS or Editor folders
 .DS_Store
