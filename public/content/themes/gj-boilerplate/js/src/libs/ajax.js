@@ -18,7 +18,7 @@ Ajax.prototype.run = function() {
     self.checkFields();
 
     if(self.output.status !== 'error') {
-      $('input[type="submit"]').toggle();
+      $('button[type="submit"]').toggle();
       self.error.empty();
       self.error.append('<p class="message"><i class="fa fa-spin fa-spinner"></i> Sending...</p>');
 
@@ -127,7 +127,7 @@ Ajax.prototype.successMessage = function(data) {
   } else {
     this.error.empty();
     this.error.append('<i class="fa fa-close"></i>  ' + response.message);
-    $('input[type="submit"]').toggle();
+    $('button[type="submit"]').toggle();
   }
 };
 
