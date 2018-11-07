@@ -4,7 +4,7 @@
   "scripts": {
     "start": "webpack --env.NODE_ENV=local",
     "watch": "webpack --env.NODE_ENV=local --watch",
-    "build": "webpack --env.NODE_ENV=prod"
+    "build": "webpack --env.NODE_ENV=production"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
