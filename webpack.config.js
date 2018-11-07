@@ -29,7 +29,7 @@ module.exports = (env) => {
     // })
   ];
 
-  if (env.NODE_ENV === 'prod') {
+  if (env.NODE_ENV === 'production') {
     plugins.push(
       new MinifyPlugin()
     );
@@ -65,7 +65,7 @@ module.exports = (env) => {
             {
               loader: 'css-loader',
               options: {
-                minimize: env.NODE_ENV === 'prod'
+                minimize: env.NODE_ENV === 'production'
               }
             },
             'postcss-loader',
