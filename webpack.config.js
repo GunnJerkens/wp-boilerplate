@@ -16,6 +16,11 @@ module.exports = (env) => {
   // set plugins - uncomment BrowserSyncPlugin and update host/ proxy values to enable browser-sync
   const plugins = [
     extractSass,
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(env.NODE_ENV)
+      }
+    })
     // new BrowserSyncPlugin({
     //   open: 'external',
     //   host: 'example.test',
