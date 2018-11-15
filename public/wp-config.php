@@ -99,6 +99,9 @@ define('DB_PASSWORD', $environment['db_pass']);
 /** Disable automatic updates */
 define( 'WP_AUTO_UPDATE_CORE', false );
 
+/** Disable WP file editor */
+define( 'DISALLOW_FILE_EDIT', true );
+
 /** Define file system method */
 define('FS_METHOD', 'direct');
 

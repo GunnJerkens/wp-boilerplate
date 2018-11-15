@@ -133,6 +133,9 @@ hostnames.
 In the root there are /bin/ scripts that allow easy syncing of databases and
 images from an upstream environment.
 
+### disabled WordPress file editor
+The WordPress dahsboard file editor is disabled by default, since this project is intended to be version controlled.
+
 ### included plugins
 **[WordPress SEO (Yoast)](http://wordpress.org/extend/plugins/wordpress-seo/):** Full featured SEO plugin for expert control over WordPress  
 **[Advanced Custom Fields](http://www.advancedcustomfields.com/):** Great plugin that enables advanced CMS functionality in WordPress  
