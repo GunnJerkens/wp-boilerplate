@@ -140,16 +140,19 @@ The WordPress dahsboard file editor is disabled by default, since this project i
 **[WordPress SEO (Yoast)](http://wordpress.org/extend/plugins/wordpress-seo/):** Full featured SEO plugin for expert control over WordPress  
 **[Advanced Custom Fields](http://www.advancedcustomfields.com/):** Great plugin that enables advanced CMS functionality in WordPress  
 
-### included javascript
-[Slick (slider)](http://kenwheeler.github.io/slick/)
-modals.js (custom) - reusable modal component that is responsive, accessible, and allows for any type of content.
-animations.js - standard set of GJ animations. Add/remove as needed.
+## Javascript
+Javascript should be modular and loaded as needed per page.
 
 The entry javascript file can be found in 'public/content/themes/gj-boilerplate/js/src/scripts.js'.  Webpack will only compile files that are imports (or dependencies) in this file.
 
 IMPORTANT: Only add JS to 'scripts.js' that is needed for all pages including for global functions.
 
 For page specific JS, enqueue the script based on template name in '/inc/assets.php'. This makes page loads more efficient so only JS needed for each page is loaded.
+
+### included javascript
+[Slick (slider)](http://kenwheeler.github.io/slick/)
+modals.js (custom) - reusable modal component that is responsive, accessible, and allows for any type of content.
+animations.js - standard set of GJ animations. Add/remove as needed.
 
 ## CSS
 SASS/CSS to be structured in a mobile first approach. Default styles are for all screen sizes. Add a media query via the SASS mixin for min-width styles.
