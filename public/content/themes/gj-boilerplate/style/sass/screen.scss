@@ -1,13 +1,12 @@
-@import "normalize";
-
-/* Bootstrap v4.0 */
-/* This file imports all the bootstrap modules individually */
-// @import "bootstrap";
+@import 'normalize';
 
 /* SCSS Modules */
-@import "mixins";
-@import "colors";
-@import "typography";
+@import 'mixins';
+@import 'colors';
+@import 'typography';
 
 /* Project Files */
-@import "layout";
+@import 'layout';
+@import 'animations';
+@import 'slick';
+@import 'modals';

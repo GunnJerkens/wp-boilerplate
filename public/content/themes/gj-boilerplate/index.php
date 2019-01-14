@@ -2,21 +2,24 @@
 /*
 * Default index template
 */
-get_header();
+  get_header();
+?>
 
-echo '<section class="single index">';
+<main class="single index">
 
-  if(have_posts()) : while(have_posts()) : the_post();
+  <?php
+    if(have_posts()) : while(have_posts()) : the_post();
 
-    the_title();
-    the_content();
+      the_title();
+      the_content();
 
-  endwhile; else: 
+    endwhile; else: 
 
-    theMissing();
+      theMissing();
 
-  endif;
+    endif;
+  ?>
 
-echo '</section>';
+</main>
 
-get_footer();
+<?php get_footer(); ?>

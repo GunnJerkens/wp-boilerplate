@@ -126,7 +126,7 @@
       position: relative;
     }
 
-    img {
+    .gallery-img {
       width: auto;
       max-width: 100%;
       height: auto;
@@ -237,6 +237,7 @@
   height: 100%;
   transition: opacity 0.35s, z-index 0.5s ease-in;
   z-index: -1;
+
   &.open {
     opacity: 1;
     transition: opacity 0.35s, z-index 0s ease-in;

@@ -60,6 +60,14 @@ class gjInit
     // Register menus && remove menu ul
     $this->registerMenus();
     add_filter('wp_nav_menu', array(&$this, 'removeMenuUl'));
+
+    // Load custom post types
+    add_action('init', array(&$this, 'registerCustomPostTypes'));
+
+    // Enable the option show in rest
+    add_filter( 'acf/rest_api/field_settings/show_in_rest', '__return_true' );
+    // Enable the option edit in rest
+    add_filter( 'acf/rest_api/field_settings/edit_in_rest', '__return_true' );
   }
 
   /**
@@ -72,6 +80,34 @@ class gjInit
     register_nav_menus(array(
       'main' => 'Main Navigation'
     ));
+  }
+
+  /**
+   * Register custom post types
+   *
+   * @return void
+   */
+  public function registerCustomPostTypes()
+  {
+    register_post_type('collection',
+      array(
+        'labels' => array(
+          'name' => __('Collections'),
+          'add_new_item'  => 'Add New Collection',
+          'new_item_name' => 'New Collection'
+        ),
+        'menu_icon'       => 'dashicons-admin-home',
+        'public'          => true,
+        'hierarchical'    => true,
+        'capability_type' => 'page',
+        'has_archive'     => true,
+        'taxonomies'      => array('type'),
+        'rewrite'         => array('with_front' => false, 'slug' => 'collections'),
+        'show_in_rest'    => true,
+        'rest_base'       => 'collections',
+        'supports'        => array('title','editor','thumbnail','author','page-attributes')
+      )
+    );
   }
 
   /**

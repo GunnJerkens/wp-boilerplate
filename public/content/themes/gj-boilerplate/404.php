@@ -2,12 +2,17 @@
 /*
 * 404 Error
 */
-get_header();
+  get_header();
+?>
 
-echo '<section class="single error">';
+<main class="single error">
 
-  theMissing();
+  <?php
+    theMissing();
+  ?>
 
-echo '</section>';
+</main>
 
-get_footer();
+<?php
+  get_footer();
+?>

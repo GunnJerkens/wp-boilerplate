@@ -48,7 +48,9 @@ var modal = $('.modal'),
   modalClose = $('.modal-close'),
   modalContent = $('.modal-content'),
   galleryModalContent = $('#gallery-modal .modal-content'),
-  modalVideo = $('.modal-video');
+  modalVideo = $('.modal-video'),
+  body = $('body'),
+  section = $('section');
 
 $(document).ready(function () {
   //Open appropriate modal after closing all other modals, and create modal bkg.
@@ -81,11 +83,11 @@ $(document).ready(function () {
   });
 
 
-  $('.modal').keydown(function (event) {
+  $(modal).keydown(function (event) {
     trapTabKey($(this), event);
   })
 
-  $('.modal').keydown(function (event) {
+  $(modal).keydown(function (event) {
     trapEscapeKey($(this), event);
   })
 
@@ -94,12 +96,12 @@ $(document).ready(function () {
 function openModal(that) {
   $(modal).removeClass('open');
   var modalToOpen = '#' + $(that).data('open-modal');
-  $('body').addClass('no-scroll');
+  $(body).addClass('no-scroll');
   $(modalToOpen).addClass('open');
   if (!$(that).hasClass('collections-modal')) {
     $(modalOverlay).addClass('open');
   }
-  $('section').attr('aria-hidden', 'true');
+  $(section).attr('aria-hidden', 'true');
   $(modal).attr('aria-hidden', 'false'); // mark the modal window as visible
 
   if (modalToOpen === '#gallery-modal') {
@@ -130,8 +132,8 @@ function openModal(that) {
   });
 
   // attach a listener to redirect the tab to the modal window if the user somehow gets out of the modal window
-  $('body').one('focusin', 'section', function() {
-    $('.modal-close').focus();
+  $(body).one('focusin', 'section', function() {
+    $(modalClose).focus();
   });
 
   // save current focus
@@ -142,11 +144,11 @@ function resetModal() {
   if($(modalVideo).length) {
     $(modalVideo).attr('src', '');
   }
-  $('body').removeClass('no-scroll');
+  $(body).removeClass('no-scroll');
   $(modal).removeClass('open').attr('aria-hidden', 'true');
   $(modalOverlay).removeClass('open');
-  $('section').attr('aria-hidden', 'false');
-  $('body').off('focusin', 'section');
+  $(section).attr('aria-hidden', 'false');
+  $(body).off('focusin', 'section');
   if ($(galleryModalContent).children().length > 0) {
     $(galleryModalContent).slick('unslick');
   }

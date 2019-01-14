@@ -1,10 +1,16 @@
 body {
-  section.single {
 
-    h1.page-title {
+  .hide-defs {
+    display: none;
+  }
+  
+  .single {
+
+    .page-title {
 
     }
-    article.the-missing {
+    
+    .the-missing {
       text-align: center;
     }
 
