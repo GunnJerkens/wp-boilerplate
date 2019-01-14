@@ -1,0 +1,245 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 800px;
+  max-height: 100%;
+  margin: 0 auto;
+  z-index: -1;
+  overflow: scroll;
+  transition: top 0.35s ease-out, opacity 0.35s linear, z-index 0.5s ease-in;
+
+  @include respond-to(768) {
+    top: -25%;
+    overflow: visible;
+    justify-content: center;
+  }
+
+  &.open {
+    top: 0;
+    opacity: 1;
+    transition: top 0.35s ease-out, opacity 0.35s linear, z-index 0s;
+    z-index: 11;
+  }
+
+  .modal-inner {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    color: $black;
+    box-sizing: border-box;
+    z-index: 12;
+
+    @include respond-to(768) {
+      margin: 1.75rem auto 0;
+    }
+  }
+
+  .modal-close {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    z-index: 2;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .icon-close {
+      width: 100%;
+      height: 100%;
+      fill: #777;
+      stroke: #777;
+    }
+    
+  }
+
+  .modal-content {
+    background: transparent;
+    border: none;
+  }
+
+  .modal-title {
+    margin: 0 0 1rem;
+    padding: 0 0 1rem;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ccc;
+  }
+
+  p {
+    line-height: 1.4;
+  }
+}
+
+// Gallery modal specific styles
+#gallery-modal {
+  width: 100%;
+  max-width: 1024px;
+  justify-content: center;
+
+  .modal-inner {
+    width: 96%;
+    margin-top: 4rem;
+    padding: 0;
+    background: transparent;
+
+    @include respond-to(1100) {
+      width: 100%;
+      margin-top: 1.75rem;
+    }
+  }
+
+  .modal-close {
+    top: -2rem;
+    right: 0;
+
+    @include respond-to(1100) {
+      top: 0;
+      right: -35px;
+    }
+
+    .icon-close {
+      fill: #fff;
+      stroke: #fff;
+    }
+  }
+
+  .modal-content {
+    position: relative;
+    text-align: center;
+
+    .item {
+      position: relative;
+    }
+
+    img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: calc(100vh - 200px);
+      margin: 0 auto 0.5rem;
+    }
+
+    .gallery-caption {
+      color: #fff;
+    }
+  }
+
+  .video-responsive {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding-bottom: 56.25%;
+  }
+
+  .prev,
+  .next {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 30px;
+    height: 56px;
+    margin-top: -48px;
+    background: none;
+    border: none;
+    border-radius: 0;
+    z-index: 2;
+
+    @include respond-to(568) {
+      padding: 0;
+    }
+
+    @include respond-to(768) {
+      right: 10px;
+    }
+
+    @include respond-to(1100) {
+      right: -40px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .icon-chevron-right {
+      top: 0;
+      width: 100%;
+      height: 100%;
+      fill: #fff;
+      stroke: #fff;
+      stroke-width: 1px;
+
+      @include respond-to(1100) {
+        stroke: none;
+        stroke-width: 0;
+      }
+    }
+  }
+
+  .prev {
+    right: auto;
+    left: 0;
+    transform: rotate(180deg);
+
+    @include respond-to(768) {
+      left: 10px;
+    }
+
+    @include respond-to(1100) {
+      left: -40px;
+    }
+  }
+
+  .slick-list {
+    height: auto !important;
+  }
+
+  .slick-track {
+    display: flex;
+    align-items: center;
+  }
+
+  .slick-initialized .slick-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+
+#modal-overlay {
+  display: block;
+  opacity: 0;
+  position: fixed;
+  background: rgba(0,0,0,0.75);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.35s, z-index 0.5s ease-in;
+  z-index: -1;
+  &.open {
+    opacity: 1;
+    transition: opacity 0.35s, z-index 0s ease-in;
+    z-index: 10;
+  }
+}

@@ -141,29 +141,38 @@ The WordPress dahsboard file editor is disabled by default, since this project i
 **[Advanced Custom Fields](http://www.advancedcustomfields.com/):** Great plugin that enables advanced CMS functionality in WordPress  
 
 ### included javascript
-[Modernizr](http://modernizr.com/)  
-[Bootstrap](http://getbootstrap.com)  
+[Slick (slider)](http://kenwheeler.github.io/slick/)
+modals.js (custom) - reusable modal component that is responsive, accessible, and allows for any type of content.
+animations.js - standard set of GJ animations. Add/remove as needed.
 
-The entry javascript file can be found in 'public/content/themes/gj-boilerplate/js/src/scripts.js'.  Webpack will only compile files that are imports (or dependencies) in this file.  To include Bootstrap javascript files, uncomment it in 'scripts.js' to include in this project.
+The entry javascript file can be found in 'public/content/themes/gj-boilerplate/js/src/scripts.js'.  Webpack will only compile files that are imports (or dependencies) in this file.
+
+IMPORTANT: Only add JS to 'scripts.js' that is needed for all pages including for global functions.
+
+For page specific JS, enqueue the script based on template name in '/inc/assets.php'. This makes page loads more efficient so only JS needed for each page is loaded.
+
+## CSS
+SASS/CSS to be structured in a mobile first approach. Default styles are for all screen sizes. Add a media query via the SASS mixin for min-width styles.
+
+Available mixins:
+* Media query: min-width for mobile first, takes in a number value:
+```
+@include respond-to($breakpoint) {...styles}
+```
+* Fluid type: take in min-font-size, max-font-size, lower-width, upper-width:
+```
+fluid-type($min-font-size, $max-font-size, $lower-range, $upper-range);
+```
+* Placeholder: sets styles for all browser prefixes for input placeholders:
+```
+@include placeholder() { ...styles }
+```
+
+### included CSS
+[Slick (slider)](http://kenwheeler.github.io/slick/) - base styles for module.
 
 ### included Google Tag Manager integration
 Option to add your `GTM ID` in GJ Options. A GTM custom event named `formSubmitted` also fires when the form is submitted successfully so you can track conversions on the ajax form submit.
-
-### included CSS
-[Bootstrap](http://getbootstrap.com) is included as an scss file, to use uncomment it in the screen.scss file. It import alls the individual scss files, delete at will for a customized Bootstrap build.
-
-```
-/* Bootstrap v4.0.0 */
-//@import "bootstrap";
-```
-
-### included fonts
-[Font Awesome](http://fontawesome.io/) is also included from the Bootstrap CDN, to use uncomment it in the assets.php file.
-
-```
-// Font Awesome stylesheet
-// wp_enqueue_style('font-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/5.0.6/css/font-awesome.css', false, null, false);
-```
 
 ## dependencies
 [node](http://nodejs.org)  
