@@ -137,12 +137,13 @@ images from an upstream environment.
 The WordPress dahsboard file editor is disabled by default, since this project is intended to be version controlled.
 
 ### included plugins
-* [WordPress SEO (Yoast)](http://wordpress.org/extend/plugins/wordpress-seo/): Full featured SEO plugin for expert control over WordPress
 * [Advanced Custom Fields Pro](http://www.advancedcustomfields.com/): Great plugin that enables custom CMS content fields in WordPress
+  * NOTE: We have a pro account - check LastPass for login info to ACF site to retrieve License key.
 * [ACF to Rest API](https://wordpress.org/plugins/acf-to-rest-api/): Exposes ACF to WP Rest API for data ingestion
 * [User Role Setting for ACF](https://wordpress.org/plugins/user-role-field-setting-for-acf/): Allows user role settings for each custom field in ACF
 * [Enable Media Replace](https://wordpress.org/plugins/enable-media-replace/): Enables replace media button for any image/file in media section
 * [EWWW Image Optimizer](https://wordpress.org/plugins/ewww-image-optimizer/): Automatic image compression on media upload
+* [WordPress SEO (Yoast)](http://wordpress.org/extend/plugins/wordpress-seo/): Full featured SEO plugin for expert control over WordPress
 
 ## Javascript
 Javascript should be modular and loaded as needed per page.

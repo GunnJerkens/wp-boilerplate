@@ -65,6 +65,30 @@ if [ "$1" != "test" ]; then
     mv advanced-custom-fields public/content/plugins/
     rm -rf advanced-custom-fields.zip
 
+    #ACF to Rest API
+    curl -LOk http://downloads.wordpress.org/plugin/acf-to-rest-api.zip
+    tar -zxvf acf-to-rest-api.zip
+    mv acf-to-rest-api public/content/plugins/
+    rm -rf acf-to-rest-api.zip
+
+    #User Role Field Settings for ACF
+    curl -LOk http://downloads.wordpress.org/plugin/user-role-field-setting-for-acf.zip
+    tar -zxvf user-role-field-setting-for-acf.zip
+    mv user-role-field-setting-for-acf public/content/plugins/
+    rm -rf user-role-field-setting-for-acf.zip
+
+    #Enable Media Replace
+    curl -LOk http://downloads.wordpress.org/plugin/enable-media-replace.zip
+    tar -zxvf enable-media-replace.zip
+    mv enable-media-replace public/content/plugins/
+    rm -rf enable-media-replace.zip
+
+    #EWWW Image Optimizer
+    curl -LOk http://downloads.wordpress.org/plugin/ewww-image-optimizer.zip
+    tar -zxvf ewww-image-optimizer.zip
+    mv ewww-image-optimizer public/content/plugins/
+    rm -rf ewww-image-optimizer.zip
+
     #WordPress SEO
     curl -LOk http://downloads.wordpress.org/plugin/wordpress-seo.latest-stable.zip
     tar -zxvf wordpress-seo.latest-stable.zip wordpress-seo
