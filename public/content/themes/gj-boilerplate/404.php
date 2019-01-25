@@ -6,11 +6,13 @@
 ?>
 
 <main class="single error">
+  <div class="container">
 
-  <?php
-    theMissing();
-  ?>
+    <?php
+      theMissing();
+    ?>
 
+  </div>
 </main>
 
 <?php

@@ -43,14 +43,14 @@ var focusableElementsString = 'a[href], area[href], input:not([disabled]), selec
 var focusedElementBeforeModal;
 
 var modal = $('.modal'),
-  modalOverlay = $('#modal-overlay'),
-  modalTrigger = '.modal-trigger',
-  modalClose = $('.modal-close'),
-  modalContent = $('.modal-content'),
-  galleryModalContent = $('#gallery-modal .modal-content'),
-  modalVideo = $('.modal-video'),
-  body = $('body'),
-  section = $('section');
+    modalOverlay = $('#modal-overlay'),
+    modalTrigger = '.modal-trigger',
+    modalClose = $('.modal-close'),
+    modalContent = $('.modal-content'),
+    galleryModalContent = $('#gallery-modal .modal-content'),
+    modalVideo = $('.modal-video'),
+    body = $('body'),
+    section = $('section');
 
 $(document).ready(function () {
   //Open appropriate modal after closing all other modals, and create modal bkg.
@@ -123,7 +123,7 @@ function openModal(that) {
     });
   }
 
-  $(galleryModalContent).on('afterChange', function(event, slick, currentSlide) {
+  $(galleryModalContent).on('beforeChange', function(event, slick, currentSlide) {
     var galleryModal = document.getElementById('gallery-modal'),
         video = galleryModal.querySelector('video');
     if (video) {
@@ -141,8 +141,10 @@ function openModal(that) {
 }
 
 function resetModal() {
-  if($(modalVideo).length) {
-    $(modalVideo).attr('src', '');
+  var galleryModal = document.getElementById('gallery-modal'),
+        video = galleryModal.querySelector('video');
+  if (video) {
+    video.pause();
   }
   $(body).removeClass('no-scroll');
   $(modal).removeClass('open').attr('aria-hidden', 'true');

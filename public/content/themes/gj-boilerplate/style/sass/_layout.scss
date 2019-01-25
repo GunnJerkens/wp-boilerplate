@@ -1,14 +1,27 @@
+/*
+  Default styles are mobile - use respond-to() mixin for min-widths at larger sizes
+*/
+
 body {
 
   .hide-defs {
     display: none;
   }
+
+  .container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+
+  .btn {
+    background: transparent;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
   
   .single {
-
-    .page-title {
-
-    }
     
     .the-missing {
       text-align: center;

@@ -1,0 +1,213 @@
+$shortImg: 38.05%;
+$tallImg: 64.30%;
+
+#blog-wrap {
+  padding-top: 3rem;
+
+  h1 {
+    text-align: center;
+  }
+
+  #blog-posts {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
+
+  .post {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: $light-gray;
+    width: 100%;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    opacity: 0;
+
+    @include respond-to(768) {
+      width: 48.75%;
+      margin: 0 0.575rem 1.5rem 0;
+    }
+
+    @include respond-to(1024) {
+      width: 32.25%;
+      margin-right: 0.67rem;
+    }
+
+    @include respond-to(1200) {
+      margin-right: 0.77rem;
+    }
+
+    @include respond-to(1440) {
+      margin-right: 0.85rem;
+    }
+
+    &.show {
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+
+    &.sticky {
+      width: 100%;
+
+      .post-img {
+        padding-bottom: $tallImg;
+
+        @include respond-to(768) {
+          padding-bottom: $shortImg;
+        }
+      }
+    }
+
+    .post-img {
+      background-position: center center;
+      background-size: cover;
+      padding-bottom: $shortImg;
+
+      @include respond-to(768) {
+        padding-bottom: $tallImg;
+      }
+    }
+
+    .title-area {
+      padding: 1rem;
+
+      @include respond-to(768) {
+        padding: 2rem;
+      }
+    }
+
+    hr {
+      position: relative;
+      left: -0.2em; // counteract title-area letter-spacing  
+      width: 80px;
+      margin: 1rem auto;
+      padding: 0;
+      border: 0;
+      border-bottom: 1px solid $gray;
+    }
+
+    .post-title {
+      font-size: 1.385rem;
+    }
+  }
+}
+
+#blog-posts,
+#single-post {
+
+  .post-title,
+  .post-categories {
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .post-categories {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+      display: inline-block;
+      margin-left: 0.5rem;
+
+      &:first-child {
+        margin: 0;
+      }
+    }
+  }
+
+  .post a {
+    color: $text;
+    text-decoration: none;
+  }
+}
+
+#single-post {
+  padding: 3rem 0 0;
+
+  .post {
+    margin-bottom: 3rem;
+  }
+
+  .date {
+    margin: 0 0 1rem;
+  }
+
+  .post-img {
+    display: block;
+    width: 100%;
+  }
+  
+  .post-content {
+    margin-bottom: 3rem;
+  }
+
+  #post-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+
+    .prev {
+      align-self: flex-start;
+    }
+
+    .next {
+      align-self: flex-end;
+    }
+  }
+}
+
+#load-posts {
+  margin: 3rem 0 0;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+#social-strip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background: url('/content/themes/gj-boilerplate/img/social-strip.jpg') no-repeat center center;
+  background-size: auto 100%;
+  width: 100%;
+  max-width: 1500px;
+  height: 150px;
+  margin: 4rem auto 0;
+  text-align: center;
+
+  @include respond-to(768) {
+    height: 250px;
+  }
+
+  img {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .social-info {
+    display: flex;
+    align-self: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    font-size: 1rem;
+    z-index: 2;
+
+    @include respond-to(768) {
+      font-size: 1.25rem;
+    }
+
+    svg {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      fill: $text;
+    }
+  }
+}

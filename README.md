@@ -155,7 +155,7 @@ modals.js (custom) - reusable modal component that is responsive, accessible, an
 animations.js - standard set of GJ animations. Add/remove as needed.
 
 ## CSS
-SASS/CSS to be structured in a mobile first approach. Default styles are for all screen sizes. Add a media query via the SASS mixin for min-width styles.
+SASS/CSS to be structured in a mobile first approach. Default styles are for all screen sizes. Add a media query via the respond-to() SASS mixin for min-width styles.
 
 Available mixins:
 * Media query: min-width for mobile first, takes in a number value:
@@ -173,6 +173,23 @@ fluid-type($min-font-size, $max-font-size, $lower-range, $upper-range);
 
 ### included CSS
 [Slick (slider)](http://kenwheeler.github.io/slick/) - base styles for module.
+
+## Images
+Never use the full size image on the front end since content managers somtimes upload huge images. Always use a resized image.
+* Change default sizes to 500px for small, 800 for medium, 1200 for large (?)
+* Maybe find a good plugin for auto-resize on upload.
+* Use picture element for responsive inline images instead of inline bg images
+
+## Best Practices
+* Use template-XXX.php for page template naming. Wordpress will find the correct template faster than using page-XXX.php.
+  * source: https://developer.wordpress.org/files/2014/10/wp-hierarchy.png
+* Use ```<a role="button href="#"></a>``` for button-type elements. This hides the outline for regular users but acts like a button for accessibility purposes.
+* Don't use pixel based font-size - this prevents font scaling for visually impaired users. Instead use rems/ems or the fontSize() mixin:
+```
+@include fontSize(XXpx)
+```
+* Custom fields - use prefix for each custom fields group to avoid conflicts when re-using groups in multiple templates.
+
 
 ### included Google Tag Manager integration
 Option to add your `GTM ID` in GJ Options. A GTM custom event named `formSubmitted` also fires when the form is submitted successfully so you can track conversions on the ajax form submit.
