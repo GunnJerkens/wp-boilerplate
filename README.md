@@ -138,7 +138,11 @@ The WordPress dahsboard file editor is disabled by default, since this project i
 
 ### included plugins
 **[WordPress SEO (Yoast)](http://wordpress.org/extend/plugins/wordpress-seo/):** Full featured SEO plugin for expert control over WordPress  
-**[Advanced Custom Fields](http://www.advancedcustomfields.com/):** Great plugin that enables advanced CMS functionality in WordPress  
+**[Advanced Custom Fields Pro](http://www.advancedcustomfields.com/):** Great plugin that enables custom CMS content fields in WordPress
+**[ACF to Rest API](https://wordpress.org/plugins/acf-to-rest-api/):** Exposes ACF to WP Rest API for data ingestion
+**[User Role Setting for ACF](https://wordpress.org/plugins/user-role-field-setting-for-acf/):** Allows user role settings for each custom field in ACF
+**[Enable Media Replace](https://wordpress.org/plugins/enable-media-replace/):** Enables replace media button for any image/file in media section
+**[EWWW Image Optimizer](https://wordpress.org/plugins/ewww-image-optimizer/):** Automatic image compression on media upload
 
 ## Javascript
 Javascript should be modular and loaded as needed per page.
@@ -159,17 +163,11 @@ SASS/CSS to be structured in a mobile first approach. Default styles are for all
 
 Available mixins:
 * Media query: min-width for mobile first, takes in a number value:
-```
-@include respond-to($breakpoint) {...styles}
-```
+  * ```@include respond-to($breakpoint) {...styles}```
 * Fluid type: take in min-font-size, max-font-size, lower-width, upper-width:
-```
-fluid-type($min-font-size, $max-font-size, $lower-range, $upper-range);
-```
+  * ```fluid-type($min-font-size, $max-font-size, $lower-range, $upper-range);```
 * Placeholder: sets styles for all browser prefixes for input placeholders:
-```
-@include placeholder() { ...styles }
-```
+  * ```@include placeholder() { ...styles }```
 
 ### included CSS
 [Slick (slider)](http://kenwheeler.github.io/slick/) - base styles for module.
@@ -185,9 +183,7 @@ Never use the full size image on the front end since content managers somtimes u
   * source: https://developer.wordpress.org/files/2014/10/wp-hierarchy.png
 * Use ```<a role="button href="#"></a>``` for button-type elements. This hides the outline for regular users but acts like a button for accessibility purposes.
 * Don't use pixel based font-size - this prevents font scaling for visually impaired users. Instead use rems/ems or the fontSize() mixin:
-```
-@include fontSize(XXpx)
-```
+  * ```@include fontSize(XXpx)```
 * Custom fields - use prefix for each custom fields group to avoid conflicts when re-using groups in multiple templates.
 
 
@@ -196,9 +192,7 @@ Option to add your `GTM ID` in GJ Options. A GTM custom event named `formSubmitt
 
 ## dependencies
 [node](http://nodejs.org)  
-```
-npm install
-```
+```npm install```
 
 ## license
 
