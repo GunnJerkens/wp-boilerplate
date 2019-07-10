@@ -1,25 +1,19 @@
 .modal {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   opacity: 0;
   position: fixed;
-  top: 0;
+  top: -25%;
   left: 0;
   right: 0;
   width: 100%;
   max-width: 800px;
-  max-height: 100%;
+  height: 100vh;
   margin: 0 auto;
   z-index: -1;
-  overflow: scroll;
   transition: top 0.35s ease-out, opacity 0.35s linear, z-index 0.5s ease-in;
-
-  @include respond-to(768) {
-    top: -25%;
-    overflow: visible;
-    justify-content: center;
-  }
 
   &.open {
     top: 0;
@@ -32,15 +26,12 @@
     position: relative;
     background: #fff;
     width: 100%;
-    margin: 0;
+    margin: 0 auto;
     padding: 20px;
-    color: $black;
+    color: #000;
     box-sizing: border-box;
     z-index: 12;
-
-    @include respond-to(768) {
-      margin: 1.75rem auto 0;
-    }
+    overflow-y: scroll;
   }
 
   .modal-close {
