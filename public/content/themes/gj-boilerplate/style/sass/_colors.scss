@@ -1,0 +1,70 @@
+// Basic color pallette with variables
+// Compliments of https://github.com/mrmrs/colors
+
+$navy: #001f3f;
+.navy { color: $navy; }
+.bg-navy { background-color: $navy; }
+
+$blue: #0074d9;
+.blue { color: $blue; }
+.bg-blue { background-color: $blue; }
+
+$aqua: #7fdbff;
+.aqua { color: $aqua; }
+.bg-aqua { background-color: $aqua; }
+
+$teal: #39cccc;
+.teal { color: $teal; }
+.bg-teal { background-color: $teal; }
+
+$olive: #3d9970;
+.olive { color: $olive; }
+.bg-olive { background-color: $olive; }
+
+$green: #2ecc40;
+.green { color: $green; }
+.bg-green { background-color: $green; }
+
+$lime: #01ff70;
+.lime { color: $lime; }
+.bg-lime { background-color: $lime; }
+
+$yellow: #ffdc00;
+.yellow { color: $yellow; }
+.bg-yellow { background-color: $yellow; }
+
+$orange: #ff851b;
+.orange { color: $orange; }
+.bg-orange { background-color: $orange; }
+
+$red: #ff4136;
+.red { color: $red; }
+.bg-red { background-color: $red; }
+
+$maroon: #85144b;
+.maroon { color: $maroon; }
+.bg-maroon { background-color: $maroon; }
+
+$fuchsia: #f012be;
+.fuchsia { color: $fuchsia; }
+.bg-fuchsia { background-color: $fuchsia; }
+
+$purple: #b10dc9;
+.purple { color: $purple; }
+.bg-purple { background-color: $purple; }
+
+$white: #ffffff;
+.white { color: $white; }
+.bg-white { background-color: $white; }
+
+$silver: #dddddd;
+.silver { color: $silver; }
+.bg-silver { background-color: $silver; }
+
+$gray: #aaaaaa;
+.gray { color: $gray; }
+.bg-gray { background-color: $gray; }
+
+$black: #111111;
+.black { color: $black; }
+.bg-black { background-color: $black; }
