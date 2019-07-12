@@ -1,5 +1,13 @@
 @mixin bp($breakpoint) {
-  @media only screen and (min-width: $breakpoint + px) {
+  $num: $breakpoint;
+  @if $breakpoint == med {
+    $num: 768;
+  }
+  @if $breakpoint == lg {
+    $num: 1024;
+  }
+
+  @media only screen and (min-width: $num + px) {
     @content;
   }
 }

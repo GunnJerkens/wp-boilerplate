@@ -32,6 +32,8 @@
   <?php do_action('gtm_body'); ?>
   <header id="header">
     <div class="container">
+
+      <!-- non-bootstrap header -->
       <a class="logo" href="/">
         <img id="linkTop" src="<?php bloginfo('template_directory');?>/img/logo.png" width="277" alt="Pickle in a slingshot">
       </a>
@@ -48,5 +50,7 @@
           <svg class="icon-chevron"><use xlink:href="#chevron-right"></use></svg>
         </a>
       </div>
+      <!-- end non-bootstrap header -->
+      
     </div>
   </header>
