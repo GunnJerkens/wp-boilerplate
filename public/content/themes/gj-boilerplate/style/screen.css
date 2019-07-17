@@ -513,6 +513,8 @@ sup {
 #header .logo:hover {
       cursor: pointer; }
 #header .logo img {
+      -ms-flex-item-align: start;
+          align-self: flex-start;
       display: block;
       width: auto;
       height: 100%; }
