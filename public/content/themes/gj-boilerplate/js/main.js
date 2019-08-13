@@ -3932,7 +3932,7 @@ module.exports = Math.scale || function scale(x, inLow, inHigh, outLow, outHigh)
 __webpack_require__(131);
 __webpack_require__(333);
 __webpack_require__(334);
-module.exports = __webpack_require__(337);
+module.exports = __webpack_require__(342);
 
 
 /***/ }),
@@ -9972,23 +9972,23 @@ module.exports = function (regExp, replace) {
 "use strict";
 
 
-var _jarallaxMin = __webpack_require__(339);
+var _jarallaxMin = __webpack_require__(335);
 
 var _jarallaxMin2 = _interopRequireDefault(_jarallaxMin);
 
-var _jarallaxElementMin = __webpack_require__(340);
+var _jarallaxElementMin = __webpack_require__(336);
 
 var _jarallaxElementMin2 = _interopRequireDefault(_jarallaxElementMin);
 
-var _slickMin = __webpack_require__(341);
+var _slickMin = __webpack_require__(337);
 
 var _slickMin2 = _interopRequireDefault(_slickMin);
 
-var _modals = __webpack_require__(343);
+var _modals = __webpack_require__(339);
 
 var _modals2 = _interopRequireDefault(_modals);
 
-var _register = __webpack_require__(335);
+var _register = __webpack_require__(340);
 
 var _register2 = _interopRequireDefault(_register);
 
@@ -10115,208 +10115,6 @@ if ("IntersectionObserver" in window) {
 
 /***/ }),
 /* 335 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _ajax = __webpack_require__(336);
-
-var _ajax2 = _interopRequireDefault(_ajax);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Class for a sample page - Register.
- * @constructor
- */
-var Register = function () {
-  function Register() {
-    _classCallCheck(this, Register);
-
-    this.ajaxToForm();
-  }
-
-  _createClass(Register, [{
-    key: 'ajaxToForm',
-    value: function ajaxToForm() {
-      var register = document.querySelector('form#register');
-
-      if (register) {
-        var ajax = new _ajax2.default(register);
-        ajax.run();
-      }
-    }
-  }]);
-
-  return Register;
-}();
-
-exports.default = new Register();
-
-/***/ }),
-/* 336 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-/**
- * Class for forms that requires ajax.
- */
-function Ajax(el) {
-  this.el = $(el);
-  this.error = $('#error');
-  this.options = formOptions;
-  this.output = { status: 'success', message: 'All fields complete.', element: null };
-}
-
-Ajax.prototype.run = function () {
-  var self = this;
-
-  this.el.on('submit', function (e) {
-    e.preventDefault();
-    var data = $(this).serialize();
-
-    self.checkFields();
-
-    if (self.output.status !== 'error') {
-      $('button[type="submit"]').toggle();
-      self.error.empty();
-      self.error.append('<p class="message"><i class="fa fa-spin fa-spinner"></i> Sending...</p>');
-
-      $.post(self.options.ajaxurl, {
-        action: 'register',
-        nonce: self.options.nonce,
-        post: data
-      }, function (response) {
-        self.successMessage(response);
-        // google tag manager custom event
-        if (typeof dataLayer !== 'undefined') {
-          dataLayer.push({ 'event': 'formSubmitted' });
-        }
-      });
-    } else {
-      self.errorOutput();
-    }
-  });
-};
-
-Ajax.prototype.checkFields = function () {
-  var self = this;
-  this.clearErrors();
-
-  this.el.find(':input').each(function () {
-    var el, attr, type, value, input_name, field_name, group_checked;
-    el = $(this);
-    attr = el.attr('required');
-    type = el.attr('type');
-    value = el.val();
-    input_name = el.attr('name');
-
-    if ((typeof attr === 'undefined' ? 'undefined' : _typeof(attr)) !== ( true ? 'undefined' : _typeof(undefined)) && attr !== false) {
-      field_name = el.prev('label').text();
-      field_name = field_name.replace('*', '');
-
-      if (value === "" || value === null) {
-        self.setOutput('error', '<i class="fa fa-close"></i> "' + field_name + '" is required.', el);
-        return false;
-      }
-
-      if (('radio' === type || 'checkbox' === type) && !el.is(':checked')) {
-        group_checked = false;
-        $('[name="' + input_name + '"]').each(function () {
-          if ($(this).is(':checked')) {
-            group_checked = true;
-            return false;
-          }
-        });
-        if (!group_checked) {
-          self.setOutput('error', '<i class="fa fa-close"></i> "' + field_name + '" is required.', el);
-          return false;
-        }
-      }
-
-      if ('email' === type && false === self.looseEmailValidate(value)) {
-        self.setOutput('error', '<i class="fa fa-close"></i> Your email is not valid.', el);
-        return false;
-      }
-
-      if (input_name === "zip" && value.length < 5 || input_name === "zip" && isNaN(value)) {
-        self.setOutput('error', '<i class="fa fa-close"></i> Please enter a valid zip code.', el);
-        return false;
-      }
-    } else {
-      self.setOutput('success', 'All fields complete.', null);
-    }
-  });
-};
-
-Ajax.prototype.setOutput = function (status, message, el) {
-  this.output.status = status;
-  this.output.message = message;
-  this.output.element = el;
-};
-
-Ajax.prototype.looseEmailValidate = function (email) {
-  var re = /\S+@\S+\.\S+/;
-  return re.test(email);
-};
-
-Ajax.prototype.clearErrors = function () {
-  $('.has-error').removeClass('has-error');
-  this.error.empty();
-};
-
-Ajax.prototype.errorOutput = function () {
-  this.error.append(this.output.message);
-  $('input, select, .form-group').removeClass('has-error');
-  if (this.output.element !== null) {
-    this.output.element.closest('div.form-group').addClass('has-error');
-  }
-};
-
-Ajax.prototype.successMessage = function (data) {
-  var response = JSON.parse(data);
-
-  if (response.status === 'success' && this.options.thanks) {
-    $('form#register *').fadeOut(300);
-    this.el.html('<p class="message"><i class="fa fa-check"></i> ' + this.options.thanks + '</p>');
-  } else if (response.status === 'success') {
-    $('form#register *').fadeOut(300);
-    this.el.html('<p class="message"><i class="fa fa-check"></i>Your information has been received successfully.</p>');
-  } else {
-    this.error.empty();
-    this.error.append('<i class="fa fa-close"></i>  ' + response.message);
-    $('button[type="submit"]').toggle();
-  }
-};
-
-exports.default = Ajax;
-
-/***/ }),
-/* 337 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 338 */,
-/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10488,7 +10286,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 }();
 
 /***/ }),
-/* 340 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10527,7 +10325,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 }();
 
 /***/ }),
-/* 341 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10537,7 +10335,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 !function (i) {
   "use strict";
-   true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(342)], __WEBPACK_AMD_DEFINE_FACTORY__ = (i),
+   true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(338)], __WEBPACK_AMD_DEFINE_FACTORY__ = (i),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : "undefined" != typeof exports ? module.exports = i(require("jquery")) : i(jQuery);
@@ -10961,13 +10759,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 342 */
+/* 338 */
 /***/ (function(module, exports) {
 
 module.exports = jQuery;
 
 /***/ }),
-/* 343 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11188,6 +10986,207 @@ function trapTabKey(obj, evt) {
     }
   }
 }
+
+/***/ }),
+/* 340 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ajax = __webpack_require__(341);
+
+var _ajax2 = _interopRequireDefault(_ajax);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Class for a sample page - Register.
+ * @constructor
+ */
+var Register = function () {
+  function Register() {
+    _classCallCheck(this, Register);
+
+    this.ajaxToForm();
+  }
+
+  _createClass(Register, [{
+    key: 'ajaxToForm',
+    value: function ajaxToForm() {
+      var register = document.querySelector('form#register');
+
+      if (register) {
+        var ajax = new _ajax2.default(register);
+        ajax.run();
+      }
+    }
+  }]);
+
+  return Register;
+}();
+
+exports.default = new Register();
+
+/***/ }),
+/* 341 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/**
+ * Class for forms that requires ajax.
+ */
+function Ajax(el) {
+  this.el = $(el);
+  this.error = $('#error');
+  this.options = formOptions;
+  this.output = { status: 'success', message: 'All fields complete.', element: null };
+}
+
+Ajax.prototype.run = function () {
+  var self = this;
+
+  this.el.on('submit', function (e) {
+    e.preventDefault();
+    var data = $(this).serialize();
+
+    self.checkFields();
+
+    if (self.output.status !== 'error') {
+      $('button[type="submit"]').toggle();
+      self.error.empty();
+      self.error.append('<p class="message"><i class="fa fa-spin fa-spinner"></i> Sending...</p>');
+
+      $.post(self.options.ajaxurl, {
+        action: 'register',
+        nonce: self.options.nonce,
+        post: data
+      }, function (response) {
+        self.successMessage(response);
+        // google tag manager custom event
+        if (typeof dataLayer !== 'undefined') {
+          dataLayer.push({ 'event': 'formSubmitted' });
+        }
+      });
+    } else {
+      self.errorOutput();
+    }
+  });
+};
+
+Ajax.prototype.checkFields = function () {
+  var self = this;
+  this.clearErrors();
+
+  this.el.find(':input').each(function () {
+    var el, attr, type, value, input_name, field_name, group_checked;
+    el = $(this);
+    attr = el.attr('required');
+    type = el.attr('type');
+    value = el.val();
+    input_name = el.attr('name');
+
+    if ((typeof attr === 'undefined' ? 'undefined' : _typeof(attr)) !== ( true ? 'undefined' : _typeof(undefined)) && attr !== false) {
+      field_name = el.prev('label').text();
+      field_name = field_name.replace('*', '');
+
+      if (value === "" || value === null) {
+        self.setOutput('error', '<i class="fa fa-close"></i> "' + field_name + '" is required.', el);
+        return false;
+      }
+
+      if (('radio' === type || 'checkbox' === type) && !el.is(':checked')) {
+        group_checked = false;
+        $('[name="' + input_name + '"]').each(function () {
+          if ($(this).is(':checked')) {
+            group_checked = true;
+            return false;
+          }
+        });
+        if (!group_checked) {
+          self.setOutput('error', '<i class="fa fa-close"></i> "' + field_name + '" is required.', el);
+          return false;
+        }
+      }
+
+      if ('email' === type && false === self.looseEmailValidate(value)) {
+        self.setOutput('error', '<i class="fa fa-close"></i> Your email is not valid.', el);
+        return false;
+      }
+
+      if (input_name === "zip" && value.length < 5 || input_name === "zip" && isNaN(value)) {
+        self.setOutput('error', '<i class="fa fa-close"></i> Please enter a valid zip code.', el);
+        return false;
+      }
+    } else {
+      self.setOutput('success', 'All fields complete.', null);
+    }
+  });
+};
+
+Ajax.prototype.setOutput = function (status, message, el) {
+  this.output.status = status;
+  this.output.message = message;
+  this.output.element = el;
+};
+
+Ajax.prototype.looseEmailValidate = function (email) {
+  var re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
+
+Ajax.prototype.clearErrors = function () {
+  $('.has-error').removeClass('has-error');
+  this.error.empty();
+};
+
+Ajax.prototype.errorOutput = function () {
+  this.error.append(this.output.message);
+  $('input, select, .form-group').removeClass('has-error');
+  if (this.output.element !== null) {
+    this.output.element.closest('div.form-group').addClass('has-error');
+  }
+};
+
+Ajax.prototype.successMessage = function (data) {
+  var response = JSON.parse(data);
+
+  if (response.status === 'success' && this.options.thanks) {
+    $('form#register *').fadeOut(300);
+    this.el.html('<p class="message"><i class="fa fa-check"></i> ' + this.options.thanks + '</p>');
+  } else if (response.status === 'success') {
+    $('form#register *').fadeOut(300);
+    this.el.html('<p class="message"><i class="fa fa-check"></i>Your information has been received successfully.</p>');
+  } else {
+    this.error.empty();
+    this.error.append('<i class="fa fa-close"></i>  ' + response.message);
+    $('button[type="submit"]').toggle();
+  }
+};
+
+exports.default = Ajax;
+
+/***/ }),
+/* 342 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
