@@ -8,6 +8,10 @@
 // import 'bootstrap/js/dist/dropdown';
 // ...
 
+import Jarallax from './libs/jarallax.min.js';
+import JarallaxElement from './libs/jarallax-element.min.js';
+import Slick from './libs/slick.min.js';
+import Modals from './modals';
 import Register from './register'; // for sample page - Register
 
 $(document).ready(function() {
@@ -31,7 +35,25 @@ $(document).ready(function() {
   $('#menu-close', menuLink).on('focusout', function() {
     $(mainNav).removeClass('active');
   });
-})
+});
+
+if ($('#hero-slider').length > 0) {
+  $('#hero-slider').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3500,
+    dots: false,
+    // arrows: false,
+    infinite: true,
+    speed: 1000,
+    fade: true
+  });
+}
+
+if ($('#hero .slick-initialized').length > 0) {
+  $('#hero-slider .slide').addClass('show');
+}
 
 window.scrollToElement = function(elTrigger, elTarget, offsetMobile, offset) {
   var offsetCond = $(window).width() < 1024 ? offsetMobile : offset;
