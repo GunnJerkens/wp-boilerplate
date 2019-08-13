@@ -74,27 +74,29 @@ sup {
 
 .arrow {
   position: absolute;
-  right: calc(50% - 60px);
+  right: 70px;
   bottom: -60px;
   width: 50px;
   height: 50px;
   margin-top: -15px;
+  font-size: 3rem;
+  color: #fff;
+  text-decoration: none;
   z-index: 2;
 
   @include bp(1600) {
     top: 50%;
-    right: -70px;
+    right: 70px;
     bottom: auto;
     margin-top: -25px;
   }
 
   &.prev {
     right: auto;
-    left: calc(50% - 60px);
-    transform: rotate(180deg);
+    left: 70px;
 
     @include bp(1600) {
-      left: -70px;
+      left: 70px;
     }
   }
 

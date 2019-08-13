@@ -10028,16 +10028,21 @@ $(document).ready(function () {
 // ...
 
 if ($('#hero-slider').length > 0) {
+
+  var Prev = '<a role="button" href="#" class="arrow prev">&lt;</a>',
+      Next = '<a role="button" href="#" class="arrow next">&gt;</a>';
+
   $('#hero-slider').slick({
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3500,
     dots: false,
-    // arrows: false,
+    prevArrow: Prev,
+    nextArrow: Next,
     infinite: true,
-    speed: 1000,
-    fade: true
+    speed: 1000
+    // fade: true
   });
 }
 
