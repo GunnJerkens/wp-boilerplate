@@ -12,7 +12,7 @@ import Jarallax from './libs/jarallax.min.js';
 import JarallaxElement from './libs/jarallax-element.min.js';
 import Slick from './libs/slick.min.js';
 import Modals from './modals';
-import Register from './register'; // for sample page - Register
+import Ajax from './libs/ajax';
 
 $(document).ready(function() {
 
@@ -59,6 +59,13 @@ if ($('#hero-slider').length > 0) {
 if ($('#hero .slick-initialized').length > 0) {
   $('#hero-slider .slide').addClass('show');
 }
+
+// Set up new ajax submit for each form
+$('form').each(function() {
+  var self = $(this);
+  const ajax = new Ajax(self);
+  ajax.run();
+});
 
 window.scrollToElement = function(elTrigger, elTarget, offsetMobile, offset) {
   var offsetCond = $(window).width() < 1024 ? offsetMobile : offset;

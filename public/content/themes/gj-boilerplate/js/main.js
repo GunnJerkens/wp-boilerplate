@@ -9988,13 +9988,11 @@ var _modals = __webpack_require__(339);
 
 var _modals2 = _interopRequireDefault(_modals);
 
-var _register = __webpack_require__(340);
+var _ajax = __webpack_require__(341);
 
-var _register2 = _interopRequireDefault(_register);
+var _ajax2 = _interopRequireDefault(_ajax);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// for sample page - Register
 
 $(document).ready(function () {
 
@@ -10049,6 +10047,13 @@ if ($('#hero-slider').length > 0) {
 if ($('#hero .slick-initialized').length > 0) {
   $('#hero-slider .slide').addClass('show');
 }
+
+// Set up new ajax submit for each form
+$('form').each(function () {
+  var self = $(this);
+  var ajax = new _ajax2.default(self);
+  ajax.run();
+});
 
 window.scrollToElement = function (elTrigger, elTarget, offsetMobile, offset) {
   var offsetCond = $(window).width() < 1024 ? offsetMobile : offset;
@@ -10988,55 +10993,7 @@ function trapTabKey(obj, evt) {
 }
 
 /***/ }),
-/* 340 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _ajax = __webpack_require__(341);
-
-var _ajax2 = _interopRequireDefault(_ajax);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Class for a sample page - Register.
- * @constructor
- */
-var Register = function () {
-  function Register() {
-    _classCallCheck(this, Register);
-
-    this.ajaxToForm();
-  }
-
-  _createClass(Register, [{
-    key: 'ajaxToForm',
-    value: function ajaxToForm() {
-      var register = document.querySelector('form#register');
-
-      if (register) {
-        var ajax = new _ajax2.default(register);
-        ajax.run();
-      }
-    }
-  }]);
-
-  return Register;
-}();
-
-exports.default = new Register();
-
-/***/ }),
+/* 340 */,
 /* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11054,6 +11011,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  */
 function Ajax(el) {
   this.el = $(el);
+  this.id = $(el).attr('id');
+  this.btn = $(el).children('button[type="submit"]');
+  this.thanks = $(el).children('.thanks');
   this.error = $('#error');
   this.options = formOptions;
   this.output = { status: 'success', message: 'All fields complete.', element: null };
@@ -11069,7 +11029,7 @@ Ajax.prototype.run = function () {
     self.checkFields();
 
     if (self.output.status !== 'error') {
-      $('button[type="submit"]').toggle();
+      $(this.btn).toggle();
       self.error.empty();
       self.error.append('<p class="message"><i class="fa fa-spin fa-spinner"></i> Sending...</p>');
 
@@ -11079,6 +11039,7 @@ Ajax.prototype.run = function () {
         post: data
       }, function (response) {
         self.successMessage(response);
+
         // google tag manager custom event
         if (typeof dataLayer !== 'undefined') {
           dataLayer.push({ 'event': 'formSubmitted' });
@@ -11091,6 +11052,7 @@ Ajax.prototype.run = function () {
 };
 
 Ajax.prototype.checkFields = function () {
+  console.log('checkFields');
   var self = this;
   this.clearErrors();
 
@@ -11165,18 +11127,16 @@ Ajax.prototype.errorOutput = function () {
 };
 
 Ajax.prototype.successMessage = function (data) {
-  var response = JSON.parse(data);
+  var formChildren = $(this.id).children().not('.thanks'),
+      response = JSON.parse(data);
 
-  if (response.status === 'success' && this.options.thanks) {
-    $('form#register *').fadeOut(300);
-    this.el.html('<p class="message"><i class="fa fa-check"></i> ' + this.options.thanks + '</p>');
-  } else if (response.status === 'success') {
-    $('form#register *').fadeOut(300);
-    this.el.html('<p class="message"><i class="fa fa-check"></i>Your information has been received successfully.</p>');
+  if (response.status === 'success') {
+    $(formChildren).fadeOut(300);
+    this.el.html(this.thanks);
   } else {
     this.error.empty();
-    this.error.append('<i class="fa fa-close"></i>  ' + response.message);
-    $('button[type="submit"]').toggle();
+    this.error.append(response.message);
+    $(this.btn).toggle();
   }
 };
 

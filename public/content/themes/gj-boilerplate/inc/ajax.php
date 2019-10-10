@@ -17,7 +17,7 @@ class RegisterAjax
   function __construct()
   {
     $this->form     = "";
-    $this->endpoint = "";
+    $this->endpoint = "https://api.jetstash.com/v1/form/submit";
     $this->load();
     $this->setErrors();
   }
@@ -68,6 +68,7 @@ class RegisterAjax
       if(!$response->success) {
         $this->ajaxResponse('error', $this->errors->error, $this->post, $response);
       } else {
+        $this->postGJForms();
         $this->ajaxResponse('success', $this->errors->success, $this->post, $response);
       }
 
@@ -113,7 +114,7 @@ class RegisterAjax
   private function postEndpoint()
   {
     $data = $this->post;
-    $data['form'] = $this->form;
+    $data['form'] = $data['jetstashForm'];
 
     // Make sure we aren't sending any nested arrays as field data
     foreach($data as $key=>&$value) {
@@ -124,6 +125,38 @@ class RegisterAjax
 
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $this->endpoint);
+    curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2");
+    curl_setopt($curl, CURLOPT_POST, TRUE);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($curl, CURLOPT_HEADER, FALSE);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, FALSE);
+    $result = curl_exec($curl);
+
+    curl_close($curl);
+    return json_decode($result);
+  }
+
+  /**
+  * Posts to GJ Forms
+  *
+  * @return object
+  */
+  private function postGJForms()
+  {
+    $data = $this->post;
+    $data['form_tools_form_id'] = $data['gjForm'];
+
+    // Make sure we aren't sending any nested arrays as field data
+    foreach($data as $key=>&$value) {
+      if(is_array($value)) {
+        $value = implode(",", $value);
+      }
+    }
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, 'https://gjforms.com/process.php');
     curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2");
     curl_setopt($curl, CURLOPT_POST, TRUE);
     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);

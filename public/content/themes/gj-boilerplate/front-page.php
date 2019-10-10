@@ -9,7 +9,7 @@ get_header();
 
   <div id="hero">
     <div id="hero-slider">
-      <?php respImg(
+      <?php /*respImg(
         ['500','1024'],
         'home-hero-01',
         'hero-img',
@@ -29,11 +29,11 @@ get_header();
         'hero-img',
         'alt 3',
         'jpg'
-        ); ?>
+        ); */ ?>
     </div>
-    <div id="scroll-arrow">
+    <!-- <div id="scroll-arrow">
       <svg class="icon-chevron scroll-fade" title="Scroll down"><use xlink:href="#chevron-right"></use></svg>
-    </div>
+    </div> -->
   </div>
 
 </main>

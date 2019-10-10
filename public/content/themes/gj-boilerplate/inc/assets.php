@@ -18,7 +18,6 @@ function enqueue_scripts()
   $parameters = array(
     'ajaxurl'   => admin_url('admin-ajax.php'),
     'nonce'     => wp_create_nonce('register'),
-    'thanks'    => "Thank you, we'll be in touch soon.",
   );
   wp_localize_script('main', 'formOptions', $parameters);
 

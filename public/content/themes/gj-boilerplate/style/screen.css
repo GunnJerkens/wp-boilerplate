@@ -505,6 +505,8 @@ sup {
     .slide {
       display: -ms-flexbox;
       display: flex; } }
+.thanks {
+  display: none; }
 #header {
   position: fixed;
   top: 0;

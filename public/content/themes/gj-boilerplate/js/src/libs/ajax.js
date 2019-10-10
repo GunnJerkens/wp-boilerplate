@@ -3,6 +3,9 @@
  */
 function Ajax(el) {
   this.el      = $(el);
+  this.id      = $(el).attr('id');
+  this.btn     = $(el).children('button[type="submit"]');
+  this.thanks  = $(el).children('.thanks');
   this.error   = $('#error');
   this.options = formOptions;
   this.output  = { status: 'success', message: 'All fields complete.', element: null };
@@ -18,7 +21,7 @@ Ajax.prototype.run = function() {
     self.checkFields();
 
     if(self.output.status !== 'error') {
-      $('button[type="submit"]').toggle();
+      $(this.btn).toggle();
       self.error.empty();
       self.error.append('<p class="message"><i class="fa fa-spin fa-spinner"></i> Sending...</p>');
 
@@ -29,6 +32,7 @@ Ajax.prototype.run = function() {
       },
       function(response) {
         self.successMessage(response);
+        
         // google tag manager custom event
         if(typeof dataLayer !== 'undefined') {
           dataLayer.push({'event': 'formSubmitted'});
@@ -41,6 +45,7 @@ Ajax.prototype.run = function() {
 }
 
 Ajax.prototype.checkFields = function() {
+  console.log('checkFields');
   var self = this;
   this.clearErrors();
 
@@ -116,18 +121,16 @@ Ajax.prototype.errorOutput = function() {
 };
 
 Ajax.prototype.successMessage = function(data) {
-  var response = JSON.parse(data);
+  var formChildren = $(this.id).children().not('.thanks'),
+      response = JSON.parse(data);
 
-  if (response.status === 'success' && this.options.thanks) {
-    $('form#register *').fadeOut(300);
-    this.el.html('<p class="message"><i class="fa fa-check"></i> ' + this.options.thanks + '</p>');
-  } else if (response.status === 'success') {
-    $('form#register *').fadeOut(300);
-    this.el.html('<p class="message"><i class="fa fa-check"></i>Your information has been received successfully.</p>');
+  if (response.status === 'success') {
+    $(formChildren).fadeOut(300);
+    this.el.html(this.thanks);
   } else {
     this.error.empty();
-    this.error.append('<i class="fa fa-close"></i>  ' + response.message);
-    $('button[type="submit"]').toggle();
+    this.error.append(response.message);
+    $(this.btn).toggle();
   }
 };
 
