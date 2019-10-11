@@ -23,7 +23,7 @@ Ajax.prototype.run = function() {
     if(self.output.status !== 'error') {
       $(this.btn).toggle();
       self.error.empty();
-      self.error.append('<p class="message"><i class="fa fa-spin fa-spinner"></i> Sending...</p>');
+      self.error.append('<p class="message">Sending...</p>');
 
       $.post(self.options.ajaxurl, {
         action : 'register',
@@ -62,7 +62,7 @@ Ajax.prototype.checkFields = function() {
       field_name = field_name.replace('*', '');
 
       if(value === "" || value === null) {
-        self.setOutput('error','<i class="fa fa-close"></i> "' + field_name + '" is required.', el);
+        self.setOutput('error', field_name + '" is required.', el);
         return false;
       }
 
@@ -75,18 +75,18 @@ Ajax.prototype.checkFields = function() {
           }
         });
         if (!group_checked) {
-          self.setOutput('error', '<i class="fa fa-close"></i> "' + field_name + '" is required.', el);
+          self.setOutput('error',  field_name + '" is required.', el);
           return false;
         }
       }
 
       if('email' === type && false === self.looseEmailValidate(value)) {
-        self.setOutput('error', '<i class="fa fa-close"></i> Your email is not valid.', el);
+        self.setOutput('error', 'Your email is not valid.', el);
         return false;
       }
 
       if(input_name === "zip" && value.length < 5 || input_name === "zip" && isNaN(value)) {
-        self.setOutput('error', '<i class="fa fa-close"></i> Please enter a valid zip code.', el);
+        self.setOutput('error', 'Please enter a valid zip code.', el);
         return false;
       }
 
@@ -116,7 +116,7 @@ Ajax.prototype.errorOutput = function() {
   this.error.append(this.output.message);
   $('input, select, .form-group').removeClass('has-error');
   if(this.output.element !== null) {
-    this.output.element.closest('div.form-group').addClass('has-error');
+    this.output.element.closest('.form-group').addClass('has-error');
   }
 };
 
