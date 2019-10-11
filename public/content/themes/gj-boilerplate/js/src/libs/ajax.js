@@ -127,6 +127,7 @@ Ajax.prototype.successMessage = function(data) {
   if (response.status === 'success') {
     $(formChildren).fadeOut(300);
     this.el.html(this.thanks);
+    this.thanks.show();
   } else {
     this.error.empty();
     this.error.append(response.message);

@@ -506,7 +506,8 @@ sup {
       display: -ms-flexbox;
       display: flex; } }
 .thanks {
-  display: none; }
+  display: none;
+  color: green; }
 #header {
   position: fixed;
   top: 0;
