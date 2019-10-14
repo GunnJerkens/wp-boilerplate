@@ -22,7 +22,7 @@ function enqueue_scripts()
   wp_localize_script('main', 'formOptions', $parameters);
 
   // HTML5 & responsive fallbacks
-  wp_enqueue_script('modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', false, null, false);
+  // wp_enqueue_script('modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', false, null, false);
 
   // Font Awesome stylesheet
   // wp_enqueue_style('font-awesome', 'https://use.fontawesome.com/releases/v5.0.6/css/all.css', false, null, false);

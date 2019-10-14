@@ -9,7 +9,7 @@
   <title><?php wp_title('|'); ?></title>
   <?php wp_head(); ?>
   <!-- Menu Icon -->
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="menu-defs" class="hide-defs">
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="menu-defs" class="hidden">
     <defs>
       <symbol id="menu" viewBox="0 0 24 24">
         <title>menu</title>
@@ -18,7 +18,7 @@
     </defs>
   </svg>
   <!-- Close Icon -->
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="close-defs" class="hide-defs">
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="close-defs" class="hidden">
     <defs>
       <symbol id="close" viewBox="0 0 35 35">
         <title>close</title>

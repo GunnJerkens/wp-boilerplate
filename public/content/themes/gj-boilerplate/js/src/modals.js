@@ -102,6 +102,7 @@ function openModal(that) {
   $('section').attr('aria-hidden', 'true');
   $(modal).attr('aria-hidden', 'false'); // mark the modal window as visible
 
+  /* BEGIN GALLERY MODAL WITH SLIDER */
   if (modalToOpen === '#gallery-modal' && $('#gallery-modal .modal-item').length > 1) {
     var itemIndex = $(that).index() - 1,
         galleryPrev = '<a role="button" href="#" class="prev"><svg class="icon-chevron"><use xlink:href="#chevron-right"></use></svg></a>',
@@ -128,6 +129,7 @@ function openModal(that) {
       video.pause();
     }
   });
+  /* ENDs GALLERY MODAL WITH SLIDER */
 
   // attach a listener to redirect the tab to the modal window if the user somehow gets out of the modal window
   $('body').one('focusin', 'section', function() {

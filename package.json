@@ -4,30 +4,31 @@
   "scripts": {
     "start": "webpack --env.NODE_ENV=local",
     "watch": "webpack --env.NODE_ENV=local --watch",
-    "build": "node webp.js && webpack --env.NODE_ENV=production"
+    "build": "node webp.js && webpack --env.NODE_ENV=production",
+    "webp": "node webp.js"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
     "babel-minify-webpack-plugin": "^0.3.0",
     "babel-preset-env": "^1.6.1",
-    "browser-sync": "^2.23.6",
-    "browser-sync-webpack-plugin": "^2.0.1",
-    "css-loader": "^0.28.9",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "css-loader": "^3.2.0",
     "node-sass": "^4.7.2",
-    "postcss-import": "^11.0.0",
-    "postcss-loader": "^2.1.0",
-    "sass-loader": "^6.0.6",
-    "webpack": "^3.10.0"
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.1",
+    "webpack-cli": "^3.3.9"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.0.0",
-    "imagemin": "^6.1.0",
+    "core-js": "^3.3.2",
+    "imagemin": "^7.0.0",
     "imagemin-webp": "^5.0.0",
     "intersection-observer": "^0.7.0",
-    "popper.js": "^1.12.9",
-    "whatwg-fetch": "^2.0.3"
+    "popper.js": "^1.12.9"
   }
 }
