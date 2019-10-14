@@ -1,7 +1,11 @@
 <form role="form" id="register">
   <p class="lead">Sign up to receive news and announcements about <strong>Test Form 01</strong>.</p>
+
+  <!-- Add GJForms form id to value -->
   <input type="text" class="hidden" name="gjForm" value="229">
+  <!-- Add Jetstash form id to value -->
   <input type="text" class="hidden" name="jetstashForm" value="p7chxfrmWHkx">
+
   <div class="form-group">
       <label for="first_name" class="sr-only">First Name</label>
       <input type="text" id="first_name" class="form-control" name="first_name" placeholder="First Name*" aria-labelledby="register first_name" required>
@@ -25,7 +29,6 @@
   <div class="form-group">
     <label for="i_am_a" class="sr-only">I am a:*</label>
     <select id="i_am_a" class="form-control" name="i_am_a" required>
-      <!-- <option value="I Am A">I Am A:*</option> -->
       <option value="" selected disabled>I am a:*</option>
       <option value="Homeowner">Homeowner</option>
       <option value="Broker">Broker</option>
@@ -40,9 +43,10 @@
     </div>
   <?php } ?>
 
-
   <p class="required-fields">*Required Field</p>
   <div id="error"></div>
   <button type="submit" id="submit">Submit</button>
+  
+  <!-- Tag with class "thanks" used for form thank you message -->
   <p class="thanks">Thank you, we'll be in touch soon.</p>
 </form>

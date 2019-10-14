@@ -4,8 +4,8 @@
   "scripts": {
     "start": "webpack --env.NODE_ENV=local",
     "watch": "webpack --env.NODE_ENV=local --watch",
-    "build": "node webp.js && webpack --env.NODE_ENV=production",
-    "webp": "node webp.js"
+    "webp": "node webp.js",
+    "build": "node webp.js && webpack --env.NODE_ENV=production"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
