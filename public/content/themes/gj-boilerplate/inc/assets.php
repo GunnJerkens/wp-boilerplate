@@ -20,7 +20,7 @@ function enqueue_scripts()
   // wp_enqueue_script('modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', false, null, false);
 
   if( is_front_page() ){
-    wp_enqueue_script('Home', get_template_directory_uri() .'/js/src/home.js', false, null, true);
+    // wp_enqueue_script('Home', get_template_directory_uri() .'/js/src/home.js', false, null, true);
   }
 
   if ( is_page() ){ //Check if we are viewing a page

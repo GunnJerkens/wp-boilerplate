@@ -61,15 +61,17 @@ class RegisterAjax
 
     if(wp_verify_nonce($this->nonce, 'register') !== false) {
 
-      $response = $this->postEndpoint('form', 'jetstashForm', 'https://api.jetstash.com/v1/form/submit');
+      $this->hubSpotUpdateContact();
 
-      if(!$response->success) {
-        $this->ajaxResponse('error', $this->errors->error, $this->post, $response);
-      } else {
-        // $this->postGJForms();
-        $this->postEndpoint('form_tools_form_id', 'gjForm', 'https://gjforms.com/process.php');
-        $this->ajaxResponse('success', $this->errors->success, $this->post, $response);
-      }
+      // $response = $this->postEndpoint('form', 'jetstashForm', 'https://api.jetstash.com/v1/form/submit');
+
+      // if(!$response->success) {
+      //   $this->ajaxResponse('error', $this->errors->error, $this->post, $response);
+      // } else {
+      //   // $this->postGJForms();
+      //   $this->postEndpoint('form_tools_form_id', 'gjForm', 'https://gjforms.com/process.php');
+      //   $this->ajaxResponse('success', $this->errors->success, $this->post, $response);
+      // }
 
     } else {
       $this->ajaxResponse('error', $this->errors->nonce);
@@ -103,6 +105,57 @@ class RegisterAjax
     }
 
     return $data;
+  }
+
+  /**
+   * Posts to an endpoint
+   *
+   * @return object
+   */
+  private function hubSpotUpdateContact()
+  {
+    $data = $this->post;
+    $email = $data['email'];
+    $endpoint = 'https://api.hubapi.com/contacts/v1/contact/email/'.$email.'/profile?hapikey=35be5ea0-f006-4a19-82c0-9918d4746554';
+    $count = count($data);
+    $properties = array();
+    $index = -1;
+
+    foreach($data as $key => $value) {
+      $index++;
+
+      // Make sure we aren't sending any nested arrays as field data
+      if (is_array($value)) {
+        $value = implode(",", $value);
+      }
+
+      $item = new stdClass();
+      $item->property = $key;
+      $item->value = $value;
+
+      if ($index < $count - 2) {
+        $properties[] = $item;
+      }
+    }
+
+    $fields = new stdClass();
+    $fields->properties = $properties;
+    $fields_prep = json_encode($fields);
+    $fields_string = substr($fields_prep, 0, strlen($fields_prep)-1);
+    // print_r($email);
+    // print_r($endpoint);
+    print_r($fields_string);
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $endpoint);
+    curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2");
+    curl_setopt($curl, CURLOPT_HEADER, 'Content-Type: application/json');
+    curl_setopt($curl, CURLOPT_POST, TRUE);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+    $result = curl_exec($curl);
+    curl_close($curl);
+    return json_decode($result);
   }
 
   /**

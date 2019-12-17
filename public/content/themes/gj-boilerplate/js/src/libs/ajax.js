@@ -121,18 +121,19 @@ Ajax.prototype.errorOutput = function() {
 };
 
 Ajax.prototype.successMessage = function(data) {
-  var formChildren = $(this.id).children().not('.thanks'),
-      response = JSON.parse(data);
+  // console.log('successMessage data: ', data);
+  // var formChildren = $(this.id).children().not('.thanks'),
+  //     response = JSON.parse(data);
 
-  if (response.status === 'success') {
-    $(formChildren).fadeOut(300);
-    this.el.html(this.thanks);
-    this.thanks.show();
-  } else {
-    this.error.empty();
-    this.error.append(response.message);
-    $(this.btn).toggle();
-  }
+  // if (response.status === 'success') {
+  //   $(formChildren).fadeOut(300);
+  //   this.el.html(this.thanks);
+  //   this.thanks.show();
+  // } else {
+  //   this.error.empty();
+  //   this.error.append(response.message);
+  //   $(this.btn).toggle();
+  // }
 };
 
 export default Ajax;

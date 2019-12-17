@@ -119,3 +119,61 @@ sup {
   display: none;
   color: green;
 }
+
+.hbspt-form form {
+  display: flex;
+  flex-flow: row wrap;
+  font-family: Verdana;
+  max-width: 600px;
+
+  .field {
+    width: 48%;
+    margin-bottom: 1rem;
+    
+    &:nth-child(odd) {
+      margin-right: 2%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+
+    input[type="checkbox"] {
+      display: inline-block;
+      vertical-align: top;
+      width: auto;
+      margin-right: 5px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .hs_neighborhoods_interested_in,
+  .hs_recaptcha,
+  .hs_submit {
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    background: darkred;
+    padding: 5px 15px;
+    color: #fff;
+    border: none;
+  }
+}
