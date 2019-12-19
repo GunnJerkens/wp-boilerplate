@@ -104,5 +104,14 @@
 <?php } ?>
 <!-- POPUP end -->
 
+<div id="cookie-popup">
+	<div class="cookie-popup-content">
+		<button class="cookie-popup-close">X</button>
+		<div class="cookie-popup-inner">
+			<p>We use cookies to personalize content and ads, to provide social media features and to analyze our traffic. We also share information about your use of our site with our social media, advertising and analytics partners. By using this website you agree to the usage of these cookies. For more information about how we use cookies, visit our <a href="#">Privacy Policy</a>.</p>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>

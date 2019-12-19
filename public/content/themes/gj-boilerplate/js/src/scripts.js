@@ -35,36 +35,55 @@ $(document).ready(function() {
   $('#menu-close', menuLink).on('focusout', function() {
     $(mainNav).removeClass('active');
   });
-});
 
-if ($('#hero-slider').length > 0) {
+  if ($('#hero-slider').length > 0) {
 
-  var Prev = '<a role="button" href="#" class="arrow prev">&lt;</a>',
-      Next = '<a role="button" href="#" class="arrow next">&gt;</a>';
-
-  $('#hero-slider').slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3500,
-    dots: false,
-    prevArrow: Prev,
-    nextArrow: Next,
-    infinite: true,
-    speed: 1000,
-    // fade: true
+    var Prev = '<a role="button" href="#" class="arrow prev">&lt;</a>',
+        Next = '<a role="button" href="#" class="arrow next">&gt;</a>';
+  
+    $('#hero-slider').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3500,
+      dots: false,
+      prevArrow: Prev,
+      nextArrow: Next,
+      infinite: true,
+      speed: 1000,
+      // fade: true
+    });
+  }
+  
+  if ($('#hero .slick-initialized').length > 0) {
+    $('#hero-slider .slide').addClass('show');
+  }
+  
+  // Set up new ajax submit for each form
+  $('form').each(function() {
+    var self = $(this);
+    const ajax = new Ajax(self);
+    ajax.run();
   });
-}
 
-if ($('#hero .slick-initialized').length > 0) {
-  $('#hero-slider .slide').addClass('show');
-}
+  loadCookiePopup();
 
-// Set up new ajax submit for each form
-$('form').each(function() {
-  var self = $(this);
-  const ajax = new Ajax(self);
-  ajax.run();
+  function loadCookiePopup() {
+    var accepted = sessionStorage.getItem('cookiesAccepted');
+    
+    if (accepted === null) {
+      sessionStorage.setItem('cookiesAccepted', 'false');
+    }
+
+    if (accepted === null || accepted === 'false') {
+      $('#cookie-popup').show();
+    }
+  }
+
+  $('.cookie-popup-close').on('click', function() {
+    $('#cookie-popup').hide();
+    sessionStorage.setItem('cookiesAccepted', 'true');
+  })
 });
 
 window.scrollToElement = function(elTrigger, elTarget, offsetMobile, offset) {
