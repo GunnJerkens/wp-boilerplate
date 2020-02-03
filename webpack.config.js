@@ -3,12 +3,17 @@
 const path = require('path');
 const webpack = require('webpack');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 
 require('core-js');
 
 module.exports = (env) => {
   const mode = env.NODE_ENV === 'local' ? 'development' : env.NODE_ENV;
   const plugins = [
+    new MiniCssExtractPlugin({
+       filename: "../style/screen.css"
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(env.NODE_ENV)
@@ -53,9 +58,9 @@ module.exports = (env) => {
         {
           test: /\.scss$/,
           use: [{
-            loader: "style-loader"
+            loader: MiniCssExtractPlugin.loader
           }, {
-            loader: "css-loader" 
+            loader: "css-loader"
           }, {
             loader: "sass-loader"
           }]
