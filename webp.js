@@ -1,19 +1,15 @@
 var imagemin = require("imagemin"),    // The imagemin module.
-  webp = require("imagemin-webp"),   // imagemin's WebP plugin.
-  outputFolder = "./public/content/themes/gj-boilerplate/img/webp",            // Output folder
-  PNGImages = "./public/content/themes/gj-boilerplate/img/*.png",         // PNG images
-  JPEGImages = "./public/content/themes/gj-boilerplate/img/*.jpg";        // JPEG images
+    webp = require("imagemin-webp");   // imagemin's WebP plugin.
 
-imagemin([PNGImages], outputFolder, {
-  plugins: [webp({
-      lossless: true // Losslessly encode images
-  })]
-});
 
-imagemin([JPEGImages], outputFolder, {
-  plugins: [webp({
-    quality: 80 // Quality setting from 0 to 100
-  })]
-}).then(function() {
+(async () => {
+  await imagemin(['./public/content/themes/gj-boilerplate/img/*.{jpg,png}'], {
+    destination: './public/content/themes/gj-boilerplate/img/webp',
+    plugins: [
+      webp({
+        quality: [80]
+      })
+    ]
+  });
   console.log("Images converted!");
-});
+})();
