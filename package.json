@@ -15,7 +15,7 @@
     "browser-sync-webpack-plugin": "^2.0.1",
     "css-loader": "^0.28.9",
     "extract-text-webpack-plugin": "^3.0.2",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.13.1",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
@@ -24,6 +24,8 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.0.0",
+    "imagemin": "^7.0.1",
+    "imagemin-webp": "^5.1.0",
     "popper.js": "^1.12.9",
     "whatwg-fetch": "^2.0.3"
   }
