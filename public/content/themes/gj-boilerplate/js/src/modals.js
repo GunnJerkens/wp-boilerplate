@@ -43,12 +43,14 @@ var focusableElementsString = 'a[href], area[href], input:not([disabled]), selec
 var focusedElementBeforeModal;
 
 var modal = $('.modal'),
-  modalOverlay = $('#modal-overlay'),
-  modalTrigger = '.modal-trigger',
-  modalClose = $('.modal-close'),
-  modalContent = $('.modal-content'),
-  galleryModalContent = $('#gallery-modal .modal-content'),
-  modalVideo = $('.modal-video');
+    modalOverlay = $('#modal-overlay'),
+    modalTrigger = '.modal-trigger',
+    modalClose = $('.modal-close'),
+    modalContent = $('.modal-content'),
+    galleryModalContent = $('#gallery-modal .modal-content'),
+    modalVideo = $('.modal-video'),
+    body = $('body'),
+    section = $('section');
 
 $(document).ready(function () {
   //Open appropriate modal after closing all other modals, and create modal bkg.
@@ -58,55 +60,62 @@ $(document).ready(function () {
   });
 
   // Close modal on close button click or overlay click
-  $(modalClose).on('click', function (e) {
-    resetModal(e);
+  $(modalClose).on('click touchstart', function (e) {
+    e.preventDefault();
+    resetModal();
   });
 
-  $(modalOverlay).on('click', function (e) {
-    resetModal(e);
+  $(modalOverlay).on('click touchstart', function (e) {
+    e.preventDefault();
+    resetModal();
   });
 
-  $(modalClose).on('touchstart', function (e) {
-    resetModal(e);
+  $(modalClose).on('touchstart', function () {
+    resetModal();
   });
 
-  $(modalOverlay).on('touchstart', function (e) {
-    resetModal(e);
+  $(modalOverlay).on('touchstart', function () {
+    resetModal();
   });
 
   $(document).keyup(function (e) {
+    e.preventDefault();
     if (e.keyCode == 27) { // escape key maps to keycode `27`
       resetModal(e);
     }
   });
 
 
-  $('.modal').keydown(function (event) {
+  $(modal).keydown(function (event) {
     trapTabKey($(this), event);
   })
 
-  $('.modal').keydown(function (event) {
+  $(modal).keydown(function (event) {
     trapEscapeKey($(this), event);
   })
 
 });
 
 function openModal(that) {
+
+  // save current focus
+  focusedElementBeforeModal = $(':focus');
+  
   $(modal).removeClass('open');
   var modalToOpen = '#' + $(that).data('open-modal');
-  $('body').addClass('no-scroll');
-  $(modalToOpen).addClass('open');
+  $(body).addClass('no-scroll');
+  $(modalToOpen).addClass('open').removeClass('closed');
   if (!$(that).hasClass('collections-modal')) {
-    $(modalOverlay).addClass('open');
+    $(modalOverlay).addClass('open').removeClass('closed');
   }
-  $('section').attr('aria-hidden', 'true');
-  $(modal).attr('aria-hidden', 'false'); // mark the modal window as visible
+  $(section).attr('aria-hidden', 'true');
+  $(modalToOpen).attr('aria-hidden', 'false'); // mark the modal window as visible
+  $(modalToOpen).find('.modal-close').focus();
 
-  /* BEGIN GALLERY MODAL WITH SLIDER */
-  if (modalToOpen === '#gallery-modal' && $('#gallery-modal .modal-item').length > 1) {
-    var itemIndex = $(that).index() - 1,
-        galleryPrev = '<a role="button" href="#" class="prev"><svg class="icon-chevron"><use xlink:href="#chevron-right"></use></svg></a>',
-        galleryNext = '<a role="button" href="#" class="next"><svg class="icon-chevron"><use xlink:href="#chevron-right"></use></svg></a>';
+  if (modalToOpen === '#gallery-modal') {
+    var itemIndex = $(that).parent('.item').index() - 1,
+        galleryPrev = '<a role="button" href="#" class="prev"><svg class="icon-chevron-right"><use xlink:href="#chevron-right"></use></svg></a>',
+        galleryNext = '<a role="button" href="#" class="next"><svg class="icon-chevron-right"><use xlink:href="#chevron-right"></use></svg></a>';
     $(galleryModalContent).slick({
       dots: false,
       arrows: true,
@@ -122,39 +131,36 @@ function openModal(that) {
     });
   }
 
-  $(galleryModalContent).on('afterChange', function(event, slick, currentSlide) {
+  $(galleryModalContent).on('beforeChange', function(event, slick, currentSlide) {
     var galleryModal = document.getElementById('gallery-modal'),
         video = galleryModal.querySelector('video');
     if (video) {
       video.pause();
     }
   });
-  /* ENDs GALLERY MODAL WITH SLIDER */
+
+  
 
   // attach a listener to redirect the tab to the modal window if the user somehow gets out of the modal window
-  $('body').one('focusin', 'section', function() {
-    $('.modal-close').focus();
+  $(body).one('focusin', 'section', function() {
+    $(modalClose).focus();
   });
-
-  // save current focus
-  focusedElementBeforeModal = $(':focus');
 }
 
-function resetModal(e) {
-  e.preventDefault();
-  if($(modalVideo).length) {
-    $(modalVideo).attr('src', '');
-  }
-  $('body').removeClass('no-scroll');
-  $(modal).removeClass('open').attr('aria-hidden', 'true');
-  $(modalOverlay).removeClass('open');
-  $('section').attr('aria-hidden', 'false');
-  $('body').off('focusin', 'section');
-  if ($(galleryModalContent).children().length > 0) {
-    setTimeout(function() {
-      $(galleryModalContent).slick('unslick');
-    }, 500);
-  }
+function resetModal() {
+  // var galleryModal = document.getElementById('gallery-modal'),
+  //       video = galleryModal.querySelector('video');
+  // if (video) {
+  //   video.pause();
+  // }
+  $(body).removeClass('no-scroll');
+  $(modal).addClass('closed').removeClass('open').attr('aria-hidden', 'true');
+  $(modalOverlay).addClass('closed').removeClass('open');
+  $(section).attr('aria-hidden', 'false');
+  $(body).off('focusin', 'section');
+  // if ($(galleryModalContent).children().length > 0) {
+  //   $(galleryModalContent).slick('unslick');
+  // }
   focusedElementBeforeModal.focus();
 }
 
@@ -218,5 +224,4 @@ function trapTabKey(obj, evt) {
       }
     }
   }
-
 }

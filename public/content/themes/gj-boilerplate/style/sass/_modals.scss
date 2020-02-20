@@ -8,51 +8,52 @@
   top: -25%;
   left: 0;
   right: 0;
-  width: 100vw;
+  width: 100%;
+  max-width: 800px;
   height: 100vh;
   margin: 0 auto;
   z-index: -1;
-  overflow: visible;
-  transition: top 0.35s ease-out, opacity 0.35s linear, z-index 0.5s ease-in;
-
-  @include bp(767) {
-    top: 0;
-    overflow: scroll;
-  }
 
   &.open {
     top: 0;
     opacity: 1;
-    transition: top 0.35s ease-out, opacity 0.35s linear, z-index 0s;
-    z-index: 11;
+    transition: top 0.35s ease-out, opacity 0.35s, z-index 0s;
+    z-index: 12;
+  }
+
+  &.closed {
+    top: -25%;
+    opacity: 0;
+    transition: top 0.35s ease-out, opacity 0.35s, z-index 0.35s;
+    z-index: -1;
   }
 
   .modal-inner {
     position: relative;
     background: #fff;
     width: 100%;
-    max-width: 800px;
-    margin: 1.75rem auto 0;
+    height: 90vh;
+    margin: 0 auto;
     padding: 20px;
+    color: $text;
     box-sizing: border-box;
     z-index: 12;
+    overflow-y: scroll;
 
     @include bp(767) {
-      margin: 0;
+      height: 100vh;
     }
   }
 
   .modal-close {
-    display: block;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     background: transparent;
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     padding: 0;
     border: none;
-    z-index: 2;
 
     &:hover {
       cursor: pointer;
@@ -61,158 +62,58 @@
     .icon-close {
       width: 100%;
       height: 100%;
-      fill: gray;
-      stroke: gray;
+      fill: #777;
+      stroke: #777;
     }
     
   }
 
-  .modal-content {
-    background: transparent;
-    border: none;
-  }
-
   .modal-title {
     margin: 0 0 1rem;
+    padding: 0 0 1rem;
+    @include regular;
     font-size: 1.5rem;
-    text-transform: uppercase;
+    border-bottom: 1px solid #ccc;
   }
 
-  p {
+  h5 {
+    margin: 0 0 1rem;
+    @include regular;
+    font-size: 1.5rem;
+  }
+
+  p,
+  li {
     line-height: 1.4;
   }
-}
 
-// Gallery modal specific styles
-#gallery-modal {
-  width: 100%;
-  max-width: 1320px;
-  justify-content: center;
-
-  .modal-inner {
-    background: #fff;
-    width: 100%;
-    margin-top: 1.75rem;
-    padding: 40px 60px;
-
-    @include bp(1099) {
-      width: 96%;
-      margin-top: 155px;
-      padding: 25px 35px;
-    }
-  }
-
-  .modal-content {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    text-align: center;
-
-    .item {
-      position: relative;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    img {
-      width: 100%;
-      max-width: 1200px;
-      height: auto;
-      max-height: calc(100vh - 200px);
-      margin: 0 auto 0.5rem;
-    }
-
-    .gallery-caption {
-      color: #fff;
-    }
-  }
-
-  .video-responsive {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  .prev,
-  .next {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: -50px;
-    width: 40px;
-    height: 42px;
-    margin-top: -48px;
-    background: none;
-    border: none;
-    border-radius: 0;
-    z-index: 2;
-
-    @include bp(1099) {
-      right: -38px;
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    .icon-chevron {
-      top: 0;
-      width: 100%;
-      height: 100%;
-      fill: gray;
-      transform: rotate(-90deg);
-    }
-  }
-
-  .prev {
-    right: auto;
-    left: -50px;
-    transform: rotate(180deg);
-
-    @include bp(1099) {
-      left: -38px;
-    }
-  }
-
-  .slick-list {
-    height: auto !important;
-  }
-
-  .slick-track {
-    display: flex;
-    align-items: center;
-  }
-
-  .slick-initialized .slick-slide {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  li {
+    margin-bottom: 1rem;
   }
 }
-
-
 
 #modal-overlay {
   display: block;
   opacity: 0;
   position: fixed;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0,0,0,0.5);
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
   height: 100%;
-  transition: opacity 0.35s, z-index 0.5s ease-in;
   z-index: -1;
-  
+
   &.open {
     opacity: 1;
-    transition: opacity 0.35s, z-index 0s ease-in;
+    transition: opacity 0.35s, z-index 0s;
     z-index: 10;
+  }
+
+  &.closed {
+    opacity: 0;
+    transition: opacity 0.35s, z-index 0.35s;
+    z-index: -1;
   }
 }
