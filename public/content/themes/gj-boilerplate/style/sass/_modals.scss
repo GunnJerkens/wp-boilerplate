@@ -35,7 +35,7 @@
     height: 90vh;
     margin: 0 auto;
     padding: 20px;
-    color: $text;
+    color: #555;
     box-sizing: border-box;
     z-index: 12;
     overflow-y: scroll;
@@ -71,14 +71,12 @@
   .modal-title {
     margin: 0 0 1rem;
     padding: 0 0 1rem;
-    @include regular;
     font-size: 1.5rem;
     border-bottom: 1px solid #ccc;
   }
 
   h5 {
     margin: 0 0 1rem;
-    @include regular;
     font-size: 1.5rem;
   }
 

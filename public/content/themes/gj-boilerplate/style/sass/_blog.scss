@@ -1,0 +1,218 @@
+$shortImg: 38.05%;
+$tallImg: 64.30%;
+
+#blog-wrap {
+  
+  section {
+    padding-top: 0;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  #blog-posts {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .post {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 31%;
+    margin: 0 1.15% 2%;
+    opacity: 0;
+
+    @include bp(1023) {
+      width: 48%;
+      margin: 0 1% 2%;
+    }
+
+    @include bp(767) {
+      width: 100%;
+      margin: 0 0 2rem;
+    }
+
+    &.show {
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+
+    &.sticky {
+      width: 100%;
+
+      .post-img {
+        padding-bottom: 56.25%;
+      }
+    }
+
+    .post-img {
+      background-position: center center;
+      background-size: cover;
+      margin-bottom: 1rem;
+      padding-bottom: 56.25%;
+    }
+
+    .post-title {
+      font-size: 2rem;
+      line-height: 1;
+
+      a {
+        color: gold;
+      }
+    }
+  }
+}
+
+#blog-posts,
+#single-post {
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+
+    @include bp(767) {
+      flex-direction: column;
+    }
+  }
+
+  .post {
+    a {
+      color: orange;
+      text-decoration: none;
+
+      &:hover {
+        color: gold;
+        text-decoration: none;
+      }
+    }
+
+    .post-title {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+#single-post {
+
+  .post {
+    margin-bottom: 3rem;
+  }
+
+  .post-img {
+    display: block;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .post-content {
+    width: 64%;
+    margin-bottom: 3rem;
+
+    @include bp(767) {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .sidebar {
+    background: url('/content/themes/gj-boilerplate/img/burlap.jpg') no-repeat left top;
+    width: 33%;
+    padding: 2rem;
+    box-sizing: border-box;
+
+    @include bp(767) {
+      width: 100%;
+      padding: 1rem;
+    }
+
+    .post {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #555;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1;
+    }
+  }
+}
+
+#load-posts {
+  margin: 3rem 0 0;
+  font-size: 1.25rem;
+  text-align: center;
+
+  a {
+    color: orange;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    &:hover {
+      color: gold;
+      text-decoration: none;
+    }
+
+    &.disabled {
+      color: #555;
+    }
+  }
+}
+
+#social-strip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background: url('/content/themes/gj-boilerplate/img/social-strip.jpg') no-repeat center center;
+  background-size: auto 100%;
+  width: 100%;
+  max-width: 1500px;
+  height: 150px;
+  margin: 4rem auto 0;
+  text-align: center;
+
+  @include bp(768) {
+    height: 250px;
+  }
+
+  img {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .social-info {
+    display: flex;
+    align-self: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    font-size: 1rem;
+    z-index: 2;
+
+    @include bp(768) {
+      font-size: 1.25rem;
+    }
+
+    svg {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      fill: #555;
+    }
+  }
+}

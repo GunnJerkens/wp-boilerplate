@@ -35,6 +35,11 @@ function enqueue_scripts()
     // }
   }
 
+  // JS for single post type
+  if( is_single() && get_post_type()=='TYPE_NAME' ){
+    // wp_enqueue_script('Collection', get_template_directory_uri() .'/js/src/collection.js', false, null, true);
+  }
+
   // Load form variables
   $parameters = array(
     'ajaxurl'   => admin_url('admin-ajax.php'),

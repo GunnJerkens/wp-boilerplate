@@ -13,6 +13,7 @@ import JarallaxElement from './libs/jarallax-element.min.js';
 import Slick from './libs/slick.min.js';
 import Modals from './modals';
 import Ajax from './libs/ajax';
+import Blog from './blog';
 
 $(document).ready(function() {
 
