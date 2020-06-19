@@ -94,3 +94,14 @@ if (! function_exists('wp_delete_file_from_directory'))
   }
 
 } // end function
+
+
+/*
+* Introduced in WP 4.5.0 - needed for compat function of wp_delete_attachment_files
+*/
+if (! function_exists('wp_get_upload_dir'))
+{
+  function wp_get_upload_dir() {
+	         return wp_upload_dir( null, false );
+         }
+}

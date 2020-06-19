@@ -6,9 +6,6 @@ use EnableMediaReplace\ShortPixelLogger\ShortPixelLogger as Log;
 use EnableMediaReplace\Notices\NoticeController as Notices;
 
 /* Simple class for updating thumbnails.
-*
-*
-*
 */
 class ThumbnailUpdater
 {
@@ -100,7 +97,6 @@ class ThumbnailUpdater
 
         $replace_sql = $wpdb->prepare($sql, $from, $to );
         $wpdb->query($replace_sql);
-
     }
   }
 

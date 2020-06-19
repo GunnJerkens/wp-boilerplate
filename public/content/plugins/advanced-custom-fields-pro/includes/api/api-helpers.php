@@ -1216,6 +1216,22 @@ function acf_array( $val = array() ) {
 	return (array) $val;
 }
 
+/**
+ * Returns a non-array value.
+ *
+ * @date	11/05/2020
+ * @since	5.8.10
+ *
+ * @param	mixed $val The value to review.
+ * @return	mixed
+ */
+function acf_unarray( $val ) {
+	if( is_array( $val ) ) {
+		return reset( $val );
+	}
+	return $val;
+}
+
 /*
 *  acf_get_array
 *
@@ -3167,7 +3183,7 @@ function acf_get_attachment( $attachment ) {
 	// video
 	} elseif( $type === 'video' ) {
 		
-		// dimentions
+		// dimensions
 		$response['width'] = acf_maybe_get($meta, 'width', 0);
 		$response['height'] = acf_maybe_get($meta, 'height', 0);
 		

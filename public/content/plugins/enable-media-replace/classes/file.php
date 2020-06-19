@@ -10,7 +10,7 @@ class emrFile
   protected $file; // the full file w/ path.
   protected $extension;
   protected $fileName;
-  protected $filePath; // with trailing slash!
+  protected $filePath; // with trailing slash! not the image name.
   protected $fileURL;
   protected $fileMime;
   protected $permissions = 0;
