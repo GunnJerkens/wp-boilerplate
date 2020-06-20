@@ -60,6 +60,12 @@ class gjInit
     // Register menus && remove menu ul
     $this->registerMenus();
     add_filter('wp_nav_menu', array(&$this, 'removeMenuUl'));
+
+    // Creates custom post types
+    add_action( 'init', array(&$this, 'createPostType') );
+
+    // Creates custom taxonomies
+    add_action( 'init', array(&$this, 'createTaxonomy') );
   }
 
   /**
@@ -72,6 +78,127 @@ class gjInit
     register_nav_menus(array(
       'main' => 'Main Navigation'
     ));
+  }
+
+  /**
+   * Registers custom post types
+   *
+   * @return void
+   */
+  public function createPostType()
+  {
+    register_post_type('MPCs', array(
+      'labels' => array(
+        'name' => __('MPCs'),
+        'singular_name' => __('MPC'),
+        'add_new_item'  => 'Add New MPC',
+        'new_item_name' => 'New MPC'
+        ),
+      'menu_icon'       => 'dashicons-admin-multisite',
+      'public'          => true,
+      'hierarchical'    => true,
+      'show_in_rest'    => true,
+      'rest_base'       => 'mpcs',
+      'supports'        => array('title','editor','thumbnail','author','page-attributes')
+    ));
+
+    register_post_type('Communities', array(
+      'labels' => array(
+        'name' => __('Communities'),
+        'singular_name' => __('Community'),
+        'add_new_item'  => 'Add New Community',
+        'new_item_name' => 'New Community'
+        ),
+      'menu_icon'       => 'dashicons-admin-multisite',
+      'public'          => true,
+      'hierarchical'    => true,
+      'show_in_rest'    => true,
+      'rest_base'       => 'communities',
+      'supports'        => array('title','editor','thumbnail','author','page-attributes')
+    ));
+
+    register_post_type('Plans', array(
+      'labels' => array(
+        'name' => __('Plans'),
+        'singular_name' => __('Plan'),
+        'add_new_item'  => 'Add New Plan',
+        'new_item_name' => 'New Plan'
+        ),
+      'menu_icon'       => 'dashicons-admin-multisite',
+      'public'          => true,
+      'hierarchical'    => true,
+      'show_in_rest'    => true,
+      'rest_base'       => 'plans',
+      'supports'        => array('title','editor','thumbnail','author','page-attributes')
+    ));
+
+    register_post_type('QMIs', array(
+      'labels' => array(
+        'name' => __('QMIs'),
+        'singular_name' => __('QMI'),
+        'add_new_item'  => 'Add New QMI',
+        'new_item_name' => 'New QMI'
+        ),
+      'menu_icon'       => 'dashicons-admin-multisite',
+      'public'          => true,
+      'hierarchical'    => true,
+      'show_in_rest'    => true,
+      'rest_base'       => 'qmis',
+      'supports'        => array('title','editor','thumbnail','author','page-attributes')
+    ));
+  }
+
+  /**
+   * Registers custom taxonomy
+   *
+   * @return void
+   */
+  function createTaxonomy() {
+
+    $labels = array(
+      'name'              => _x( 'Regions', 'taxonomy general name', 'textdomain' ),
+      'singular_name'     => _x( 'Region', 'taxonomy singular name', 'textdomain' ),
+      'search_items'      => __( 'Search Regions', 'textdomain' ),
+      'all_items'         => __( 'All Regions', 'textdomain' ),
+      'parent_item'       => __( 'Parent Region', 'textdomain' ),
+      'parent_item_colon' => __( 'Parent Region:', 'textdomain' ),
+      'edit_item'         => __( 'Edit Region', 'textdomain' ),
+      'update_item'       => __( 'Update Region', 'textdomain' ),
+      'add_new_item'      => __( 'Add New Region', 'textdomain' ),
+      'new_item_name'     => __( 'New Region Name', 'textdomain' ),
+      'menu_name'         => __( 'Regions', 'textdomain' ),
+    );
+
+    $args = array(
+      'hierarchical'      => true,
+      'labels'            => $labels,
+      'show_ui'           => true,
+      'show_admin_column' => true,
+      'query_var'         => true,
+      'rewrite'           => array('slug' => false, 'with_front' => false),
+    );
+
+    register_taxonomy( 'regions', array( 'post' ), $args );
+
+    // register_taxonomy(
+    //   'region',
+    //   array('regions'),
+    //   array(
+    //       'labels' => array(
+    //           'name' => 'Region',
+    //           'add_new_item' => 'Add Region',
+    //           'new_item_name' => 'New Region'
+    //       ),
+    //       'show_ui' => true,
+    //       'show_in_menu' => true,
+    //       'show_tagcloud' => false,
+    //       'rewrite' => array(
+    //         'slug' => false,
+    //         'with_front' => false
+    //       ),
+    //       'hierarchical' => true
+    //   )
+    // );
   }
 
   /**

@@ -598,6 +598,13 @@ sup {
   display: none;
   color: green; }
 
+.mpc {
+  margin: 0 0 4rem; }
+
+#communities-wrap {
+  max-width: 50%;
+  margin: 2rem auto; }
+
 #header {
   position: fixed;
   top: 0;
