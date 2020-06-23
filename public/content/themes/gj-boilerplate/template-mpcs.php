@@ -33,16 +33,20 @@ $communities = get_posts( array('posts_per_page' => -1, 'post_type' => 'communit
               $comm_name = get_field('name', $community->ID);
               $comm_tagline = get_field('tagline', $community->ID);
               $comm_description = get_field('description', $community->ID);
-              $comm_mpc = get_field('mpc', $community->ID);
+              $comm_mpc_object = get_field('mpc', $community->ID);
+              $comm_mpc = $comm_mpc_object[0]->post_title;
+              // print_r($comm_mpc);
+              if ($comm_mpc == $name) {
             ?>
               <div class="community">
                 <p><?php echo $comm_name; ?></p>
                 <p><?php echo $region->name; ?></p>
-                <p><?php if ($comm_mpc) { echo $comm_mpc->name; } ?></p>
+                <p><?php if ($comm_mpc) { echo $comm_mpc; } ?></p>
                 <p><?php echo $city; ?></p>
                 <p><?php echo $comm_tagline; ?></p>
                 <p><?php echo $comm_description; ?></p>
               </div>
+              <?php } ?>
             <?php } ?>
           </div>
 
