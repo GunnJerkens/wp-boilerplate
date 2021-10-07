@@ -1,6 +1,5 @@
 # Ignore Images
 public/shared
-public/shared/content/uploads
 
 # Ignore Cache Configs
 public/content/advanced-cache.php
