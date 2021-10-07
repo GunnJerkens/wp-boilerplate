@@ -2,32 +2,26 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
-// const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-require('babel-polyfill');
-require('whatwg-fetch');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const extractSass = new ExtractTextPlugin({
-  filename: '../style/screen.css'
-});
+
+require('core-js');
 
 module.exports = (env) => {
-  // set plugins - uncomment BrowserSyncPlugin and update host/ proxy values to enable browser-sync
+  const mode = env.NODE_ENV === 'local' ? 'development' : env.NODE_ENV;
   const plugins = [
-    extractSass,
+    new MiniCssExtractPlugin({
+       filename: "../style/screen.css"
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(env.NODE_ENV)
       }
     })
-    // new BrowserSyncPlugin({
-    //   open: 'external',
-    //   host: 'example.test',
-    //   port: 9000,
-    //   proxy: 'http://example.test:8080/'
-    // })
   ];
+
+  console.log('mode: ', mode);
 
   if (env.NODE_ENV === 'production') {
     plugins.push(
@@ -36,9 +30,9 @@ module.exports = (env) => {
   }
 
   return {
+    mode: mode,
     entry: [
-      'babel-polyfill',
-      'whatwg-fetch',
+      'core-js',
       './public/content/themes/gj-boilerplate/js/src/scripts.js',
       './public/content/themes/gj-boilerplate/style/sass/screen.scss'
     ],
@@ -54,24 +48,23 @@ module.exports = (env) => {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
-          options: {
-            presets: ['env']
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
           }
         },
         {
           test: /\.scss$/,
-          loader: extractSass.extract([
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: env.NODE_ENV === 'production'
-              }
-            },
-            'postcss-loader',
-            'sass-loader'
-          ])
-        }
+          use: [{
+            loader: MiniCssExtractPlugin.loader
+          }, {
+            loader: "css-loader"
+          }, {
+            loader: "sass-loader"
+          }]
+        },
       ]
     },
     plugins: plugins

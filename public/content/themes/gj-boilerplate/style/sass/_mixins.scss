@@ -1,20 +1,46 @@
-@mixin breakpoint($point) {
-  @if $point == max-small {
-    @media (max-width: 767px) { @content; }
+@mixin bp($breakpoint) {
+  $num: $breakpoint;
+  @if $breakpoint == med {
+    $num: 768;
   }
-  @else if $point == min-small {
-    @media (min-width: 768px) { @content; }
+  @if $breakpoint == lg {
+    $num: 1024;
   }
-  @else if $point == max-med {
-    @media (max-width: 991px)  { @content; }
+  @media only screen and (min-width: $num + px) {
+    @content;
   }
-  @else if $point == min-med {
-    @media (min-width: 992px)  { @content; }
+}
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+
+@mixin fontSize($size) {
+  font-size: calculateRem($size);
+}
+
+@mixin fluid-type($min-font-size, $max-font-size, $lower-range, $upper-range) {
+  font-size: calc(#{$min-font-size} + #{(($max-font-size / ($max-font-size * 0 + 1)) - ($min-font-size / ($min-font-size * 0 + 1)))} * ( (100vw - #{$lower-range}) / #{(($upper-range / ($upper-range * 0 + 1)) - ($lower-range / ($lower-range * 0 + 1)))}));
+  @media screen and (max-width: $lower-range) {
+    font-size: $min-font-size;
   }
-  @else if $point == max-large {
-    @media (max-width: 1199px) { @content; }
+  @media screen and (min-width: $upper-range){
+    font-size: $max-font-size;
   }
-  @else if $point == min-large {
-    @media (min-width: 1200px)  { @content; }
+}
+
+@mixin placeholder() {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
   }
 }

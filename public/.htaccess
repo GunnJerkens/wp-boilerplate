@@ -1,0 +1,12 @@
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule . - [L]
+RewriteRule  ^([_0-9a-zA-Z-]+/)?(wp-.*) /wp/$2 [L]
+RewriteRule  ^([_0-9a-zA-Z-]+/)?(.*\.php)$ /wp/$2 [L]
+RewriteRule . index.php [L]
+</IfModule>
+# END WordPress

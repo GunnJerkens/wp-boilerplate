@@ -3,6 +3,9 @@
  */
 function Ajax(el) {
   this.el      = $(el);
+  this.id      = $(el).attr('id');
+  this.btn     = $(el).children('button[type="submit"]');
+  this.thanks  = $(el).children('.thanks');
   this.error   = $('#error');
   this.options = formOptions;
   this.output  = { status: 'success', message: 'All fields complete.', element: null };
@@ -18,9 +21,9 @@ Ajax.prototype.run = function() {
     self.checkFields();
 
     if(self.output.status !== 'error') {
-      $('button[type="submit"]').toggle();
+      $(this.btn).toggle();
       self.error.empty();
-      self.error.append('<p class="message"><i class="fa fa-spin fa-spinner"></i> Sending...</p>');
+      self.error.append('<p class="message">Sending...</p>');
 
       $.post(self.options.ajaxurl, {
         action : 'register',
@@ -29,6 +32,7 @@ Ajax.prototype.run = function() {
       },
       function(response) {
         self.successMessage(response);
+        
         // google tag manager custom event
         if(typeof dataLayer !== 'undefined') {
           dataLayer.push({'event': 'formSubmitted'});
@@ -41,6 +45,7 @@ Ajax.prototype.run = function() {
 }
 
 Ajax.prototype.checkFields = function() {
+  console.log('checkFields');
   var self = this;
   this.clearErrors();
 
@@ -57,7 +62,7 @@ Ajax.prototype.checkFields = function() {
       field_name = field_name.replace('*', '');
 
       if(value === "" || value === null) {
-        self.setOutput('error','<i class="fa fa-close"></i> "' + field_name + '" is required.', el);
+        self.setOutput('error', field_name + '" is required.', el);
         return false;
       }
 
@@ -70,18 +75,18 @@ Ajax.prototype.checkFields = function() {
           }
         });
         if (!group_checked) {
-          self.setOutput('error', '<i class="fa fa-close"></i> "' + field_name + '" is required.', el);
+          self.setOutput('error',  field_name + '" is required.', el);
           return false;
         }
       }
 
       if('email' === type && false === self.looseEmailValidate(value)) {
-        self.setOutput('error', '<i class="fa fa-close"></i> Your email is not valid.', el);
+        self.setOutput('error', 'Your email is not valid.', el);
         return false;
       }
 
       if(input_name === "zip" && value.length < 5 || input_name === "zip" && isNaN(value)) {
-        self.setOutput('error', '<i class="fa fa-close"></i> Please enter a valid zip code.', el);
+        self.setOutput('error', 'Please enter a valid zip code.', el);
         return false;
       }
 
@@ -111,23 +116,22 @@ Ajax.prototype.errorOutput = function() {
   this.error.append(this.output.message);
   $('input, select, .form-group').removeClass('has-error');
   if(this.output.element !== null) {
-    this.output.element.closest('div.form-group').addClass('has-error');
+    this.output.element.closest('.form-group').addClass('has-error');
   }
 };
 
 Ajax.prototype.successMessage = function(data) {
-  var response = JSON.parse(data);
+  var formChildren = $(this.id).children().not('.thanks'),
+      response = JSON.parse(data);
 
-  if (response.status === 'success' && this.options.thanks) {
-    $('form#register *').fadeOut(300);
-    this.el.html('<p class="message"><i class="fa fa-check"></i> ' + this.options.thanks + '</p>');
-  } else if (response.status === 'success') {
-    $('form#register *').fadeOut(300);
-    this.el.html('<p class="message"><i class="fa fa-check"></i>Your information has been received successfully.</p>');
+  if (response.status === 'success') {
+    $(formChildren).fadeOut(300);
+    this.el.html(this.thanks);
+    this.thanks.show();
   } else {
     this.error.empty();
-    this.error.append('<i class="fa fa-close"></i>  ' + response.message);
-    $('button[type="submit"]').toggle();
+    this.error.append(response.message);
+    $(this.btn).toggle();
   }
 };
 

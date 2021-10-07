@@ -2,7 +2,7 @@
 
 /* Bootstrap v4.0 */
 /* This file imports all the bootstrap modules individually */
-// @import "bootstrap";
+@import "bootstrap";
 
 /* SCSS Modules */
 @import "mixins";
@@ -11,3 +11,9 @@
 
 /* Project Files */
 @import "layout";
+@import "header";
+@import "slick";
+@import "animations";
+@import "popup";
+@import "modals";
+@import "blog";

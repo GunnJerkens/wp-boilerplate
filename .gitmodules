@@ -1,7 +1,7 @@
 [submodule "bin"]
-  path = bin
-  url = git@github.com:GunnJerkens/server-scripts.git
+	path = bin
+	url = git@github.com:GunnJerkens/server-scripts.git
 [submodule "public/wp"]
-  path = public/wp
-  url = git@github.com:WordPress/WordPress.git
+	path = public/wp
+	url = git@github.com:WordPress/WordPress.git
   ignore = dirty
