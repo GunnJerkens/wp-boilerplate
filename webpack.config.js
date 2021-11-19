@@ -2,42 +2,31 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const MinifyPlugin = require('babel-minify-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-
-require('core-js');
 
 module.exports = (env) => {
   const mode = env.NODE_ENV === 'local' ? 'development' : env.NODE_ENV;
   const plugins = [
     new MiniCssExtractPlugin({
-       filename: "../style/screen.css"
+       filename: "./public/content/themes/gj-boilerplate/style/[name].css"
     }),
     new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify(env.NODE_ENV)
-      }
+      'process.env.NODE_ENV': JSON.stringify(mode)
     })
   ];
 
-  console.log('mode: ', mode);
+  stats: 'errors-only',
 
-  if (env.NODE_ENV === 'production') {
-    plugins.push(
-      new MinifyPlugin()
-    );
-  }
+  console.log('mode: ', mode);
 
   return {
     mode: mode,
-    entry: [
-      'core-js',
-      './public/content/themes/gj-boilerplate/js/src/scripts.js',
-      './public/content/themes/gj-boilerplate/style/sass/screen.scss'
-    ],
+    entry: {
+      scripts: './public/content/themes/gj-boilerplate/js/src/scripts.js',
+      styles: './public/content/themes/gj-boilerplate/style/sass/screen.scss'
+    },
     output: {
-      filename: 'main.js',
+      filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'public/content/themes/gj-boilerplate/js')
     },
     externals: {
@@ -56,17 +45,29 @@ module.exports = (env) => {
           }
         },
         {
-          test: /\.scss$/,
+          test: /\.scss$/i,
+          use: [
+            // {
+            //   loader: MiniCssExtractPlugin.loader
+            // },
+            // Creates `style` nodes from JS strings
+            "style-loader",
+            // Translates CSS into CommonJS
+            "css-loader",
+            // Compiles Sass to CSS
+            "sass-loader",
+          ]
+        },
+        {
+          test: /\.css$/i,
           use: [{
             loader: MiniCssExtractPlugin.loader
           }, {
             loader: "css-loader"
-          }, {
-            loader: "sass-loader"
           }]
         },
       ]
     },
-    plugins: plugins
+    plugins: plugins,
   }
 };
