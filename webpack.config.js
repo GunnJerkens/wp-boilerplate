@@ -2,20 +2,20 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = (env) => {
   const mode = env.NODE_ENV === 'local' ? 'development' : env.NODE_ENV;
   const plugins = [
     new MiniCssExtractPlugin({
-       filename: "./public/content/themes/gj-boilerplate/style/[name].css"
+       filename: "../style/[name].css"
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(mode)
     })
   ];
-
-  stats: 'errors-only',
 
   console.log('mode: ', mode);
 
@@ -45,28 +45,22 @@ module.exports = (env) => {
           }
         },
         {
-          test: /\.scss$/i,
-          use: [
-            // {
-            //   loader: MiniCssExtractPlugin.loader
-            // },
-            // Creates `style` nodes from JS strings
-            "style-loader",
-            // Translates CSS into CommonJS
-            "css-loader",
-            // Compiles Sass to CSS
-            "sass-loader",
-          ]
-        },
-        {
-          test: /\.css$/i,
-          use: [{
-            loader: MiniCssExtractPlugin.loader
-          }, {
-            loader: "css-loader"
-          }]
+          test: /.s?css$/,
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
       ]
+    },
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            output: {
+              comments: false,
+            },
+          },
+        }),
+        new CssMinimizerPlugin()
+      ],
     },
     plugins: plugins,
   }

@@ -5,7 +5,7 @@
     "start": "webpack --env NODE_ENV=local",
     "watch": "webpack --env NODE_ENV=local --watch",
     "webp": "node webp.js",
-    "build": "node webp.js && webpack --env NODE_ENV=production"
+    "build": "webpack --env NODE_ENV=production"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.5",
@@ -29,8 +29,11 @@
   },
   "dependencies": {
     "bootstrap": "^5.0.0",
+    "css-minimizer-webpack-plugin": "^3.1.4",
     "imagemin": "^8.0.0",
     "imagemin-webp": "^6.0.0",
-    "intersection-observer": "^0.12.0"
+    "intersection-observer": "^0.12.0",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }
