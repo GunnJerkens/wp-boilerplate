@@ -4,7 +4,7 @@
 #   VARS && INIT    #
 #####################
 
-wordpress=5.2.2
+wordpress=4.9.8
 
 cd `dirname $0`
 
